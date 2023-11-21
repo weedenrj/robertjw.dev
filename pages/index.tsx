@@ -15,7 +15,7 @@ export default function Home() {
 
 
       <div className={clsx("flex flex-col h-full w-full justify-center items-center",
-        "gap-4 p-4 md:px-12 overflow-hidden",
+        "gap-4 p-2 md:px-12",
         "bg-sketch bg-center bg-cover"
       )}>
         <div className={clsx("relative text-white relative flex flex-col justify-center items-center",
@@ -26,12 +26,12 @@ export default function Home() {
           <img
             src="/Logo.webp"
             alt="The Red Shed logo"
-            className={clsx('absolute   rotate-12',
+            className={clsx('absolute rotate-12',
               "-top-20 md:-top-28 lg:-top-44",
-              "-left-12 md:-left-24 lg:-left-28",
-              "w-40 md:w-64 lg:w-80"
+              "-left-9 md:-left-24 lg:-left-28",
+              "w-36 md:w-64 lg:w-80"
             )} />
-          <p className='md:relative md:z-10 text-3xl md:text-5xl mt-4 mb-8 md:mb-12 font-lato'>
+          <p className='md:relative md:z-10 text-3xl md:text-5xl pt-7 pb-4 md:mp-12 font-lato text-center'>
             Coming Back Soon!
           </p>
           <p className='md:relative md:z-10 text-base md:text-xl lg:text-2xl text-center font-lato'>
