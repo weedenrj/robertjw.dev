@@ -1,6 +1,5 @@
 import React from "react";
 import Helmet, { HelmetProps } from "./Helmet";
-import Navbar from "./Navbar/Navbar";
 
 export type PageProps = {
   SEO: HelmetProps
@@ -13,7 +12,7 @@ export default function Page({
   return (
     <>
       <Helmet {...SEO} />
-      <main className="h-screen w-screen">
+      <main className="h-screen w-screen overflow-hidden">
         {children}
       </main>
     </>

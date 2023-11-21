@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const assetLink = (link) => `url("/${link}")`
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -8,13 +11,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blue: "#5DABF4",
-        sand: "#F4A65D",
-        orange: "#F4735D",
-        yellow: "#F4D85D"
+        red: "#b45331",
+        darkRed: "#933515",
+        yellow: "#eaa749",
+        darkYellow: "#bf871f",
+        brown: "#B47A31",
+        themeGray: "#82888d"
       },
       animation: {
         blob: "blob 7s infinite",
+      },
+      fontFamily: {
+        'title': ['title', 'sans-serif'],
+        'lato': ['Lato', 'sans-serif']
       },
       keyframes: {
         blob: {
@@ -32,7 +41,14 @@ module.exports = {
           },
         },
       },
+      textShadow: {
+        'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",
+        'black-border-bottom': '0px 0 black, 0 2px black, 0px 0 black, 0 3px black;',
+        'black-border-bottom-thin': '0px 0 black, 0 1px black, 0px 0 black, 0 1px black;',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow'),
+  ],
 }
