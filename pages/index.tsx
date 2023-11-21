@@ -4,12 +4,12 @@ import Page from '@components/common/Page'
 export default function Home() {
   return (
     <Page SEO={{
-      title: "TODO",
-      url: "TODO",
-      image: "https://TODO.com/logo.png",
+      title: "The Red Shed | Madison, Wi.",
+      url: "https://redshedmadison.com",
+      image: "https://redshedmadison.com/logo.png",
       desc: "Fill in your SEO"
     }}>
-      <Navbar />
+      {/* <Navbar /> */}
 
 
       <div className="bg-black flex flex-col h-full w-full justify-center items-center gap-4 p-4 font-mono overflow-hidden bg-black text-white md:bg-white md:text-black">

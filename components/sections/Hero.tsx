@@ -30,7 +30,7 @@ export default function Hero({
 
       <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
         {navLinks.map((link, i) => (
-          <Link key={i} href={link.url} target={link.blank&&"_blank"}>
+          <Link key={i} href={link.url} target={link.blank ? "_blank" : undefined}>
             <Button>
               {link.title}
             </Button>
