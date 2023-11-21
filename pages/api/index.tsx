@@ -12,9 +12,8 @@ export default async function sendEmail(
   const { from, email, message } = JSON.parse(req.body)
 
   const emailRes = await resend.sendEmail({
-    from: `contact@brodheadaviation.com`,
-    to: 'info@brodheadaviation.com',
-    // to: 'robertweeden1997@gmail.com',
+    from: `contact@redshedmadison.com`,
+    to: 'info@redshedmadison.com',
     subject: `${from} contact form submission`,
     react: <Email {...JSON.parse(req.body)} />
   })

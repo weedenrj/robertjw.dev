@@ -38,13 +38,13 @@ export default function Location({
 
       <div className="grid grid-cols-1 lg:grid-cols-7 gap-y-4 lg:gap-8 place-items-center ">
         <Image
-          src="/c37.webp" alt="brodhead airport by air"
+          src="/LogoWagon.jpeg" alt="brodhead airport by air"
           className="rounded-xl w-full col-span-3"
           width={1280} height={960}
         />
 
         <Image
-          src="/oldBrodhead.webp" alt="brodhead airport by air"
+          src="/Logo.webp" alt="brodhead airport by air"
           className="rounded-xl w-full col-span-4"
           width={960} height={540}
         />
