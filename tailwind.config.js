@@ -42,7 +42,7 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'sketch': assetLink("RedShedSketchDark.jpg")
+        'sketch': assetLink("RedShedSketchDark.webp")
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",

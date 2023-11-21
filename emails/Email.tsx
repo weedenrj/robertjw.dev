@@ -33,31 +33,6 @@ export function Email({
 }: SendEmailProps) {
   const baseUrl = "asdf"
   return (
-    // <Html>
-    //   <Head />
-    //   <Body style={main}>
-    //     <Tailwind config={tailwindConfig}>
-    //       <Container style={container}>
-    //         <Img
-    //           src={`https://brodheadaviation.com/badgerworks.png`}
-    //           width={295}
-    //           height={188}
-    //           alt="BA logo"
-    //         />
-    //         <h1 className='text-3xl font-bold mt-12'>Message from {from}</h1>
-    //         <div className='mt-6 text-lg flex flex-col'>
-    //           <p><span className='font-bold'>From:</span> {from}</p>
-    //           <p><span className='font-bold'>Email:</span> {email}</p>
-    //           <p><span className='font-bold'>Phone:</span> {phone}</p>
-    //           <p className='whitespace-pre'><span className='font-bold mb-1'>Message:</span><br />{message}</p>
-    //         </div>
-
-    //         <hr className='border-gray-300 border-opacity-50 mt-12' />
-    //         <p className='pl-4 text-gray-500'>Form sent from <a href='https://brodheadaviation.com'>https://brodheadaviation.com</a></p>
-    //       </Container>
-    //     </Tailwind>
-    //   </Body>
-    // </Html>
     <Html>
       <Head />
       <Body style={main}>
