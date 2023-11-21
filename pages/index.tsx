@@ -37,9 +37,9 @@ export default function Home() {
           <p className='md:relative md:z-10 text-base md:text-xl lg:text-2xl text-center font-lato'>
             The Red Shed is currently undergoing renovations for our new location at 508 State St, Madison.
             <br /><br />
-            <u>Check back in a few weeks to see if we're open yet.</u>
+            <u>Check back in a few weeks to see if we&apos;re open yet.</u>
             <br /><br />
-            <em>Thank you for your continued patience and faithful service. We're excited to serve you again!</em>
+            <em>Thank you for your continued patience and faithful service. We&apos;re excited to serve you again!</em>
             <br />
             <em>~The Red Shed Staff</em>
           </p>
