@@ -42,8 +42,8 @@ export default function Navbar() {
 
       <Link href="#hero">
         <Image
-          alt="Brodhead Aviation Logo"
-          src="/logo.webp"
+          alt="The Red Shed Logo"
+          src="/Logo.webp"
           className="cursor-pointer max-w-[80px] sm:max-w-[100px] lg:max-w-[124px]"
           width={150}
           height={150}
@@ -79,8 +79,8 @@ export default function Navbar() {
 
               <Link href="#hero">
                 <Image
-                  alt="Brodhead Aviation Logo"
-                  src="/logo.webp"
+                  alt="The Red Shed Logo"
+                  src="/Logo.webp"
                   className="absolute top-4 left-2 sm:top-[10%] max-w-[80px] sm:max-w-[100px]"
                   width={150}
                   height={150}

@@ -64,10 +64,10 @@ export function Email({
         <Container style={container}>
           <Section>
             <Img
-              src={`https://brodheadaviation.com/badgerworks.png`}
+              src={`https://redshedmadison.com/Logo.webp`}
               width={295}
               height={188}
-              alt="BA logo"
+              alt="The Red Shed logo"
             />
           </Section>
 
@@ -89,7 +89,7 @@ export function Email({
                 margin: 0,
               }}
             >
-              Form sent from <a href='https://brodheadaviation.com'>https://brodheadaviation.com</a>
+              Form sent from <a href='https://redshedmadison.com'>https://redshedmadison.com</a>
             </Text>
           </Section>
         </Container>

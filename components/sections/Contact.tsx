@@ -55,7 +55,7 @@ export default function Contact({
           <div className="w-1/2 px-3">
             <label className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="firstName">
-              First Name <span className="text-red">*</span>
+              First Name <span className="text-themeRed">*</span>
             </label>
             <input className={clsx("appearance-none block w-full bg-yellow bg-opacity-30 border border-gray-400",
               "rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-opacity-50 focus:border-gray-500")}
@@ -64,7 +64,7 @@ export default function Contact({
           <div className="w-1/2 px-3">
             <label className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="lastName">
-              Last Name <span className="text-red">*</span>
+              Last Name <span className="text-themeRed">*</span>
             </label>
             <input className={clsx("appearance-none block w-full bg-yellow bg-opacity-30  border border-gray-400",
               "rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-opacity-50 focus:border-gray-500")}
@@ -75,7 +75,7 @@ export default function Contact({
           <div className="w-1/2 px-3">
             <label className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="email">
-              E-mail <span className="text-red">*</span>
+              E-mail <span className="text-themeRed">*</span>
             </label>
             <input className={clsx("appearance-none block w-full bg-yellow bg-opacity-30  border border-gray-400",
               "rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-opacity-50 focus:border-gray-500")}
@@ -84,7 +84,7 @@ export default function Contact({
           <div className="w-1/2 px-3">
             <label className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="phone">
-              Phone number <span className="text-red">*</span>
+              Phone number <span className="text-themeRed">*</span>
             </label>
             <input className={clsx("appearance-none block w-full bg-yellow bg-opacity-30 border border-gray-400",
               "rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-opacity-50 focus:border-gray-500")}
@@ -95,7 +95,7 @@ export default function Contact({
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="message">
-              Message <span className="text-red">*</span>
+              Message <span className="text-themeRed">*</span>
             </label>
             <textarea 
               className={clsx("whitespace-pre no-resize appearance-none block w-full bg-yellow bg-opacity-30 border border-gray-400",
@@ -107,7 +107,7 @@ export default function Contact({
         </div>
         <div className="md:flex md:items-center">
           <input type="submit" value={isLoading ? "Sending..." : data ? "Sent!" : "Send message"}
-            className={clsx(className, "flex justify-center bg-red hover:bg-darkRed",
+            className={clsx(className, "flex justify-center bg-themeRed hover:bg-darkRed",
               "rounded-lg border border-darkYellow hover:border-yellow hover:cursor-pointer",
               "font-title text-2xl text-white text-center tracking-wider",
               "pb-2 px-3",

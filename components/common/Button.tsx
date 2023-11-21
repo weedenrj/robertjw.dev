@@ -10,7 +10,7 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   return (
-    <button className={clsx(className, "flex justify-center bg-red hover:bg-darkRed",
+    <button className={clsx(className, "flex justify-center bg-themeRed hover:bg-darkRed",
       "rounded-lg border border-darkYellow hover:border-yellow",
       "font-title text-2xl text-white tracking-wider",
       "pb-2 px-3",

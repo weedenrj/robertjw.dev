@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        red: "#b45331",
+        themeRed: "#b45331",
         darkRed: "#933515",
         yellow: "#eaa749",
         darkYellow: "#bf871f",
@@ -40,6 +40,9 @@ module.exports = {
             transform: "tranlate(0px, 0px) scale(1)",
           },
         },
+      },
+      backgroundImage: {
+        'sketch': assetLink("RedShedSketchDark.jpg")
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",

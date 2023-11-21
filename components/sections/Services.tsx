@@ -57,7 +57,7 @@ export default function Services({
         {servicesOffered.map((service, i) => (
           <div key={i} className={clsx("flex flex-col items-center  gap-2 p-2",
             "h-full max-w-[700px]",
-            "border-2 ring-2 ring-red border-yellow rounded-xl bg-brown bg-opacity-50"
+            "border-2 ring-2 ring-themeRed border-yellow rounded-xl bg-brown bg-opacity-50"
           )}>
             <Title className="text-3xl text-center underline">
               {service.title}
