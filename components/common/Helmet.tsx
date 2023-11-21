@@ -19,7 +19,7 @@ export default function Helmet({
     <Head>
       <title>{title}</title>
       <meta name="description" content={desc} />
-      <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="apple-touch-icon" sizes="180x180" href="/Logo.webp" />
       <link rel="icon" type="image/x-icon" href="/Logo.webp"/>
 
