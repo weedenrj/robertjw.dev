@@ -9,7 +9,7 @@ export default function Home() {
       url: "https://redshedmadison.com",
       image: "https://redshedmadison.com/Logo.webp",
       desc: "The Red Shed is currently undergoing renovations for our new location at 508 State St, Madison. " +
-        "Check back in a few weeks to see if we're open yet. Thank you for your continued patience and faithful service. We're excited to serve you again!"
+        "Check back in a few weeks to see if we're open yet. Thank you for your continuing patience and faithful service. We're excited to serve you again!"
     }}>
       {/* <Navbar /> */}
 
@@ -39,7 +39,7 @@ export default function Home() {
             <br /><br />
             <u>Check back in a few weeks to see if we&apos;re open yet.</u>
             <br /><br />
-            <em>Thank you for your continued patience and faithful service. We&apos;re excited to serve you again!</em>
+            <em>Thank you for your continuing patience and faithful service. We&apos;re excited to serve you again!</em>
             <br />
             <em>~The Red Shed Staff</em>
           </p>
