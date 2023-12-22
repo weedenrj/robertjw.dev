@@ -5,10 +5,10 @@ import clsx from "clsx";
 
 export type NavLinks = typeof navLinks
 export const navLinks = [
-  { title: "Home", url: "/#home" },
-  { title: "Menu", url: "/#menu" },
-  { title: "Promos", url: "/#promos" },
-  { title: "Find Us", url: "/#findus" },
+  { title: "Home", url: "/#home", blank: false },
+  { title: "Menu", url: "/#menu", blank: false },
+  { title: "Promos", url: "/#promos", blank: false },
+  { title: "Find Us", url: "/#findus", blank: false },
 ];
 
 export default function Navbar() {
