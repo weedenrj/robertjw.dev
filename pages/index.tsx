@@ -1,6 +1,10 @@
 import Navbar from '@components/common/Navbar'
 import Page from '@components/common/Page'
+import Title from '@components/common/Title'
+import Text from '@components/common/Text'
 import clsx from 'clsx'
+import Image from 'next/image'
+import Button from '@components/common/Button'
 
 export default function Home() {
   return (

@@ -1,5 +1,8 @@
 import React from "react";
 import Helmet, { HelmetProps } from "./Helmet";
+import { Antonio, Lato } from 'next/font/google'
+import clsx from "clsx";
+
 
 export type PageProps = {
   SEO: HelmetProps
@@ -12,9 +15,9 @@ export default function Page({
   return (
     <>
       <Helmet {...SEO} />
-      <main className="h-screen w-screen overflow-hidden">
+      <div className={clsx("h-screen w-screen overflow-hidden bg-black")}>
         {children}
-      </main>
+      </div>
     </>
   )
 }

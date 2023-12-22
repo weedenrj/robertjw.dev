@@ -1,8 +1,22 @@
 /** @type {import('tailwindcss').Config} */
+const Colors = require('./constants/Colors.json')
 
 const assetLink = (link) => `url("/${link}")`
 
+const safelist = [
+  // SIZES
+  ...[...Array(200)].map((_, i) => `w-${i + 1}`),
+  ...[...Array(200)].map((_, i) => `h-${i + 1}`),
+  // GRID
+  ...[...Array(200)].map((_, i) => `grid-cols-${i + 1}`),
+  // MISC
+  // COLORS
+  ...Object.keys(Colors.accent).map(accent => `bg-accent-${accent} border-accent-${accent}`)
+]
+
+
 module.exports = {
+  safelist,
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -10,20 +24,33 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        themeRed: "#b45331",
-        darkRed: "#933515",
-        yellow: "#eaa749",
-        darkYellow: "#bf871f",
-        brown: "#B47A31",
-        themeGray: "#82888d"
+      colors: { ...Colors },
+      height: {
+        '18': '72px',
+        '38': '152px',
+        '46': '184px'
+      },
+      width: {
+        '18': '72px',
+        '38': '152px',
+        '46': '184px'
+      },
+      minWidth: {
+        '18': '72px',
+        '38': '152px',
+        '46': '184px'
+      },
+      minHeight: {
+        '18': '72px',
+        '38': '152px',
+        '46': '184px'
       },
       animation: {
         blob: "blob 7s infinite",
       },
       fontFamily: {
-        'title': ['title', 'sans-serif'],
-        'lato': ['Lato', 'sans-serif']
+        'title': 'var(--title-font)',
+        'lato': 'var(--body-font)'
       },
       keyframes: {
         blob: {
@@ -42,7 +69,8 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'sketch': assetLink("RedShedSketchDark.webp")
+        'sketch': assetLink("RedShedSketchDark.webp"),
+        'hero': assetLink('pngs/pouring-beer.png')
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",
