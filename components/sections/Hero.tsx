@@ -22,19 +22,19 @@ export default function Hero({
   return (
     <div className={clsx(className,
       "relative flex flex-col h-full w-full justify-center items-center text-white",
-      "gap-4 lg:gap-6 p-2 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
+      "gap-4 xl:gap-6 p-2 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
       "bg-heroMobile lg:bg-heroDesktop bg-center bg-cover"
     )}
       {...rest}
     >
 
-      <div className='flex flex-col gap-2 lg:gap-6 lg:self-start'>
-        <Title className={clsx('text-title text-center lg:text-left font-bold leading-snug md:leading-[64px] xl:leading-[80px]',
-          'text-3xl xs:text-4xl md:text-5xl xl:text-6xl lg:first-letter:-ml-5' 
+      <div className='flex flex-col gap-2 xl:gap-6 xl:self-start'>
+        <Title className={clsx('text-title text-center xl:text-left font-bold leading-snug md:leading-[64px] xl:leading-[80px]',
+          'text-3xl xs:text-4xl md:text-5xl xl:text-6xl xl:first-letter:-ml-5' 
         )}>
           &quot;A must stop<br /> when in Madison&quot;!
         </Title>
-        <div className='flex justify-center lg:justify-start items-center gap-4'>
+        <div className='flex justify-center xl:justify-start items-center gap-4'>
           <Image
             alt="The Red Shed Logo"
             src="/pngs/profile-pic-1.png"
@@ -46,7 +46,7 @@ export default function Hero({
         </div>
       </div>
 
-      <Button size='lg' className="hidden sm:flex lg:self-start" onClick={() => getLocation(true)}>
+      <Button size='lg' className="hidden sm:flex xl:self-start" onClick={() => getLocation(true)}>
         <Image src="/icons/Location.svg" alt="calendar" className="text-white" width={24} height={24} />
         Get directions
       </Button>
