@@ -67,7 +67,7 @@ export default function Navbar() {
 
 
         {open && (
-          <div className={clsx('md:hidden absolute z-10 top-0 left-0 h-screen w-full bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
+          <div className={clsx('md:hidden absolute z-10 top-0 left-0 h-dvh w-full bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
             "flex flex-col items-center pt-24 gap-8")}>
             {navLinks.map((item, i) => (
               <Link key={i}

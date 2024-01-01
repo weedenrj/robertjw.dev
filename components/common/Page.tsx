@@ -15,7 +15,7 @@ export default function Page({
   return (
     <>
       <Helmet {...SEO} />
-      <div className={clsx("h-screen w-screen overflow-hidden bg-black")}>
+      <div className={clsx("h-dvh w-screen overflow-hidden bg-black")}>
         {children}
       </div>
     </>
