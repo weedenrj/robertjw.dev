@@ -37,7 +37,7 @@ export default function Hero({
         <div className='flex justify-center xl:justify-start items-center gap-4'>
           <Image
             alt="The Red Shed Logo"
-            src="/pngs/profile-pic-1.png"
+            src="/profile-1.webp"
             className="cursor-pointer "
             width={40}
             height={40}

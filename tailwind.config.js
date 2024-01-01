@@ -73,8 +73,8 @@ module.exports = {
       },
       backgroundImage: {
         'sketch': assetLink("RedShedSketchDark.webp"),
-        'heroMobile': assetLink('pngs/heroMobile.png'),
-        'heroDesktop': assetLink('pngs/heroDesktop.png')
+        'heroMobile': assetLink('heroMobile.webp'),
+        'heroDesktop': assetLink('heroDesktop.webp')
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",

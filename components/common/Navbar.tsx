@@ -32,7 +32,7 @@ export default function Navbar() {
       <Link href="#hero">
         <Image
           alt="The Red Shed Logo"
-          src="/pngs/RedShedLogoFacelift.png"
+          src="/RedShedLogoFacelift.webp"
           className={clsx("cursor-pointer max-w-[182px] sm:max-w-[247px] relative z-20")}
           width={247}
           height={32}
