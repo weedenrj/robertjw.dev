@@ -10,16 +10,16 @@ export type ButtonProps = {
 
 export default function Button({
   size = 'sm',
-  color = 'accent-light',
+  color = 'accent-dark',
 
   children,
-  className,
+  className, 
   ...rest
 }: ButtonProps) {
   return (
     <button className={clsx(className, "inline-flex justify-center items-center",
-      "h-12 px-12 py-2 gap-2 shrink-0",
-      "rounded border-2 font-Lato text-lg font-bold",
+      "h-12 px-10 xs:px-12 py-2 gap-2 shrink-0",
+      "rounded border-2 font-Lato text-base xs:text-lg font-bold",
 
       size === 'sm' && 'min-w-38',
       size === 'lg' && 'min-w-46',
