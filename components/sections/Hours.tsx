@@ -18,7 +18,7 @@ export default function Hours({
   ...rest
 }: HoursProps) {
   const { getLocation } = UseDirections()
-  
+
   return (
     <div className={clsx(className,
       "overflow-visible flex w-full justify-center items-center text-white",
@@ -34,12 +34,12 @@ export default function Hours({
         Get directions
       </Button>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 lg:gap-0">
         <div className="flex gap-2">
-          <Image src="/icons/Calendar.svg" alt="calendar" className="text-white" width={24} height={24} />
-          <Text >Thursday 5pm - 10pm</Text>
+          <Image src="/icons/Calendar.svg" alt="calendar" className="text-white size-6 lg:size-8" width={24} height={24} />
+          <Text className="w-full">Thursday <span className="lg:ml-10">5pm - 10pm</span></Text>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 lg:gap-4">
           <div className="w-6 h-6 shrink-0" />
           <Text >Friday, Saturday 5pm - 2am</Text>
         </div>
@@ -47,14 +47,24 @@ export default function Hours({
 
       <div className="w-px self-stretch bg-white bg-opacity-25 " />
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
         <div className="flex gap-2">
-          <Image src="/icons/Location.svg" alt="calendar" className="text-white" width={24} height={24} />
-          <Text >508 State St, Madison WI 53703</Text>
+          <Image src="/icons/Location.svg" alt="calendar" className="text-white size-6 lg:size-8" width={24} height={24} />
+          <Text className="lg:font-normal">
+            <span className="lg:block hidden font-semibold">New Location<br /></span>
+            508 State St, Madison WI 53703
+          </Text>
         </div>
-        <div className="flex items-center gap-2">
-          <Image src="/icons/Phone.svg" alt="calendar" className="text-white" width={24} height={24} />
-          <Text>+1 999 (999) 9999</Text>
+
+        <div className="w-px self-stretch bg-white bg-opacity-25 hidden lg:flex h-14" />
+
+        <div className="flex items-center lg:items-start gap-2">
+          <Image src="/icons/Phone.svg" alt="calendar" className="text-white size-6 lg:size-8" width={24} height={24} />
+          <Text className="lg:font-normal">
+            <span className="lg:block hidden font-semibold">Phone<br /></span>
+            608 (999) 9999
+          </Text>
+
         </div>
       </div>
 
