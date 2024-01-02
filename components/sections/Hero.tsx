@@ -47,7 +47,7 @@ export default function Hero({
       </div>
 
       <Button size='lg' className="hidden sm:flex xl:self-start" onClick={() => getLocation(true)}>
-        <Image src="/icons/Location.svg" alt="calendar" className="text-white" width={24} height={24} />
+        <Image src="/icons/Location.svg" alt="calendar" className="text-white size-6" width={24} height={24} />
         Get directions
       </Button>
 

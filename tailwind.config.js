@@ -31,22 +31,26 @@ module.exports = {
       height: {
         '18': '72px',
         '38': '152px',
-        '46': '184px'
+        '46': '184px',
+        '124': '570px',
       },
       width: {
         '18': '72px',
         '38': '152px',
-        '46': '184px'
+        '46': '184px',
+        '124': '570px',
       },
       minWidth: {
         '18': '72px',
         '38': '152px',
-        '46': '184px'
+        '46': '184px',
+        '124': '570px',
       },
       minHeight: {
         '18': '72px',
         '38': '152px',
-        '46': '184px'
+        '46': '184px',
+        '124': '570px',
       },
       animation: {
         blob: "blob 7s infinite",
@@ -74,7 +78,8 @@ module.exports = {
       backgroundImage: {
         'sketch': assetLink("RedShedSketchDark.webp"),
         'heroMobile': assetLink('heroMobile.webp'),
-        'heroDesktop': assetLink('heroDesktop.webp')
+        'heroDesktop': assetLink('heroDesktop.webp'),
+        'about': assetLink('bar.webp')
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",

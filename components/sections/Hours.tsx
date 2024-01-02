@@ -30,7 +30,7 @@ export default function Hours({
     >
 
       <Button className="absolute -top-8 sm:hidden" size='sm' onClick={() => getLocation(true)}>
-        <Image src="/icons/Location.svg" alt="calendar" className="text-white" width={24} height={24} />
+        <Image src="/icons/Location.svg" alt="calendar" className="text-white size-6" width={24} height={24} />
         Get directions
       </Button>
 
