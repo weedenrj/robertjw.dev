@@ -66,8 +66,8 @@ export default function Navbar() {
         </div>
 
         <div className={clsx("w-full absolute left-0 top-0 h-svh bg-opacity-50 bg-black",
-          "transition-opacity duration-300 pointer-events-none",
-          open ? "opacity-75" : "opacity-0")} />
+          "transition-opacity duration-300",
+          open ? "opacity-75" : "opacity-0 pointer-events-none")} onClick={() => setOpen(false)} />
 
         <div className={clsx("transition-all ease-in-out duration-300", !open && "translate-x-[100%]",
           'md:hidden absolute z-10 top-0 right-0 h-svh w-3/4 bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
