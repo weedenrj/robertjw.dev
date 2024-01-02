@@ -21,13 +21,13 @@ export default function About({
     )}
       {...rest}
     >
-      <div className={clsx("relative flex flex-col justify-center h-124 lg:h-[656px] xl:h-[800px] w-full text-white",
+      <div className={clsx("relative flex flex-col justify-center h-[570px] lg:h-[656px] xl:h-[800px] w-full text-white",
         "gap-6 px-6 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
         "bg-about bg-center bg-cover bg-norepeat bg-blend-color bg-[#131111] bg-opacity-30"
       )}>
         <div className="flex flex-col gap-2">
           <Title className="text-accent-light text-lg lg:text-xl font-semibold">Over 50 years of memories</Title>
-          <Title className="uppercase text-4xl lg:text-5xl">About the Shed</Title>
+          <Title className="uppercase text-4xl xs:text-5xl lg:text-6xl">About the Shed</Title>
         </div>
 
         <Image
