@@ -17,8 +17,8 @@ export default function Hours({
   className,
   ...rest
 }: HoursProps) {
-  const { getLocation } = UseDirections()
-
+  const { getLocation, geoLocation } = UseDirections()
+  console.log()
   return (
     <div className={clsx(className,
       "overflow-visible flex w-full justify-center items-center text-white",

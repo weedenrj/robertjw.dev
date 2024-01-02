@@ -6,6 +6,7 @@ function UseDirections() {
   const [run, setRun] = useState(false)
 
   const googleDirections = location && `https://www.google.com/maps/dir/${location.coords.latitude},${location.coords.longitude}/508+State+St,+Madison,+WI+53703/`
+  const fallbackGoogleLink = `https://www.google.com/maps/place/The+Red+Shed/@43.0751411,-89.3962245,17z/data=!3m1!4b1!4m6!3m5!1s0x88065334545cec87:0x56454ce227722d2b!8m2!3d43.0751372!4d-89.3936496!16s%2Fg%2F1vd95p53?entry=ttu`
 
   useEffect(() => {
     if (run && window?.navigator?.geolocation) {
@@ -13,13 +14,16 @@ function UseDirections() {
         (position) => {
           setLocation(position)
           window.open(`https://www.google.com/maps/dir/${position.coords.latitude},${position.coords.longitude}/508+State+St,+Madison,+WI+53703/`, "_blank");
-          setRun(false)
         },
-        () => setGeoError("Unable to retrieve your location")
+        () => {
+          setGeoError("Unable to retrieve your location")
+          // window.open(`https://www.google.com/maps/place/The+Red+Shed/@43.0751411,-89.3962245,17z/data=!3m1!4b1!4m6!3m5!1s0x88065334545cec87:0x56454ce227722d2b!8m2!3d43.0751372!4d-89.3936496!16s%2Fg%2F1vd95p53?entry=ttu`, "_blank");
+        }
       );
     } else {
       setGeoError("Geolocation not supported")
     }
+    setRun(false)
   }, [run])
 
 
@@ -27,7 +31,7 @@ function UseDirections() {
     getLocation: setRun,
     geoLocation: location,
     geoError,
-    googleDirections
+    googleDirections: location ? googleDirections : fallbackGoogleLink
   }
 }
 
