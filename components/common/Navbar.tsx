@@ -55,7 +55,7 @@ export default function Navbar() {
         ))}
       </div>
 
-      <div className={clsx("md:hidden p-1")}>
+      <div className={clsx("md:hidden p-1 overflow-hidden")}>
         <div className={clsx("relative flex flex-col gap-1 w-6 transform")} onClick={() => setOpen(!open)}>
           <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-500 ease-in-out",
             open ? "" : "")} />
@@ -65,15 +65,15 @@ export default function Navbar() {
             open ? "" : "")} />
         </div>
 
-        <div className={clsx("w-full fixed left-0 top-0 h-lvh bg-opacity-75 bg-black overflow-hidden",
+        <div className={clsx("w-full fixed left-0 top-0 h-svh bg-opacity-75 bg-black",
           "transition-opacity duration-300",
           open ? "opacity-75" : "opacity-0 pointer-events-none ")}
           onClick={() => setOpen(false)}
         />
 
         <div className={clsx("transition-all ease-in-out duration-300", !open && "translate-x-[100%]",
-          'md:hidden fixed z-10 top-0 right-0 h-lvh w-3/4 bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
-          "flex flex-col items-center pt-44 sm:pt-64 gap-10 overflow-hidden"
+          'md:hidden fixed z-10 top-0 right-0 h-svh w-3/4 bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
+          "flex flex-col items-center pt-44 sm:pt-64 gap-10"
         )}
         >
 
