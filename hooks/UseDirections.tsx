@@ -15,13 +15,14 @@ function UseDirections() {
         (position) => {
           setLocation(position)
           setGoogleLink(`https://www.google.com/maps/dir/${position.coords.latitude},${position.coords.longitude}/508+State+St,+Madison,+WI+53703/`)
+          window.open(googleLink, "_blank");
         },
         () => {
           setGeoError("Unable to retrieve your location")
           setGoogleLink(defaultMapLink)
+          window.open(googleLink, "_blank");
         }
       );
-      window.open(googleLink, "_blank");
     } else {
       setGeoError("Geolocation not supported")
       setGoogleLink(defaultMapLink)
