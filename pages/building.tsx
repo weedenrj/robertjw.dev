@@ -19,8 +19,10 @@ export default function Building() {
 
       <Navbar />
       <Hero />
-      <About />
-      <Specialties />
+      <div className='flex flex-col gap-[200px]'>
+        <About />
+        <Specialties />
+      </div>
     </Page>
   )
 }

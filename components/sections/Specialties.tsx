@@ -27,8 +27,8 @@ export default function Specialties({
 }: SpecialtiesProps) {
   return (
     <div className={clsx(className,
-      "relative flex flex-col lg:flex-row-reverse justify-center w-full h-full",
-      "gap-12  lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
+      "relative flex flex-col justify-center sm:justify-start w-full h-[570px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px]",
+      "gap-12",
       "bg-black text-white"
     )}
       {...rest}
@@ -40,40 +40,58 @@ export default function Specialties({
           className="w-[156px] xs:w-[200px] mx-auto"
           alt=""
           width={24}
-          height={24} />
+          height={24}
+          loading="eager"
+        />
       </div>
 
       {specialities.map(({ title, text, smallImg, bigImg }, i) => (
         <div
           key={i}
-          className="flex flex-col bg-cover bg-center bg-norepeat"
-          style={{ backgroundImage: `url('${bigImg}')` }}
+          className="flex flex-col sm:flex-row bg-cover bg-center bg-norepeat"
+
         >
-          <div className="" />
-
-          <div className="flex flex-col gap-6 px-6">
-            <Title className="capitalize text-xl xs:text-2xl ">
-              {title}
-            </Title>
-
-            <Text className="text-base text-white text-opacity-70 font-thin">
-              {text}
-            </Text>
+          <div className="absolute w-full h-full flex justify-center">
+            <div className="flex-1 z-10 2xl:bg-fade-left" />
+            <Image
+              src={bigImg}
+              className="hidden sm:block absolute z-0 object-cover object-center w-full max-w-[2000px]"
+              alt=""
+              width={2000}
+              height={2000}
+            />
+            <div className="flex-1 z-10 2xl:bg-fade-right" />
           </div>
 
-          <Image
-            src={smallImg}
-            className="w-full mx-auto sm:hidden"
-            alt=""
-            width={375}
-            height={268} />
+          <div className="w-1/2" />
 
-          <Link href="/menu" className="self-center">
-            <Button size='lg' color="black" >
-              Check our menu
-            </Button>
-          </Link>
+          <div className="sm:w-1/2 xl:pt-16 flex flex-col sm:justify-center gap-6 z-10 max-w-[430px] 2xl:max-w-[630px]">
+
+            <div className="flex flex-col gap-6 px-6">
+              <Title className="capitalize text-xl xs:text-2xl ">
+                {title}
+              </Title>
+
+              <Text className="text-base text-white text-opacity-70 font-thin sm:text-lg">
+                {text}
+              </Text>
+            </div>
+
+            <Image
+              src={smallImg}
+              className="w-full mx-auto sm:hidden"
+              alt=""
+              width={375}
+              height={268} />
+
+            <Link href="/menu" className="self-center sm:self-start px-6">
+              <Button size='lg' color="black" >
+                Check our menu
+              </Button>
+            </Link>
+          </div>
         </div>
+
       ))}
     </div>
   )

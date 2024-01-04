@@ -26,7 +26,8 @@ module.exports = {
     extend: {
       colors: { ...Colors },
       screens: {
-        'xs': '300px'
+        'xs': '300px',
+        '3xl': '2560px'
       },
       height: {
         '18': '72px',
@@ -79,7 +80,10 @@ module.exports = {
         'sketch': assetLink("RedShedSketchDark.webp"),
         'heroMobile': assetLink('heroMobile.webp'),
         'heroDesktop': assetLink('heroDesktop.webp'),
-        'about': assetLink('bar.webp')
+        'about': assetLink('bar.webp'),
+
+        "fade-left": 'linear-gradient(90deg, #000 25.14%, rgba(0, 0, 0, 0.00) 84.96%)',
+        "fade-right": 'linear-gradient(-90deg, #000 25.14%, rgba(0, 0, 0, 0.00) 84.96%)',
       },
       textShadow: {
         'black-border': "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",

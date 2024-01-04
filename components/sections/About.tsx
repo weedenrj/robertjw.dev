@@ -21,7 +21,8 @@ export default function About({
     )}
       {...rest}
     >
-      <div className={clsx("relative flex flex-col justify-center h-[570px] lg:h-[656px] xl:h-[800px] w-full text-white",
+      <div className={clsx(
+        "flex flex-col justify-center h-[570px] lg:h-[656px] xl:h-[800px] w-full text-white",
         "gap-6 px-6 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
         "bg-about bg-center bg-cover bg-norepeat bg-blend-color bg-[#131111] bg-opacity-30"
       )}>
@@ -43,7 +44,9 @@ export default function About({
           className="w-[156px] xs:w-[180px]"
           alt=""
           width={24}
-          height={24} />
+          height={24}
+          loading="eager"
+        />
 
         <Text className="lg:text-lg">
           Five generations, thousands of beers served and countless good moments. Open since 1969, the Red Shed is one of the oldest and best bars in Madison, faithfully serving as the go-to establishment for Badger fans, students 21 and older, and the greater Madison area.
