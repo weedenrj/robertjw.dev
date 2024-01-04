@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type btnColors = 'accent-light' | 'accent' | 'accent-dark' | 'accent-darker'
+type btnColors = 'accent-light' | 'accent' | 'accent-dark' | 'accent-darker' | 'black'
 
 export type ButtonProps = {
   size?: 'sm' | 'lg'
@@ -13,7 +13,7 @@ export default function Button({
   color = 'accent-dark',
 
   children,
-  className, 
+  className,
   ...rest
 }: ButtonProps) {
   return (
@@ -27,6 +27,7 @@ export default function Button({
       `border-${color}`, `bg-${color}`
 
     )}
+    type="button"
       {...rest}
     >
       {children}

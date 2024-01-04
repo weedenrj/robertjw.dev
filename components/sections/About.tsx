@@ -6,14 +6,14 @@ import Title from "@components/common/Title";
 import Image from "next/image";
 import Text from "@components/common/Text";
 
-export type HeroProps = {
+export type AboutProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export default function About({
 
   className,
   ...rest
-}: HeroProps) {
+}: AboutProps) {
 
   return (
     <div className={clsx(className,
@@ -40,7 +40,7 @@ export default function About({
 
         <Image
           src="/Embellishment.svg"
-          className="w-[156px]"
+          className="w-[156px] xs:w-[180px]"
           alt=""
           width={24}
           height={24} />
@@ -50,7 +50,6 @@ export default function About({
           <br /><br />
           Known for the amazing service, the always ice cold beers and the best Long Island Iced Tea ever, the Red Shed is a must stop when in Madison!
         </Text>
-
       </div>
 
       <Image

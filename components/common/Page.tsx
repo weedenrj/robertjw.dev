@@ -10,12 +10,13 @@ export type PageProps = {
 
 export default function Page({
   SEO,
+  className,
   children
 }: PageProps) {
   return (
     <>
       <Helmet {...SEO} />
-      <div className={clsx("relative h-svh w-screen overflow-x-hidden bg-black")}>
+      <div className={clsx(className, "relative h-svh w-screen overflow-x-hidden bg-black")}>
         {children}
       </div>
     </>
