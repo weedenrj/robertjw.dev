@@ -23,7 +23,7 @@ export default function Hours({
     <div className={clsx(className,
       "overflow-visible flex w-full justify-center items-center text-white",
       "gap-4 xs:gap-6 py-6 px-4 xs:p-6",
-      "bg-accent-darker text-xs sm:text-base font-semibold text-balance"
+      "bg-accent-darker text-xxs xs:text-xs sm:text-base font-semibold text-balance"
 
     )}
       {...rest}

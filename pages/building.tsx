@@ -4,6 +4,7 @@ import React from 'react'
 import Hero from '@components/sections/Hero'
 import About from '@components/sections/About'
 import Specialties from '@components/sections/Specialties'
+import Atmosphere from '@components/sections/Atmosphere'
 
 export default function Building() {
   return (
@@ -19,9 +20,10 @@ export default function Building() {
 
       <Navbar />
       <Hero />
-      <div className='flex flex-col gap-[200px]'>
+      <div className='flex flex-col gap-24 xs:gap-40 sm:gap-[200px]'>
         <About />
         <Specialties />
+        <Atmosphere />
       </div>
     </Page>
   )

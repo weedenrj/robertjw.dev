@@ -41,14 +41,14 @@ export default function About({
 
         <Image
           src="/Embellishment.svg"
-          className="w-[156px] xs:w-[180px]"
+          className="w-[156px]"
           alt=""
           width={24}
           height={24}
           loading="eager"
         />
 
-        <Text className="lg:text-lg">
+        <Text className="text-sm xs:text-base lg:text-lg">
           Five generations, thousands of beers served and countless good moments. Open since 1969, the Red Shed is one of the oldest and best bars in Madison, faithfully serving as the go-to establishment for Badger fans, students 21 and older, and the greater Madison area.
           <br /><br />
           Known for the amazing service, the always ice cold beers and the best Long Island Iced Tea ever, the Red Shed is a must stop when in Madison!

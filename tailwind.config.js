@@ -29,6 +29,9 @@ module.exports = {
         'xs': '300px',
         '3xl': '2560px'
       },
+      fontSize: {
+        xxs: ['10px', '14px']
+      },
       height: {
         '18': '72px',
         '38': '152px',
@@ -93,6 +96,7 @@ module.exports = {
     },
   },
   plugins: [
+    "prettier-plugin-tailwindcss",
     require('tailwindcss-textshadow'),
   ],
 }
