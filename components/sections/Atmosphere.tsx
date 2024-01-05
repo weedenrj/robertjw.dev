@@ -17,37 +17,40 @@ export default function Atmosphere({
     <div
       className={clsx(
         className,
-        "relative flex w-full flex-col lg:flex-row-reverse",
+        "relative flex w-full flex-col gap-24 xs:gap-40 sm:gap-24",
       )}
       {...rest}
     >
       <div
         className={clsx(
-          `flex h-[570px] w-full flex-col justify-center text-white lg:h-[656px]
-            xl:h-[800px]`,
-          "gap-6 px-6 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
+          `flex w-full flex-col lg:flex-row justify-center text-white`,
+          "gap-6 lg:gap-[72px] px-6 lg:px-[5%] 2xl:px-[15%] ",
           "",
         )}
       >
-        <div className="flex flex-col gap-2">
-          <Title className="text-lg font-semibold text-accent-light lg:text-xl">
-            The coziest bar in Madison
-          </Title>
-          <Title className="text-balance text-3xl capitalize xs:text-4xl lg:text-6xl">
-            Great location, inviting atmosphere
-          </Title>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <Title className="text-lg font-semibold text-accent-light lg:text-xl">
+              The coziest bar in Madison
+            </Title>
+            <Title className="text-balance text-3xl capitalize xs:text-4xl lg:text-6xl">
+              Great location,<br /> inviting atmosphere
+            </Title>
+
+          </div>
+          <Image
+            src="/Embellishment.svg"
+            className="w-[156px]"
+            alt=""
+            width={24}
+            height={24}
+            loading="eager"
+          />
         </div>
 
-        <Image
-          src="/Embellishment.svg"
-          className="w-[156px]"
-          alt=""
-          width={24}
-          height={24}
-          loading="eager"
-        />
 
-        <Text className="text-sm xs:text-base">
+
+        <Text className="text-sm xs:text-base font-thin text-white text-opacity-70 sm:text-lg lg:max-w-[400px] xl:max-w-[540px]">
           Located at 508 State Street, it&apos;s a short distance from
           the University Campus and within walking distance of Camp
           Randall Stadium, making it perfect for a celebration drink
@@ -63,13 +66,30 @@ export default function Atmosphere({
         </Text>
       </div>
 
-      <Image
-        src="/building.webp"
-        className="w-full object-cover lg:max-w-[600px] xl:max-w-[800px]"
-        alt=""
-        width={800}
-        height={800}
-      />
+      <div className="flex flex-col sm:flex-row gap-0.5">
+        <Image
+          src="/pouring_stock.jpeg"
+          className="sm:w-1/3"
+          alt=""
+          width={658}
+          height={658}
+        />
+        <Image
+          src="/shed_interior.png"
+          className="sm:w-1/3"
+          alt=""
+          width={658}
+          height={658}
+        />
+        <Image
+          src="/people_talking.png"
+          className="sm:w-1/3"
+          alt=""
+          width={658}
+          height={658}
+        />
+      </div>
+
     </div>
   )
 }

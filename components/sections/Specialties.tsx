@@ -28,8 +28,8 @@ export default function Specialties({
     <div
       className={clsx(
         className,
-        `relative flex h-[570px] w-full flex-col justify-center
-          sm:justify-start lg:h-[656px] xl:h-[700px] 2xl:h-[800px]`,
+        `relative flex  w-full flex-col justify-center
+          sm:justify-start h-[570px] sm:h-[400px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px]`,
         "gap-12",
         "bg-black text-white",
       )}
@@ -54,12 +54,11 @@ export default function Specialties({
           key={i}
           className="bg-norepeat flex flex-col bg-cover bg-center sm:flex-row"
         >
-          <div className="absolute flex h-full w-full justify-center">
+          <div className="absolute sm:flex h-full w-full justify-center hidden">
             <div className="z-10 flex-1 2xl:bg-fade-left" />
             <Image
               src={bigImg}
-              className="absolute z-0 hidden w-full max-w-[2000px] object-cover object-center
-                sm:block"
+              className="absolute z-0 w-full max-w-[2000px] object-cover object-center"
               alt=""
               width={2000}
               height={2000}
