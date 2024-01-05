@@ -1,25 +1,30 @@
-import React from "react";
-import clsx from "clsx";
+import React from "react"
+import clsx from "clsx"
 
-export type SnapBoxProps = {
-} & React.HTMLAttributes<HTMLDivElement>
+export type SnapBoxProps = {} & React.HTMLAttributes<HTMLDivElement>
 
-function SnapBox({
-  children,
-  className,
-  ...rest
-}: SnapBoxProps) {
+function SnapBox({ children, className, ...rest }: SnapBoxProps) {
   return (
-    <div className={clsx(className, "flex flex-col h-full w-full",
-      "snap-y snap-mandatory scrollbar-hide overflow-y-scroll overflow-x-hidden"
-    )}
+    <div
+      className={clsx(
+        className,
+        "flex h-full w-full flex-col",
+        `scrollbar-hide snap-y snap-mandatory overflow-x-hidden
+          overflow-y-scroll`,
+      )}
       {...rest}
     >
-      <div className="fixed -top-6 w-full h-32 z-ui-frame bg-gradient-fade-black rotate-180 pointer-events-none" />
+      <div
+        className="z-ui-frame bg-gradient-fade-black pointer-events-none fixed -top-6
+          h-32 w-full rotate-180"
+      />
       {children}
-      <div className="fixed -bottom-6 w-full h-32 z-ui-frame bg-gradient-fade-black pointer-events-none" />
+      <div
+        className="z-ui-frame bg-gradient-fade-black pointer-events-none fixed -bottom-6
+          h-32 w-full"
+      />
     </div>
   )
 }
 
-export default SnapBox;
+export default SnapBox

@@ -1,5 +1,3 @@
-
-
 declare global {
   type AppEnv = typeof ENV
   interface window {
@@ -7,7 +5,7 @@ declare global {
   }
 }
 
-const isProcessDev = process.env.NODE_ENV === 'development'
+const isProcessDev = process.env.NODE_ENV === "development"
 
 const ENV = {
   features: {
@@ -18,10 +16,10 @@ const ENV = {
 
   links: {
     // Socials
-    discord: 'https://discord.gg/eternityrpg',
-    medium: 'https://medium.com/@playeternity',
-    youtube: 'https://www.youtube.com/@EternityRPG',
-    twitterX: 'https://twitter.com/eternityrpg/',
+    discord: "https://discord.gg/eternityrpg",
+    medium: "https://medium.com/@playeternity",
+    youtube: "https://www.youtube.com/@EternityRPG",
+    twitterX: "https://twitter.com/eternityrpg/",
   },
 }
 

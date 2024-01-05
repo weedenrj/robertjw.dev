@@ -1,8 +1,7 @@
-import React from "react";
-import clsx from "clsx";
+import React from "react"
+import clsx from "clsx"
 
-export type TitleProps = {
-} & React.HTMLAttributes<HTMLHeadingElement>
+export type TitleProps = {} & React.HTMLAttributes<HTMLHeadingElement>
 
 export default function Title({
   children,
@@ -10,9 +9,7 @@ export default function Title({
   ...rest
 }: TitleProps) {
   return (
-    <h1 className={clsx(className, "font-title")}
-      {...rest}
-    >
+    <h1 className={clsx(className, "font-title")} {...rest}>
       {children}
     </h1>
   )

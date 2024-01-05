@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import clsx from "clsx";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import clsx from "clsx"
+import { useRouter } from "next/router"
 
 export type NavLinks = typeof navLinks
 export const navLinks = [
@@ -10,30 +10,31 @@ export const navLinks = [
   { title: "Menu", url: "/menu", blank: false },
   { title: "Promos", url: "/promos", blank: false },
   { title: "Find Us", url: "/findus", blank: false },
-];
+]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const { pathname } = useRouter()
 
-
   return (
     <header
       id="page-header"
-      className={clsx("mx-auto",
-        "absolute top-0 flex w-full items-center justify-between h-18",
-        "px-6 py-4 md:px-[5%] xl:px-[15%] 2xl:px-[20%] text-white",
+      className={clsx(
+        "mx-auto",
+        "absolute top-0 flex h-18 w-full items-center justify-between",
+        "px-6 py-4 text-white md:px-[5%] xl:px-[15%] 2xl:px-[20%]",
         "transition duration-300",
-        "bg-black bg-opacity-50 z-20 overflow-hidden"
+        "z-20 overflow-hidden bg-black bg-opacity-50",
       )}
     >
-
       <Link href="#hero">
         <Image
           alt="The Red Shed Logo"
           src="/RedShedLogoFacelift.webp"
-          className={clsx("cursor-pointer max-w-[182px] sm:max-w-[247px] relative")}
+          className={clsx(
+            "relative max-w-[182px] cursor-pointer sm:max-w-[247px]",
+          )}
           width={247}
           height={32}
         />
@@ -41,70 +42,136 @@ export default function Navbar() {
 
       <div className="hidden gap-4 md:flex lg:gap-16">
         {navLinks.map((item, i) => (
-          <Link key={i}
-            className="group font-title font-bold transition duration-300 text-xl xl:text-2xl"
+          <Link
+            key={i}
+            className="group font-title text-xl font-bold transition duration-300 xl:text-2xl"
             href={item.url}
           >
             {item.title}
-            <span className={clsx("block h-2 w-0 mx-auto opacity-0 bg-accent relative top-1",
-              "transition-opacity duration-200 group-hover:opacity-100 group-hover:w-2 rounded-full",
-              pathname === item.url && "w-2 opacity-100"
-            )}
+            <span
+              className={clsx(
+                "relative top-1 mx-auto block h-2 w-0 bg-accent opacity-0",
+                `rounded-full transition-opacity duration-200 group-hover:w-2
+                  group-hover:opacity-100`,
+                pathname === item.url && "w-2 opacity-100",
+              )}
             />
           </Link>
         ))}
       </div>
 
-      <div className={clsx("md:hidden p-1 overflow-hidden")}>
-        <div className={clsx("relative flex flex-col gap-1 w-6 transform")} onClick={() => setOpen(!open)}>
-          <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-500 ease-in-out",
-            open ? "" : "")} />
-          <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-200 ease-in-out",
-            open && "")} />
-          <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-500 ease-in-out",
-            open ? "" : "")} />
+      <div className={clsx("overflow-hidden p-1 md:hidden")}>
+        <div
+          className={clsx(
+            "relative flex w-6 transform flex-col gap-1",
+          )}
+          onClick={() => setOpen(!open)}
+        >
+          <span
+            aria-hidden="true"
+            className={clsx(
+              `flex h-1 w-full transform rounded-[1px] bg-current transition
+                duration-500 ease-in-out`,
+              open ? "" : "",
+            )}
+          />
+          <span
+            aria-hidden="true"
+            className={clsx(
+              `flex h-1 w-full transform rounded-[1px] bg-current transition
+                duration-200 ease-in-out`,
+              open && "",
+            )}
+          />
+          <span
+            aria-hidden="true"
+            className={clsx(
+              `flex h-1 w-full transform rounded-[1px] bg-current transition
+                duration-500 ease-in-out`,
+              open ? "" : "",
+            )}
+          />
         </div>
 
-        <div className={clsx("w-full fixed left-0 top-0 h-full bg-opacity-75 bg-black",
-          "transition-opacity duration-300",
-          open ? "opacity-75" : "opacity-0 pointer-events-none ")}
+        <div
+          className={clsx(
+            "fixed left-0 top-0 h-full w-full bg-black bg-opacity-75",
+            "transition-opacity duration-300",
+            open ? "opacity-75" : `pointer-events-none opacity-0`,
+          )}
           onClick={() => setOpen(false)}
         />
 
-        <div className={clsx("transition-all ease-in-out duration-300", !open && "translate-x-[100%]",
-          'md:hidden fixed z-10 top-0 right-0 h-full w-3/4 bg-accent-darker px-2 py-4 lg:px-8 lg:py-8 text-white',
-          "flex flex-col items-center pt-44 sm:pt-64 gap-10"
-        )}
+        <div
+          className={clsx(
+            "transition-all duration-300 ease-in-out",
+            !open && "translate-x-[100%]",
+            `fixed right-0 top-0 z-10 h-full w-3/4 bg-accent-darker px-2 py-4
+              text-white md:hidden lg:px-8 lg:py-8`,
+            "flex flex-col items-center gap-10 pt-44 sm:pt-64",
+          )}
         >
+          <Image
+            src="/Canopy.svg"
+            alt=""
+            className="absolute top-0 w-full"
+            width={24}
+            height={24}
+          />
 
-          <Image src="/Canopy.svg" alt="" className="w-full absolute top-0" width={24} height={24} />
-
-          <div className={clsx("absolute top-32 sm:top-48 sm:right-12 right-8 z-20 flex flex-col gap-1 w-6 transform",)} onClick={() => setOpen(!open)}>
-            <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-500 ease-in-out",
-              "rotate-45 translate-y-2 text-white")} />
-            <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-200 ease-in-out",
-              "opacity-0 text-white")} />
-            <span aria-hidden="true" className={clsx("flex rounded-[1px] h-1 w-full bg-current transform transition duration-500 ease-in-out",
-              "-rotate-45 -translate-y-2 text-white")} />
+          <div
+            className={clsx(
+              `absolute right-8 top-32 z-20 flex w-6 transform flex-col gap-1
+                sm:right-12 sm:top-48`,
+            )}
+            onClick={() => setOpen(!open)}
+          >
+            <span
+              aria-hidden="true"
+              className={clsx(
+                `flex h-1 w-full transform rounded-[1px] bg-current transition
+                  duration-500 ease-in-out`,
+                "translate-y-2 rotate-45 text-white",
+              )}
+            />
+            <span
+              aria-hidden="true"
+              className={clsx(
+                `flex h-1 w-full transform rounded-[1px] bg-current transition
+                  duration-200 ease-in-out`,
+                "text-white opacity-0",
+              )}
+            />
+            <span
+              aria-hidden="true"
+              className={clsx(
+                `flex h-1 w-full transform rounded-[1px] bg-current transition
+                  duration-500 ease-in-out`,
+                "-translate-y-2 -rotate-45 text-white",
+              )}
+            />
           </div>
 
           {navLinks.map((item, i) => (
-            <Link key={i}
-              className="group font-lato font-bold font-title transition duration-300 text-5xl"
+            <Link
+              key={i}
+              className="group font-lato font-title text-5xl font-bold transition duration-300"
               onClick={() => setOpen(false)}
               href={item.url}
             >
               {item.title}
-              <span className={clsx("block h-2 w-0 mx-auto opacity-0 bg-accent top-2 relative",
-                "transition-opacity duration-200 group-hover:opacity-100 group-hover:w-2 rounded-full",
-                pathname === item.url && "w-2 opacity-100"
-              )}
+              <span
+                className={clsx(
+                  "relative top-2 mx-auto block h-2 w-0 bg-accent opacity-0",
+                  `rounded-full transition-opacity duration-200 group-hover:w-2
+                    group-hover:opacity-100`,
+                  pathname === item.url && "w-2 opacity-100",
+                )}
               />
             </Link>
           ))}
         </div>
-
       </div>
     </header>
-  );
+  )
 }
