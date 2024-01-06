@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next"
 import { Resend } from "resend"
-import Email from "../../emails/Email"
+import Email from "../emails/Email"
 
 const resend = new Resend(process.env.NEXT_PUBLIC_MAIL_KEY)
 

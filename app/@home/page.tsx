@@ -6,7 +6,7 @@ import About from "@components/sections/About"
 import Specialties from "@components/sections/Specialties"
 import Atmosphere from "@components/sections/Atmosphere"
 
-export default function Building() {
+export default function Home() {
   return (
     <Page
       SEO={{

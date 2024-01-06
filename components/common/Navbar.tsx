@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react"
+'use client'
+
+import React, { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx"
-import { useRouter } from "next/router"
+import { usePathname } from 'next/navigation'
 
 export type NavLinks = typeof navLinks
 export const navLinks = [
@@ -15,7 +17,7 @@ export const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
-  const { pathname } = useRouter()
+  const pathname = usePathname()
 
   return (
     <header

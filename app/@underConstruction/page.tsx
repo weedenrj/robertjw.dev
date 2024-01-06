@@ -1,12 +1,8 @@
-import Navbar from "@components/common/Navbar"
 import Page from "@components/common/Page"
-import Title from "@components/common/Title"
-import Text from "@components/common/Text"
 import clsx from "clsx"
 import Image from "next/image"
-import Button from "@components/common/Button"
 
-export default function Home() {
+export default function UnderConstruction() {
   return (
     <Page
       SEO={{
@@ -18,8 +14,6 @@ export default function Home() {
           "Check back in a few weeks to see if we're open yet. Thank you for your continuing patience and faithful service. We're excited to serve you again!",
       }}
     >
-      {/* <Navbar /> */}
-
       <div
         className={clsx(
           "flex h-full w-full flex-col items-center justify-center",
@@ -29,13 +23,13 @@ export default function Home() {
       >
         <div
           className={clsx(
-            "relative relative flex flex-col items-center justify-center text-white",
+            "relative flex flex-col items-center justify-center text-white",
             `rounded-xl bg-red-900 bg-opacity-90 p-4 backdrop-blur-sm md:p-8
               lg:p-12`,
             "border-2",
           )}
         >
-          <img
+          <Image
             src="/Logo.webp"
             alt="The Red Shed logo"
             className={clsx(
@@ -44,6 +38,8 @@ export default function Home() {
               "-left-9 md:-left-24 lg:-left-28",
               "w-36 md:w-64 lg:w-80",
             )}
+            width={600}
+            height={600}
           />
           <p
             className="md:mp-12 pb-4 pt-7 text-center font-lato text-3xl md:relative md:z-10

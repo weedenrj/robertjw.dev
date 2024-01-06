@@ -1,18 +1,12 @@
 import React from "react"
 import clsx from "clsx"
-import Button from "../common/Button"
-import { navLinks } from "../common/Navbar"
-import Link from "next/link"
-import Title from "@components/common/Title"
 import Image from "next/image"
 import Text from "@components/common/Text"
-import UseDirections from "@hooks/UseDirections"
+import GetDirectionsButton from "@components/common/GetDirectionsButton"
 
 export type HoursProps = {} & React.HTMLAttributes<HTMLDivElement>
 
 export default function Hours({ className, ...rest }: HoursProps) {
-  const { getLocation, geoLocation } = UseDirections()
-  console.log()
   return (
     <div
       className={clsx(
@@ -24,20 +18,8 @@ export default function Hours({ className, ...rest }: HoursProps) {
       )}
       {...rest}
     >
-      <Button
-        className="absolute -top-8 sm:hidden"
-        size="sm"
-        onClick={() => getLocation(true)}
-      >
-        <Image
-          src="/icons/Location.svg"
-          alt="calendar"
-          className="size-6 text-white"
-          width={24}
-          height={24}
-        />
-        Get directions
-      </Button>
+
+      <GetDirectionsButton size="sm" className="absolute -top-8 sm:hidden" />
 
       <div className="flex flex-col gap-4 lg:gap-0">
         <div className="flex gap-2">

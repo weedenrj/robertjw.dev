@@ -5,13 +5,10 @@ declare global {
   }
 }
 
-const isProcessDev = process.env.NODE_ENV === "development"
+const isProcessDev = process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
 
 const ENV = {
-  features: {
-    showCountdownPage: false,
-    displayTimer: false,
-  },
+  showUnderConstruction: !isProcessDev,
   isBeta: isProcessDev,
 
   links: {
