@@ -43,7 +43,10 @@ export default function Hero({ className, ...rest }: HeroProps) {
         </div>
       </div>
 
-      <GetDirectionsButton size="lg" className="hidden sm:flex xl:self-start" />
+      <GetDirectionsButton
+        size="lg"
+        className="hidden sm:flex xl:self-start"
+      />
 
       <Hours className="absolute bottom-0" />
     </div>

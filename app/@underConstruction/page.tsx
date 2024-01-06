@@ -1,12 +1,23 @@
 import Page from "@components/common/Page"
 import clsx from "clsx"
+import { type Viewport } from "next"
 import Image from "next/image"
+import ENV from "../../constants/env"
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#a80505" },
+  ],
+  width: "width=device-width",
+  initialScale: 1,
+}
 
 export default function UnderConstruction() {
   return (
     <Page
       SEO={{
-        title: "The Red Shed | Madison, Wi.",
+        title: ENV.siteMetadata.title,
         url: "https://redshedmadison.com",
         image: "https://redshedmadison.com/Logo.webp",
         desc:

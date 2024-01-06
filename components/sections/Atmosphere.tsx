@@ -24,7 +24,7 @@ export default function Atmosphere({
       <div
         className={clsx(
           `flex w-full flex-col lg:flex-row justify-center text-white`,
-          "gap-6 lg:gap-[72px] px-6 lg:px-[5%] 2xl:px-[15%] ",
+          `gap-6 lg:gap-[72px] px-6 lg:px-[5%] 2xl:px-[15%]`,
           "",
         )}
       >
@@ -34,9 +34,9 @@ export default function Atmosphere({
               The coziest bar in Madison
             </Title>
             <Title className="text-balance text-3xl capitalize xs:text-4xl lg:text-6xl">
-              Great location,<br /> inviting atmosphere
+              Great location,
+              <br /> inviting atmosphere
             </Title>
-
           </div>
           <Image
             src="/Embellishment.svg"
@@ -48,9 +48,10 @@ export default function Atmosphere({
           />
         </div>
 
-
-
-        <Text className="text-sm xs:text-base font-thin text-white text-opacity-70 sm:text-lg lg:max-w-[400px] xl:max-w-[540px]">
+        <Text
+          className="text-sm xs:text-base font-thin text-white text-opacity-70 sm:text-lg
+            lg:max-w-[400px] xl:max-w-[540px]"
+        >
           Located at 508 State Street, it&apos;s a short distance from
           the University Campus and within walking distance of Camp
           Randall Stadium, making it perfect for a celebration drink
@@ -89,7 +90,6 @@ export default function Atmosphere({
           height={658}
         />
       </div>
-
     </div>
   )
 }

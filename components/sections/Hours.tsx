@@ -18,8 +18,10 @@ export default function Hours({ className, ...rest }: HoursProps) {
       )}
       {...rest}
     >
-
-      <GetDirectionsButton size="sm" className="absolute -top-8 sm:hidden" />
+      <GetDirectionsButton
+        size="sm"
+        className="absolute -top-8 sm:hidden"
+      />
 
       <div className="flex flex-col gap-4 lg:gap-0">
         <div className="flex gap-2">

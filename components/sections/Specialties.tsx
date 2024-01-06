@@ -28,8 +28,8 @@ export default function Specialties({
     <div
       className={clsx(
         className,
-        `relative flex  w-full flex-col justify-center
-          sm:justify-start h-[570px] sm:h-[400px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px]`,
+        `relative flex w-full flex-col justify-center sm:justify-start
+          h-[570px] sm:h-[400px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px]`,
         "gap-12",
         "bg-black text-white",
       )}

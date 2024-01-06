@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
 import React, { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx"
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation"
 
 export type NavLinks = typeof navLinks
 export const navLinks = [

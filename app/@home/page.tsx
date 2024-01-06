@@ -5,6 +5,16 @@ import Hero from "@components/sections/Hero"
 import About from "@components/sections/About"
 import Specialties from "@components/sections/Specialties"
 import Atmosphere from "@components/sections/Atmosphere"
+import { type Viewport } from "next"
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#a80505" },
+  ],
+  width: "width=device-width",
+  initialScale: 1,
+}
 
 export default function Home() {
   return (
