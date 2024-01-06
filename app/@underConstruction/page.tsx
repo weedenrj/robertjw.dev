@@ -9,22 +9,13 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#000000" },
     { media: "(prefers-color-scheme: light)", color: "#a80505" },
   ],
-  width: "width=device-width",
+  width: "device-width",
   initialScale: 1,
 }
 
 export default function UnderConstruction() {
   return (
-    <Page
-      SEO={{
-        title: ENV.siteMetadata.title,
-        url: "https://redshedmadison.com",
-        image: "https://redshedmadison.com/Logo.webp",
-        desc:
-          "The Red Shed is currently undergoing renovations for our new location at 508 State St, Madison. " +
-          "Check back in a few weeks to see if we're open yet. Thank you for your continuing patience and faithful service. We're excited to serve you again!",
-      }}
-    >
+    <Page>
       <div
         className={clsx(
           "flex h-full w-full flex-col items-center justify-center",
