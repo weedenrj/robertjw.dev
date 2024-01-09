@@ -5,6 +5,7 @@ import Hero from "@components/sections/Hero"
 import About from "@components/sections/About"
 import Specialties from "@components/sections/Specialties"
 import Atmosphere from "@components/sections/Atmosphere"
+import Location from "@components/sections/Location"
 import { type Viewport } from "next"
 
 export const viewport: Viewport = {
@@ -25,6 +26,7 @@ export default function Home() {
         <About />
         <Specialties />
         <Atmosphere />
+        <Location />
       </div>
     </Page>
   )
