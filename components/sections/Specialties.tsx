@@ -1,20 +1,17 @@
-import React from "react"
+'use client'
+
+import React, { useEffect, useState } from "react"
 import clsx from "clsx"
 import Button from "../common/Button"
 import Link from "next/link"
 import Title from "@components/common/Title"
 import Image from "next/image"
 import Text from "@components/common/Text"
+import useWindowDimensions from "@hooks/UseWindowDimensions"
+import ENV from "../../constants/env"
+import { getCircularIndex } from "../../utils/collection"
 
-// TODO: Build carousel and add more specialties
-const specialities = [
-  {
-    title: "Long Island Iced Tea",
-    text: "”The real thing”, a massive 32 oz. mix of heaven, served in the iconic Ball mason jar and topped with a lemon slice, all for the cheap price of $9.",
-    smallImg: "/LIT_Stock.png",
-    bigImg: "/LIT_Stock_Big.png",
-  },
-]
+const SpecialtiesArray = Object.values(ENV.ourSpecialties)
 
 // TODO: Build carousel and add more specialties
 export type SpecialtiesProps =
@@ -24,15 +21,24 @@ export default function Specialties({
   className,
   ...rest
 }: SpecialtiesProps) {
+  const [selectedSpecialty, setSelectedSpecialty] = useState(SpecialtiesArray[0])
+  const { width } = useWindowDimensions()
+
+  const style = width >= 640
+    ? { backgroundImage: `url(${selectedSpecialty.bigImg})` }
+    : undefined
+
   return (
     <div
       className={clsx(
         className,
-        `relative flex w-full flex-col justify-center sm:justify-start
-          h-[570px] sm:h-[400px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px]`,
+        `relative flex w-full flex-col justify-center sm:justify-start 2xl:mx-auto
+          h-[570px] sm:h-[400px] lg:h-[656px] xl:h-[700px] 2xl:h-[800px] 2xl:max-w-[2000px]`,
         "gap-12",
         "bg-black text-white",
+        "bg-cover bg-center bg-norepeat bg-none "
       )}
+      style={style}
       {...rest}
     >
       <div className="flex flex-col gap-3">
@@ -49,27 +55,46 @@ export default function Specialties({
         />
       </div>
 
-      {specialities.map(({ title, text, smallImg, bigImg }, i) => (
-        <div
-          key={i}
-          className="bg-norepeat flex flex-col bg-cover bg-center sm:flex-row"
-        >
-          <div className="absolute sm:flex h-full w-full justify-center hidden">
-            <div className="z-10 flex-1 2xl:bg-fade-left" />
-            <Image
-              src={bigImg}
-              className="absolute z-0 w-full max-w-[2000px] object-cover object-center"
-              alt=""
-              width={2000}
-              height={2000}
-            />
-            <div className="z-10 flex-1 2xl:bg-fade-right" />
-          </div>
+      {/* Fades */}
+      <div className="absolute z-10 w-1/2 h-full left-0 top-0 2xl:bg-fade-left pointer-events-none" />
+      <div className="absolute z-10 w-1/2 h-full right-0 top-0 2xl:bg-fade-right pointer-events-none" />
+
+      {SpecialtiesArray.map(({ id, title, text, smallImg, bigImg }, i) => (
+        <div key={i} className={clsx("relative flex flex-col sm:flex-row",
+          selectedSpecialty.id === id ? "flex" : "hidden",
+        )} >
+
+          {/* Caurousel Controls */}
+          {SpecialtiesArray.length > 1 && (
+            <>
+              <Image
+                src="/icons/Arrow.svg"
+                alt="arrow"
+                width={70}
+                height={24}
+                className="absolute z-20 xl:w-[70px] w-12 h-full left-[5%] top-0"
+                onClick={() => {
+                  const newIndex = getCircularIndex(SpecialtiesArray, i, "left")
+                  setSelectedSpecialty(SpecialtiesArray[newIndex])
+                }}
+              />
+              <Image
+                src="/icons/Arrow.svg"
+                alt="arrow"
+                width={70}
+                height={24}
+                className="absolute z-20 xl:w-[70px] w-12 h-full right-[5%] top-0 rotate-180"
+                onClick={() => {
+                  const newIndex = getCircularIndex(SpecialtiesArray, i, "right")
+                  setSelectedSpecialty(SpecialtiesArray[newIndex])
+                }}
+              />
+            </>
+          )}
 
           <div className="w-1/2" />
-
           <div
-            className="z-10 flex max-w-[430px] flex-col gap-6 sm:w-1/2 sm:justify-center
+            className="z-10 flex  flex-col gap-6 sm:w-1/2 sm:justify-center
               xl:pt-16 2xl:max-w-[630px]"
           >
             <div className="flex flex-col gap-6 px-6">

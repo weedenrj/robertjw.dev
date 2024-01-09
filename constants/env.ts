@@ -5,6 +5,7 @@ declare global {
   }
 }
 
+
 const isProcessDev =
   process.env.NODE_ENV === "development" ||
   process.env.NODE_ENV === "test"
@@ -28,6 +29,30 @@ const ENV = {
     description:
       "The Red Shed is currently undergoing renovations for our new location at 508 State St, Madison. " +
       "Check back in a few weeks to see if we're open yet. Thank you for your continuing patience and faithful service. We're excited to serve you again!",
+  },
+
+  ourSpecialties: {
+    LongIslandIcedTea: {
+      id: "LongIslandIcedTea",
+      title: "Long Island Iced Tea",
+      text: "”The real thing”, a massive 32 oz. mix of heaven, served in the iconic Ball mason jar and topped with a lemon slice, all for the cheap price of $9.",
+      smallImg: "/LIT_Stock.png",
+      bigImg: "/LIT_Stock_Big.png",
+    },
+    // NerdsDrink: {
+    //   id: "NerdsDrink",
+    //   title: "Nerds Shot and Drink",
+    //   text: "",
+    //   smallImg: "/LIT_Stock.png",
+    //   bigImg: "/LIT_Stock_Big.png",
+    // },
+    // WhiteWilley: {
+    //   id: "WhiteWilley",
+    //   title: "White Willey Shot and Drink",
+    //   text: "",
+    //   smallImg: "/LIT_Stock.png",
+    //   bigImg: "/LIT_Stock_Big.png",
+    // },
   },
 }
 
