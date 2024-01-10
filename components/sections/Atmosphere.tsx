@@ -26,7 +26,7 @@ export default function Atmosphere({
         <div
           className={clsx(
             `flex w-full 2xl:w-1/2 flex-col lg:flex-row 2xl:flex-col justify-center text-white`,
-            `gap-6 lg:gap-[72px] px-6 lg:px-[5%] 2xl:px-0 2xl:`,
+            `gap-6 lg:gap-[72px] px-6 lg:px-[5%] 2xl:px-0`,
             "",
           )}
         >

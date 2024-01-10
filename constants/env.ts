@@ -11,7 +11,7 @@ const isProcessDev =
   process.env.NODE_ENV === "test"
 
 const ENV = {
-  showUnderConstruction: !isProcessDev,
+  showUnderConstruction: isProcessDev,
   isBeta: isProcessDev,
 
   links: {

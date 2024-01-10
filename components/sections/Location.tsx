@@ -6,6 +6,7 @@ import Title from "@components/common/Title"
 import Image from "next/image"
 import Text from "@components/common/Text"
 import GetDirectionsButton from "@components/common/GetDirectionsButton"
+import GoogleMapView from "@components/common/GoogleMapView"
 
 export type LocationProps = {} & React.HTMLAttributes<HTMLDivElement>
 
@@ -14,16 +15,16 @@ export default function Location({ className, ...rest }: LocationProps) {
     <div
       className={clsx(
         className,
-        "relative flex w-full flex-col justify-center lg:flex-row-reverse",
+        "relative flex w-full flex-col justify-center md:flex-row bg-[#131111] lg:items-center",
       )}
       {...rest}
     >
       <div
         className={clsx(
-          `flex  w-full flex-col  text-white lg:h-[656px]
-            xl:h-[800px]`,
-          "gap-6 p-6 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
-          `bg-norepeat bg-[#131111] `,
+          'flex  w-full flex-col text-white md:h-[572px]',
+          'md:w-1/2 lg:w-[40%] md:justify-center',
+          "gap-6 p-6 2xl:pl-[12%]",
+          `bg-norepeat`,
         )}
       >
 
@@ -43,7 +44,7 @@ export default function Location({ className, ...rest }: LocationProps) {
         </div>
 
         {/* Location */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:text-lg">
           <Image
             src="/icons/Location.svg"
             alt="calendar"
@@ -63,7 +64,7 @@ export default function Location({ className, ...rest }: LocationProps) {
         </div>
 
         {/* Hours */}
-        <div className="flex flex-col gap-2 lg:gap-0">
+        <div className="flex flex-col gap-2 lg:gap-0 sm:text-lg">
           <div className="flex gap-2">
             <Image
               src="/icons/Calendar.svg"
@@ -91,7 +92,7 @@ export default function Location({ className, ...rest }: LocationProps) {
         </div>
 
         {/* Phone */}
-        <div className="flex items-center gap-2 lg:items-start">
+        <div className="flex items-center gap-2 lg:items-start sm:text-lg">
           <Image
             src="/icons/Phone.svg"
             alt="calendar"
@@ -109,16 +110,12 @@ export default function Location({ className, ...rest }: LocationProps) {
             </span>
           </Text>
         </div>
-        <GetDirectionsButton size="sm" className="w-fit mx-auto" />
+        <GetDirectionsButton size="sm" className="w-fit mx-auto md:mx-0" />
       </div>
 
-      <Image
-        src="/building.webp"
-        className="w-full object-cover lg:max-w-[600px] xl:max-w-[800px]"
-        alt=""
-        width={800}
-        height={800}
-      />
+      <div className="md:flex-1">
+        <GoogleMapView />
+      </div>
     </div>
   )
 }
