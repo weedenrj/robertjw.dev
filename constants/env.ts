@@ -31,6 +31,34 @@ const ENV = {
       "Check back in a few weeks to see if we're open yet. Thank you for your continuing patience and faithful service. We're excited to serve you again!",
   },
 
+  reviews: {
+    DavidHaldane: {
+      name: "David Haldane",
+      text: "Good atmosphere and friendly, attentive bartenders.",
+      profilePic: "/profile-1.webp",
+    },
+    DianeDunning: {
+      name: "Diane Dunning",
+      text: "Love this place! Entertainment kept me laughing all night!",
+      profilePic: "/profile-2.png",
+    },
+    JeffMiller: {
+      name: "Jeff Miller",
+      text: "Best Long Island Ice Teas ever anywhere!",
+      profilePic: "/profile-3.png",
+    },
+    DanHughes: {
+      name: "Dan Hughes",
+      text: "Great tasty Long Islands! Must stop when in Madison!",
+      profilePic: "/profile-5.png",
+    },
+    MegT: {
+      name: "MegT",
+      text: "Best Bar in Madison! Drinks are cheap and good...",
+      profilePic: "/profile-4.png",
+    },
+  },
+
   ourSpecialties: {
     LongIslandIcedTea: {
       id: "LongIslandIcedTea",

@@ -7,6 +7,7 @@ import Specialties from "@components/sections/Specialties"
 import Atmosphere from "@components/sections/Atmosphere"
 import Location from "@components/sections/Location"
 import { type Viewport } from "next"
+import Reviews from "@components/sections/Reviews"
 
 export const viewport: Viewport = {
   themeColor: [
@@ -27,6 +28,7 @@ export default function Home() {
         <Specialties />
         <Atmosphere />
         <Location />
+        <Reviews />
       </div>
     </Page>
   )
