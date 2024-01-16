@@ -8,8 +8,8 @@ import Link from "next/link"
 export type FollowUsProps = {} & React.HTMLAttributes<HTMLDivElement>
 
 const images = [
-  "/At night.jpg", "/TopGun.jpg", "/Booths.jpg", "/JeffAndFriend.jpg",
-  "/JoelAndFriend.jpg", "/Long island 2.jpg", "/IMG_0883re.jpeg", "/LITBartop.jpg"
+  "/AtNight.webp", "/TopGun.webp", "/Booths.webp", "/JeffAndFriend.webp",
+  "/JoelAndFriend.webp", "/Long-island-2.webp", "/BrightLights.webp", "/LITBartop.webp"
 ]
 
 export default function FollowUs({ className, ...rest }: FollowUsProps) {
@@ -59,7 +59,7 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
           <Image
             key={i}
             src={img}
-            className="size-64 sm:size-72 lg:size-[400px]"
+            className="size-64 sm:size-72  2xl:size-[400px] object-cover"
             alt=""
             width={400}
             height={400}
