@@ -8,6 +8,8 @@ import Atmosphere from "@components/sections/Atmosphere"
 import Location from "@components/sections/Location"
 import { type Viewport } from "next"
 import Reviews from "@components/sections/Reviews"
+import FollowUs from "@components/sections/FollowUs"
+import Footer from "@components/sections/Footer"
 
 export const viewport: Viewport = {
   themeColor: [
