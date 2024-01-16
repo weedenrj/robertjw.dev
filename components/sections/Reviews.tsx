@@ -117,7 +117,8 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
           const isVisible = isLeft || isMiddle || isRight
           return (
             <div key={i} className={clsx("size-2 rounded-full border-2",
-              isVisible ? "sm:bg-white border-opacity-50 border-white" : "border-white border-opacity-50",
+              "transition-all duration-500 border-white border-opacity-50",
+              isVisible ? "sm:bg-white border-opacity-50 border-white" : "bg-transparent border-white border-opacity-50",
               isMiddle && "bg-white"
             )} />
           )
