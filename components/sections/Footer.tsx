@@ -35,7 +35,7 @@ export default function Footer({ className, ...rest }: FooterProps) {
       </div>
 
       <div className="flex flex-col w-full sm:flex-row items-center sm:justify-between gap-12 px-10 md:px-20">
-        <Link href="#hero">
+        <Link href="#hero" className="transition-transform hover:scale-102 active:animate-pop">
           <Image
             alt="The Red Shed Logo"
             src="/RedShedLogoFacelift.webp"

@@ -28,11 +28,14 @@ export default function Button({
         "inline-flex items-center justify-center",
         "h-12 shrink-0 gap-2 px-10 py-2 xs:px-12",
         "font-Lato rounded border-2 text-base font-bold xs:text-lg",
+        "transition active:animate-pop",
 
         size === "sm" && "min-w-38",
         size === "lg" && "min-w-46",
+        color !== "black" && "hover:bg-accent-light hover:border-accent-light",
+        color === "black" && "border-opacity-50 hover:border-opacity-100 border-white",
 
-        `border-${color}`,
+          `border-${color}`,
         `bg-${color}`,
       )}
       type="button"

@@ -30,7 +30,7 @@ export default function Navbar() {
         "z-20 overflow-hidden bg-black bg-opacity-50",
       )}
     >
-      <Link href="#hero">
+      <Link href="#hero" className="transition-transform hover:scale-102 active:animate-pop">
         <Image
           alt="The Red Shed Logo"
           src="/RedShedLogoFacelift.webp"
@@ -46,7 +46,7 @@ export default function Navbar() {
         {navLinks.map((item, i) => (
           <Link
             key={i}
-            className="group font-title text-xl font-bold transition duration-300 xl:text-2xl"
+            className="group font-title text-xl font-bold duration-300 xl:text-2xl active:animate-pop"
             href={item.url}
           >
             {item.title}

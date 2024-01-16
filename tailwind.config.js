@@ -59,10 +59,14 @@ module.exports = {
       },
       animation: {
         blob: "blob 7s infinite",
+        pop: 'buttonPop 0.25s ease-out',
       },
       fontFamily: {
         title: "var(--title-font)",
         lato: "var(--body-font)",
+      },
+      scale: {
+        '102': '1.025'
       },
       keyframes: {
         blob: {
@@ -79,6 +83,11 @@ module.exports = {
             transform: "tranlate(0px, 0px) scale(1)",
           },
         },
+        buttonPop: {
+          '0%': { transform: 'scale(.90)' },
+          '40%': { transform: 'scale(1.02)' },
+          '100%': { transform: 'scale(1.0)' }
+        }
       },
       backgroundImage: {
         sketch: assetLink("RedShedSketchDark.webp"),

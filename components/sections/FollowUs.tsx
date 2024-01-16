@@ -41,7 +41,7 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
 
       <div className="flex justify-center gap-12">
         {Object.entries(ENV.socials).map(([socialKey, socialLink], i) => (
-          <Link href={socialLink} key={i}>
+          <Link href={socialLink} key={i} className=" transition-transform hover:scale-110 active:animate-pop">
             <Image
               src={`/icons/${socialKey}.svg`}
               alt={socialKey}
