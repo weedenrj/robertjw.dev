@@ -21,15 +21,17 @@ export const viewport: Viewport = {
 export default function Home() {
   return (
     <Page>
-      <Navbar />
-      <Hero />
+      <Navbar  />
+      <Hero id="hero" />
       <div className="flex flex-col gap-24 xs:gap-40 sm:gap-[200px]">
         <About />
         <Specialties />
         <Atmosphere />
         <Location />
         <Reviews />
+        <FollowUs />
       </div>
+      <Footer />
     </Page>
   )
 }
