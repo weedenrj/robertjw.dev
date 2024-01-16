@@ -1,7 +1,5 @@
 import React from "react"
 import clsx from "clsx"
-import Button from "../common/Button"
-import Link from "next/link"
 import Title from "@components/common/Title"
 import Image from "next/image"
 import Text from "@components/common/Text"
@@ -17,7 +15,8 @@ export default function Atmosphere({
     <div
       className={clsx(
         className,
-        "relative flex w-full flex-col 2xl:flex-row 2xl:items-center gap-24 xs:gap-40 sm:gap-24",
+        "relative flex w-full flex-col 2xl:flex-row 2xl:items-center",
+        "gap-24 xs:gap-40 sm:gap-24",
         "2xl:gap-4 overflow-hidden"
       )}
       {...rest}

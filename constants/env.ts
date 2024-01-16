@@ -14,12 +14,11 @@ const ENV = {
   showUnderConstruction: !isProcessDev,
   isBeta: isProcessDev,
 
-  links: {
+  socials: {
     // Socials
-    discord: "https://discord.gg/eternityrpg",
-    medium: "https://medium.com/@playeternity",
-    youtube: "https://www.youtube.com/@EternityRPG",
-    twitterX: "https://twitter.com/eternityrpg/",
+    instagram: "https://www.instagram.com/redshedmadison/",
+    facebook: "https://www.facebook.com/profile.php?id=100049266175993",
+    twitterX: "https://twitter.com/TheRealRedShed",
   },
 
   siteMetadata: {

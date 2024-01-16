@@ -1,7 +1,5 @@
 import React from "react"
 import clsx from "clsx"
-import Button from "../common/Button"
-import Link from "next/link"
 import Title from "@components/common/Title"
 import Image from "next/image"
 import Text from "@components/common/Text"

@@ -9,8 +9,7 @@ import ENV from "../../constants/env"
 import useInterval from "@hooks/UseInterval"
 import ms from 'ms'
 import { getCircularIndex } from "../../utils/collection"
-import { Transition } from "@headlessui/react"
-
+import ReviewBubble from "@components/ReviewBubble"
 
 const reviews = Object.values(ENV.reviews)
 
@@ -25,8 +24,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
     const indexToRight = getCircularIndex(reviews, newMiddle, "right")
     const indexToLeft = getCircularIndex(reviews, newMiddle, "left")
     setSelectedReviews([indexToLeft, newMiddle, indexToRight])
-  }, ms("5s"), [])
-
+  }, ms("4s"), [])
 
   return (
     <div
@@ -74,43 +72,14 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
                           : "opacity-100 translate-x-0",
               )}
             >
-              <div className={clsx("flex flex-col justify-center items-center w-full")}>
-                <div className="relative flex justify-center items-center w-[260px] xs:w-[352px] h-[143px]">
-                  <Image
-                    src="/Baloon.svg"
-                    className="absolute top-0 z-0 w-full"
-                    alt=""
-                    width={24}
-                    height={24}
-                    loading="eager"
-                  />
-                  <Text className={clsx("text-black relative z-10",
-                    "pb-14 px-1 xs:pb-6 xs:px-4 text-base xs:text-lg text-center font-bold"
-                  )}>
-                    {review.text}
-                  </Text>
-                </div>
-                <div className="flex justify-center items-center gap-4">
-                  <Image
-                    src={review.profilePic}
-                    className="size-[60px]"
-                    alt=""
-                    width={60}
-                    height={60}
-                    loading="eager"
-                  />
-                  <Text className="text-white text-lg font-bold">
-                    {review.name}
-                  </Text>
-                </div>
-              </div>
+              <ReviewBubble review={review} />
             </div>
           )
         })}
       </div>
 
       <div className="flex gap-2">
-        {reviews.map((review, i) => {
+        {reviews.map((r, i) => {
           const isLeft = selectedReviews.findIndex(num => num === i) === 0
           const isMiddle = selectedReviews.findIndex(num => num === i) === 1
           const isRight = selectedReviews.findIndex(num => num === i) === 2
@@ -124,7 +93,6 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
           )
         })}
       </div>
-
     </div>
   )
 }

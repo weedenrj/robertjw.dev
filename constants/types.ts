@@ -5,3 +5,9 @@ export type Specialty = {
   smallImg: string,
   bigImg: string,
 }
+
+export type Review = {
+  name: string,
+  text: string,
+  profilePic: string,
+}
