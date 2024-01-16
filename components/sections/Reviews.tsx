@@ -41,7 +41,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
 
       <div className="relative flex flex-col items-center sm:items-start ">
         <Title className="text-4xl uppercase xs:text-5xl lg:text-6xl text-center">
-          A word from <br /> our customers
+          A word from <br className="lg:hidden" /> our customers
         </Title>
 
         <Image
@@ -54,7 +54,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
         />
       </div>
 
-      <div className="relative hidden w-full h-[370px] lg:flex ">
+      <div className="relative w-full h-[270px] sm:h-[370px] flex">
         {reviews.map((review, i) => {
           const isLeft = selectedReviews.findIndex(num => num === i) === 0
           const isMiddle = selectedReviews.findIndex(num => num === i) === 1
@@ -68,14 +68,14 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
                 "transition-all duration-500",
                 nextUp === i ? "opacity-0 translate-x-full"
                   : !isVisible ? "opacity-0 -translate-x-full"
-                    : isRight ? "opacity-100 translate-x-96"
+                    : isRight ? "opacity-0 sm:opacity-100 translate-x-96"
                       : isMiddle ? "opacity-100 translate-x-0"
-                        : isLeft ? "opacity-100 -translate-x-96"
+                        : isLeft ? "opacity-0 sm:opacity-100 -translate-x-96"
                           : "opacity-100 translate-x-0",
               )}
             >
               <div className={clsx("flex flex-col justify-center items-center w-full")}>
-                <div className="relative flex justify-center items-center w-[352px] h-[143px]">
+                <div className="relative flex justify-center items-center w-[260px] xs:w-[352px] h-[143px]">
                   <Image
                     src="/Baloon.svg"
                     className="absolute top-0 z-0 w-full"
@@ -84,7 +84,9 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
                     height={24}
                     loading="eager"
                   />
-                  <Text className="text-black relative z-10 pb-6 px-4 text-lg text-center font-bold">
+                  <Text className={clsx("text-black relative z-10",
+                    "pb-14 px-1 xs:pb-6 xs:px-4 text-base xs:text-lg text-center font-bold"
+                  )}>
                     {review.text}
                   </Text>
                 </div>
@@ -107,58 +109,6 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
         })}
       </div>
 
-      <div className="relative flex w-full h-[260px] lg:hidden">
-        {reviews.map((review, i) => {
-          const isMiddle = selectedReviews.findIndex(num => num === i) === 1
-          const isVisible = isMiddle
-          return (
-            <Transition
-              key={i}
-              show={isVisible}
-              appear
-              className={clsx("absolute flex flex-col justify-center items-center w-full",
-                "transition duration-500",
-              )}
-              enterFrom="opacity-0 translate-x-full"
-              enterTo="opacity-100 translate-x-0"
-              leaveFrom="opacity-50 translate-x-0"
-              leaveTo="opacity-0 -translate-x-full"
-            >
-              <div className={clsx("flex flex-col justify-center items-center w-full",
-                // selectedReview.name === review.name ? "flex" : "hidden"
-              )}>
-                <div className="relative flex justify-center items-center w-[352px] h-[143px]">
-                  <Image
-                    src="/Baloon.svg"
-                    className="absolute top-0 z-0 w-full"
-                    alt=""
-                    width={24}
-                    height={24}
-                    loading="eager"
-                  />
-                  <Text className="text-black relative z-10 pb-6 px-4 text-lg text-center font-bold">
-                    {review.text}
-                  </Text>
-                </div>
-                <div className="flex justify-center items-center gap-4">
-                  <Image
-                    src={review.profilePic}
-                    className="size-[60px]"
-                    alt=""
-                    width={60}
-                    height={60}
-                    loading="eager"
-                  />
-                  <Text className="text-white text-lg font-bold">
-                    {review.name}
-                  </Text>
-                </div>
-              </div>
-            </Transition>
-          )
-        })}
-      </div>
-
       <div className="flex gap-2">
         {reviews.map((review, i) => {
           const isLeft = selectedReviews.findIndex(num => num === i) === 0
@@ -166,8 +116,9 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
           const isRight = selectedReviews.findIndex(num => num === i) === 2
           const isVisible = isLeft || isMiddle || isRight
           return (
-            <div key={i} className={clsx("size-2 rounded-full",
-              isVisible ? "bg-white" : "border-2 border-white border-opacity-50"
+            <div key={i} className={clsx("size-2 rounded-full border-2",
+              isVisible ? "sm:bg-white border-opacity-50 border-white" : "border-white border-opacity-50",
+              isMiddle && "bg-white"
             )} />
           )
         })}

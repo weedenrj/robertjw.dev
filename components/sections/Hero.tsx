@@ -34,12 +34,12 @@ export default function Hero({ className, ...rest }: HeroProps) {
         <div className="flex items-center justify-center gap-4 xl:justify-start">
           <Image
             alt="The Red Shed Logo"
-            src="/profile-1.webp"
+            src="/profile-5.png"
             className="cursor-pointer"
             width={40}
             height={40}
           />
-          <Text className="text-lg font-medium">David Haldane</Text>
+          <Text className="text-lg font-medium">Dan Hughes</Text>
         </div>
       </div>
 
