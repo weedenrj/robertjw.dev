@@ -73,7 +73,7 @@ export default function Atmosphere({
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-0.5 2xl:w-1/2 overflow-x-auto">
+      <div className="flex flex-col sm:flex-row gap-0.5 2xl:w-1/2 ">
         <Image
           src="/pouring_stock.jpeg"
           className="sm:w-1/3 2xl:max-w-[400px] 2xl:max-h-[400px]"

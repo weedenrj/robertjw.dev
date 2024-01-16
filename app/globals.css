@@ -10,3 +10,27 @@
     animation-delay: 4s;
   }
 }
+
+* {
+  --sb-track-color: #231E1E;
+  --sb-thumb-color: #B33D3D;
+  --sb-size: 10px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size) 
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+  
+  }

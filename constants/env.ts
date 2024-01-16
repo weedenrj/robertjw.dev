@@ -16,9 +16,9 @@ const ENV = {
 
   socials: {
     // Socials
-    instagram: "https://www.instagram.com/redshedmadison/",
-    facebook: "https://www.facebook.com/profile.php?id=100049266175993",
-    twitterX: "https://twitter.com/TheRealRedShed",
+    Instagram: "https://www.instagram.com/redshedmadison/",
+    Facebook: "https://www.facebook.com/profile.php?id=100049266175993",
+    TwitterX: "https://twitter.com/TheRealRedShed",
   },
 
   siteMetadata: {
