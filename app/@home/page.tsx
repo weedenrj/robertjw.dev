@@ -9,6 +9,7 @@ import Location from "@components/sections/Location"
 import { type Viewport } from "next"
 import Reviews from "@components/sections/Reviews"
 import FollowUs from "@components/sections/FollowUs"
+import Footer from "@components/sections/Footer"
 
 export const viewport: Viewport = {
   themeColor: [
@@ -22,8 +23,8 @@ export const viewport: Viewport = {
 export default function Home() {
   return (
     <Page>
-      <Navbar />
-      <Hero />
+      <Navbar  />
+      <Hero id="hero" />
       <div className="flex flex-col gap-24 xs:gap-40 sm:gap-[200px]">
         <About />
         <Specialties />
@@ -32,6 +33,7 @@ export default function Home() {
         <Reviews />
         <FollowUs />
       </div>
+      <Footer />
     </Page>
   )
 }

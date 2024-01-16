@@ -32,7 +32,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
         className,
         "relative flex w-full flex-col items-center",
         "text-white md:h-[572px]",
-        "gap-12 p-6 2xl:pl-[12%]",
+        "gap-12 p-6",
       )}
       {...rest}
     >
@@ -52,7 +52,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
         />
       </div>
 
-      <div className="relative w-full h-[270px] sm:h-[370px] flex">
+      <div className="relative w-full h-[270px] flex">
         {reviews.map((review, i) => {
           const isLeft = selectedReviews.findIndex(num => num === i) === 0
           const isMiddle = selectedReviews.findIndex(num => num === i) === 1

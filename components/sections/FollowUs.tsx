@@ -1,16 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import clsx from "clsx"
 import Title from "@components/common/Title"
 import Image from "next/image"
-import Text from "@components/common/Text"
 import ENV from "../../constants/env"
-import useInterval from "@hooks/UseInterval"
-import ms from 'ms'
-import { getCircularIndex } from "../../utils/collection"
-import ReviewBubble from "@components/ReviewBubble"
-
+import Link from "next/link"
 
 export type FollowUsProps = {} & React.HTMLAttributes<HTMLDivElement>
+
+const images = [
+  "/At night.jpg", "/TopGun.jpg", "/Booths.jpg", "/JeffAndFriend.jpg",
+  "/JoelAndFriend.jpg", "/Long island 2.jpg", "/IMG_0883re.jpeg", "/LITBartop.jpg"
+]
 
 export default function FollowUs({ className, ...rest }: FollowUsProps) {
   return (
@@ -18,8 +18,8 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
       className={clsx(
         className,
         "relative flex w-full flex-col items-center",
-        "text-white md:h-[572px]",
-        "gap-12 p-6 2xl:pl-[12%]",
+        "text-white ",
+        "gap-6 p-6 pb-40",
       )}
       {...rest}
     >
@@ -37,6 +37,34 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
           height={24}
           loading="eager"
         />
+      </div>
+
+      <div className="flex justify-center gap-12">
+        {Object.entries(ENV.socials).map(([socialKey, socialLink], i) => (
+          <Link href={socialLink} key={i}>
+            <Image
+              src={`/icons/${socialKey}.svg`}
+              alt={socialKey}
+              width={32}
+              height={32}
+            />
+          </Link>
+        ))}
+      </div>
+
+      <div className={clsx("flex sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:grid-rows-2 gap-2",
+        "overflow-auto sm:overflow-hidden"
+      )}>
+        {images.map((img, i) => (
+          <Image
+            key={i}
+            src={img}
+            className="size-64 sm:size-72 lg:size-[400px]"
+            alt=""
+            width={400}
+            height={400}
+          />
+        ))}
       </div>
 
 
