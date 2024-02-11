@@ -20,19 +20,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function Home() {
+export default function HomeLayout({
+  children
+}:{
+  children: React.ReactNode
+}) {
   return (
     <Page>
       <Navbar />
-      <Hero id="hero" />
-      <div className="flex flex-col gap-24 xs:gap-40 sm:gap-[200px]">
-        <About />
-        <Specialties />
-        <Atmosphere />
-        <Location id="findus" />
-        <Reviews />
-        <FollowUs />
-      </div>
+      {children}
       <Footer />
     </Page>
   )

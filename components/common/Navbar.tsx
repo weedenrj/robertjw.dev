@@ -11,7 +11,7 @@ export const navLinks = [
   { title: "Home", url: "/building", blank: false },
   { title: "Menu", url: "/menu", blank: false },
   { title: "Promos", url: "/promos", blank: false },
-  { title: "Find Us", url: "/findus", blank: false },
+  { title: "Find Us", url: "/#findus", blank: false },
 ]
 
 export default function Navbar() {
@@ -27,10 +27,10 @@ export default function Navbar() {
         "absolute top-0 flex h-18 w-full items-center justify-between",
         "px-6 py-4 text-white md:px-[5%] xl:px-[15%] 2xl:px-[20%]",
         "transition duration-300",
-        "z-20 overflow-hidden bg-black bg-opacity-50",
+        "z-20 overflow-hidden bg-black bg-opacity-25",
       )}
     >
-      <Link href="#hero" className="transition-transform hover:scale-102 active:animate-pop">
+      <Link href="/" className="transition-transform hover:scale-102 active:animate-pop">
         <Image
           alt="The Red Shed Logo"
           src="/RedShedLogoFacelift.webp"
@@ -157,7 +157,7 @@ export default function Navbar() {
           {navLinks.map((item, i) => (
             <Link
               key={i}
-              className="group font-lato font-title text-5xl font-bold transition duration-300"
+              className="group font-title text-5xl font-bold transition duration-300"
               onClick={() => setOpen(false)}
               href={item.url}
             >

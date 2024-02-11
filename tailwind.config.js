@@ -68,6 +68,9 @@ module.exports = {
       scale: {
         '102': '1.025'
       },
+      gridTemplateRows: {
+        'header-footer': "auto 1fr auto",
+      },
       keyframes: {
         blob: {
           "0%": {
@@ -94,6 +97,10 @@ module.exports = {
         heroMobile: assetLink("heroMobile.webp"),
         heroDesktop: assetLink("heroDesktop.webp"),
         about: assetLink("bar.webp"),
+        menuHero: assetLink("cocktail.webp"),
+        menuHeroMobile: assetLink("cocktail-mobile.webp"),
+        promoHero: assetLink("promos.webp"),
+        promoHeroMobile: assetLink("promos-mobile.webp"),
 
         "fade-left":
           "linear-gradient(90deg, #000 25.14%, rgba(0, 0, 0, 0.00) 84.96%)",
