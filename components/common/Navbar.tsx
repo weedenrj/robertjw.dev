@@ -164,7 +164,7 @@ export default function Navbar() {
               {item.title}
               <span
                 className={clsx(
-                  "relative top-2 mx-auto block h-2 w-0 bg-accent opacity-0",
+                  "relative top-2 mx-auto block h-2 w-0 bg-white opacity-0",
                   `rounded-full transition-opacity duration-200 group-hover:w-2
                     group-hover:opacity-100`,
                   pathname === item.url && "w-2 opacity-100",

@@ -11,3 +11,16 @@ export type Review = {
   text: string,
   profilePic: string,
 }
+
+export type Item = {
+  imgSrc?: string
+  name: string
+  description: string
+  emphasized?: boolean
+}
+
+export type Section = {
+  title: string
+  raisedText?: string
+  items: Item[]
+}

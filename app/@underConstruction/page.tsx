@@ -18,7 +18,7 @@ export default function UnderConstruction() {
     <Page>
       <div
         className={clsx(
-          "flex h-full w-full flex-col items-center justify-center",
+          "flex min-h-screen h-full w-full flex-col items-center justify-center",
           "gap-4 p-2 md:px-12",
           "bg-sketch bg-cover bg-center",
         )}

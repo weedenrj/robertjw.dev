@@ -8,6 +8,9 @@
     "dark": "#820404",
     "darker": "#5C0303"
   },
+  "gray": {
+    "light": "#121111"
+  },
   "white": {
     "DEFAULT": "#e7e7e7",
     "transparent": "#131316"

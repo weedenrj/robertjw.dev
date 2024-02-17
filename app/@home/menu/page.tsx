@@ -14,6 +14,8 @@ import Image from "next/image"
 import Title from "@components/common/Title"
 import Text from "@components/common/Text"
 import clsx from "clsx"
+import SectionedList from "@components/common/SectionedList"
+import ENV from "../../../constants/env"
 
 
 export default function Menu() {
@@ -33,10 +35,9 @@ export default function Menu() {
           </Title>
         </div>
       </div>
-      
-      <div className="w-full flex justify-center items-center">
 
-      </div>
+      <SectionedList sections={ENV.Menu} />
+
 
       <div className=" flex flex-col gap-24 xs:gap-40 sm:gap-[200px]">
 
