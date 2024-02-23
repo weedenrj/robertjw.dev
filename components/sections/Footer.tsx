@@ -1,13 +1,14 @@
+'use client'
+
 import React from "react"
 import clsx from "clsx"
-import Title from "components/common/Title"
 import Image from "next/image"
-import ENV from "../../constants/env"
 import Link from "next/link"
 import Text from "components/common/Text"
+import { mkNavLink } from "components/common/Navbar"
 
-export type FooterProps = {} & React.HTMLAttributes<HTMLDivElement>
-
+export type FooterProps = {
+} & React.HTMLAttributes<HTMLDivElement>
 
 export default function Footer({ className, ...rest }: FooterProps) {
   return (
@@ -35,7 +36,7 @@ export default function Footer({ className, ...rest }: FooterProps) {
       </div>
 
       <div className="flex flex-col w-full sm:flex-row items-center sm:justify-between gap-12 px-10 md:px-20">
-        <Link href="#hero" className="transition-transform hover:scale-102 active:animate-pop">
+        <Link href={mkNavLink("/#hero")} className="transition-transform hover:scale-102 active:animate-pop">
           <Image
             alt="The Red Shed Logo"
             src="/RedShedLogoFacelift.webp"

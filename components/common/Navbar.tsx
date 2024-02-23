@@ -5,13 +5,19 @@ import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx"
 import { usePathname } from "next/navigation"
+import ENV from "constants/env"
+
+export const mkNavLink = (url: string) => {
+  return ENV.isBeta ? url : `/building${url}`
+}
 
 export type NavLinks = typeof navLinks
 export const navLinks = [
-  { title: "Home", url: "/building", blank: false },
-  { title: "Menu", url: "/menu", blank: false },
-  { title: "Promos", url: "/promos", blank: false },
-  { title: "Find Us", url: "/#findus", blank: false },
+  { title: "Home", url: mkNavLink("/"), blank: false, enabled: true },
+  { title: "Menu", url: mkNavLink("/menu"), blank: false, enabled: true },
+  { title: "Promos", url: mkNavLink("/promos"), blank: false, enabled: true },
+  { title: "Find Us", url: mkNavLink("/#findus"), blank: false, enabled: true },
+  { title: "Building", url: mkNavLink("/building"), blank: false, enabled: ENV.isBeta },
 ]
 
 export default function Navbar() {
@@ -30,7 +36,7 @@ export default function Navbar() {
         "z-20 overflow-hidden bg-black bg-opacity-25",
       )}
     >
-      <Link href="/" className="transition-transform hover:scale-102 active:animate-pop">
+      <Link href={mkNavLink("/")} className="transition-transform hover:scale-102 active:animate-pop">
         <Image
           alt="The Red Shed Logo"
           src="/RedShedLogoFacelift.webp"
@@ -43,7 +49,7 @@ export default function Navbar() {
       </Link>
 
       <div className="hidden gap-4 md:flex lg:gap-16">
-        {navLinks.map((item, i) => (
+        {navLinks.filter(link => link.enabled).map((item, i) => (
           <Link
             key={i}
             className="group font-title text-xl font-bold duration-300 xl:text-2xl active:animate-pop"

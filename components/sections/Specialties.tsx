@@ -10,6 +10,7 @@ import Text from "components/common/Text"
 import useWindowDimensions from "hooks/UseWindowDimensions"
 import ENV from "../../constants/env"
 import { getCircularIndex } from "../../utils/collection"
+import { mkNavLink } from "components/common/Navbar"
 
 const SpecialtiesArray = Object.values(ENV.ourSpecialties)
 
@@ -116,7 +117,7 @@ export default function Specialties({
             />
 
             <Link
-              href="/menu"
+              href={mkNavLink("/menu")}
               className="self-center px-6 sm:self-start"
             >
               <Button size="lg" color="black">
