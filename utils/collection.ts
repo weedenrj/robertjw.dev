@@ -14,7 +14,8 @@ export function reverseInCopy<T>(from: T[]): T[] {
 export function chunk<T>(items: T[], chunkSize: number) {
   return items.reduce((all, one, i) => {
     const ch = Math.floor(i / chunkSize);
-    all[ch] = [].concat((all[ch] || []), one);
+    // @ts-ignore
+    all[ch] = [].concat((all[ch] || []), one)
     return all
   }, [])
 }
@@ -38,7 +39,7 @@ export function chunkByKeyed<T, K extends RecordKey>(items: T[], getKey: (item: 
     const key = getKey(item, i)
 
     if (!chunks[key]) chunks[key] = []
-    chunks[key].push(item)
+    chunks[key]?.push(item)
   }
   return chunks
 }
