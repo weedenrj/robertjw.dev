@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev --datalayer-port 8080 -c 'next dev'",
+    "dev": "tinacms dev --datalayer-port 8080 -c 'next dev'",
     "build": "tinacms build && next build",
     "start": "next start",
     "lint": "next lint"
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@prettier/sync": "^0.3.0",
     "@tinacms/cli": "^1.5.39",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.20",
     "prettier": "^3.1.1",
     "prettier-plugin-classnames": "^0.3.1",
     "prettier-plugin-tailwindcss": "^0.5.10"
