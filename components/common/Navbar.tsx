@@ -22,9 +22,8 @@ export const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-
   const pathname = usePathname()
-
+  
   return (
     <header
       id="page-header"
@@ -160,7 +159,7 @@ export default function Navbar() {
             />
           </div>
 
-          {navLinks.map((item, i) => (
+          {navLinks.filter(link => link.enabled).map((item, i) => (
             <Link
               key={item.title}
               className="group font-title text-5xl font-bold transition duration-300"
