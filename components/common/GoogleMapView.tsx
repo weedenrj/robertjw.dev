@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import useWindowDimensions from '@hooks/UseWindowDimensions';
+import useWindowDimensions from 'hooks/UseWindowDimensions';
 
 const containerStyle = {
   width: 'auto',
@@ -17,7 +17,7 @@ const center = {
 function GoogleMapView() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string
   })
   const { width, height } = useWindowDimensions()
   const [map, setMap] = React.useState(null)

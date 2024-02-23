@@ -7,7 +7,7 @@ import Link from "next/link"
 import Title from "components/common/Title"
 import Image from "next/image"
 import Text from "components/common/Text"
-import useWindowDimensions from "@hooks/UseWindowDimensions"
+import useWindowDimensions from "hooks/UseWindowDimensions"
 import ENV from "../../constants/env"
 import { getCircularIndex } from "../../utils/collection"
 

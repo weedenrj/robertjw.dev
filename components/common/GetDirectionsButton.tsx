@@ -1,6 +1,6 @@
 "use client"
 
-import UseDirections from "@hooks/UseDirections"
+import UseDirections from "hooks/UseDirections"
 import clsx from "clsx"
 import Image from "next/image"
 import React from "react"
