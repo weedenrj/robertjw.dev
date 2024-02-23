@@ -49,9 +49,9 @@ export default function Navbar() {
       </Link>
 
       <div className="hidden gap-4 md:flex lg:gap-16">
-        {navLinks.filter(link => link.enabled).map((item, i) => (
+        {navLinks.filter(link => link.enabled).map(item => (
           <Link
-            key={i}
+            key={item.title}
             className="group font-title text-xl font-bold duration-300 xl:text-2xl active:animate-pop"
             href={item.url}
           >
@@ -162,7 +162,7 @@ export default function Navbar() {
 
           {navLinks.map((item, i) => (
             <Link
-              key={i}
+              key={item.title}
               className="group font-title text-5xl font-bold transition duration-300"
               onClick={() => setOpen(false)}
               href={item.url}

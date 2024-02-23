@@ -40,8 +40,8 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
       </div>
 
       <div className="flex justify-center gap-12">
-        {Object.entries(ENV.socials).map(([socialKey, socialLink], i) => (
-          <Link href={socialLink} key={i} className=" transition-transform hover:scale-110 active:animate-pop">
+        {Object.entries(ENV.socials).map(([socialKey, socialLink]) => (
+          <Link href={socialLink} key={socialKey} className=" transition-transform hover:scale-110 active:animate-pop">
             <Image
               src={`/icons/${socialKey}.svg`}
               alt={socialKey}
@@ -55,9 +55,9 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
       <div className={clsx("flex sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:grid-rows-2 gap-2",
         "overflow-auto sm:overflow-hidden"
       )}>
-        {images.map((img, i) => (
+        {images.map((img) => (
           <Image
-            key={i}
+            key={img}
             src={img}
             className="size-64 sm:size-72  2xl:size-[400px] object-cover"
             alt=""

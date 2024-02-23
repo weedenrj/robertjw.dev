@@ -61,7 +61,7 @@ export default function Specialties({
       <div className="absolute z-10 w-1/2 h-full right-0 top-0 2xl:bg-fade-right pointer-events-none" />
 
       {SpecialtiesArray.map(({ id, title, text, smallImg, bigImg }, i) => (
-        <div key={i} className={clsx("relative flex flex-col sm:flex-row",
+        <div key={id} className={clsx("relative flex flex-col sm:flex-row",
           selectedSpecialty.id === id ? "flex" : "hidden",
         )} >
 

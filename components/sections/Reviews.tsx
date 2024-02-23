@@ -61,7 +61,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
           const isVisible = isLeft || isMiddle || isRight
           return (
             <div
-              key={i}
+              key={review.name}
               className={clsx("absolute flex flex-col justify-center items-center w-full",
                 "transition-all duration-500",
                 nextUp === i ? "opacity-0 translate-x-full"
@@ -85,7 +85,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
           const isRight = selectedReviews.findIndex(num => num === i) === 2
           const isVisible = isLeft || isMiddle || isRight
           return (
-            <div key={i} className={clsx("size-2 rounded-full border-2",
+            <div key={r.name} className={clsx("size-2 rounded-full border-2",
               "transition-all duration-500 border-white border-opacity-50",
               isVisible ? "sm:bg-white border-opacity-50 border-white" : "bg-transparent border-white border-opacity-50",
               isMiddle && "bg-white"
