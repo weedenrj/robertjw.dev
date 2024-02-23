@@ -44,18 +44,24 @@ module.exports = {
         38: "152px",
         46: "184px",
         124: "570px",
+        "item": "440px"
       },
       minWidth: {
         18: "72px",
         38: "152px",
         46: "184px",
         124: "570px",
+        "item": "440px"
       },
       minHeight: {
         18: "72px",
         38: "152px",
         46: "184px",
         124: "570px",
+        "item": "440px"
+      },
+      maxWidth: {
+        "item": "440px"
       },
       animation: {
         blob: "blob 7s infinite",

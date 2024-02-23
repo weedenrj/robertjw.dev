@@ -8,16 +8,16 @@ import Item from "./Item"
 
 export type SectionedListProps = {
   sections: Section[]
+  alternateBackgrounds?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 export default function SectionedList({
   sections,
+  alternateBackgrounds,
 
   className,
   ...rest
 }: SectionedListProps) {
-
-
   return (
     <div className={clsx(className, "flex flex-col w-full h-full font-title")} {...rest}>
       {sections.map((section, i) => {
@@ -25,8 +25,8 @@ export default function SectionedList({
           <div
             key={section.title}
             id={section.title}
-            className={clsx("p-6 py-16 flex flex-col gap-6",
-              i % 2 === 0 ? "bg-gray-light" : "bg-black"
+            className={clsx("py-16 flex flex-col gap-6 p-6 lg:px-[5%] xl:px-[15%] 2xl:px-[20%]",
+              (alternateBackgrounds && i % 2 === 0) ? "bg-gray-light" : "bg-black"
             )}
           >
 
@@ -45,16 +45,14 @@ export default function SectionedList({
                 loading="eager"
               />
             </div>
-            
-            <div className="flex flex-col gap-12">
+
+            <div className="flex flex-row flex-wrap gap-12">
               {section.items.sort((a, b) => a.emphasized ? -1 : b.emphasized ? 1 : 0)
                 .map(item => (
                   <Item item={item} key={item.name} />
                 ))
               }
             </div>
-
-
           </div>
         )
       })}

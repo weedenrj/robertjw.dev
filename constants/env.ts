@@ -1,11 +1,9 @@
-import { Menu } from './menu';
 declare global {
   type AppEnv = typeof ENV
   interface window {
     env: AppEnv
   }
 }
-
 
 const isProcessDev =
   process.env.NODE_ENV === "development" ||
@@ -82,7 +80,6 @@ const ENV = {
     //   bigImg: "/LIT_Stock_Big.png",
     // },
   },
-  Menu: Menu
 }
 
 export default ENV

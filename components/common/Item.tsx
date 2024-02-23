@@ -1,6 +1,6 @@
 import React from "react"
 import clsx from "clsx"
-import type { Item, Section } from "../../constants/types"
+import type { Item } from "../../constants/types"
 import Text from "./Text"
 import Title from "./Title"
 import Image from "next/image"
@@ -16,23 +16,23 @@ export default function Item({
   ...rest
 }: ItemProp) {
   return (
-    <div className={clsx(className, "flex font-title gap-6")}
+    <div className={clsx(className, "flex font-title gap-6 max-w-item xs:min-w-80 min-w-48")}
       {...rest}
     >
-      {Boolean(item.imgSrc) && (
-        <div className="relative">
+      {item.emphasized && item.image !== "" && item.image !== undefined && (
+        <div className="relative shrink-0">
           <Image
             className={clsx("relative z-10",
-              item.emphasized ? "w-[152px] h-[152px]" : "w-[120px] h-[120px]",
+              item.emphasized ? "size-16 xs:size-36 sm:size-[152px]" : "size-[120px]",
               "rounded-sm",
             )}
-            src={item.imgSrc}
+            src={item.image}
             alt={""}
             width={152}
             height={152}
           />
-          <div className={clsx("z-0 absolute bg-accent-darker -bottom-2 -right-2",
-            item.emphasized ? "w-[152px] h-[152px]" : "w-[120px] h-[120px]",
+          <div className={clsx("z-0 absolute bg-accent-darker top-2 left-2",
+            item.emphasized ? "size-16 xs:size-36 sm:size-[152px]" : "size-[120px]",
             "rounded-sm",
           )} />
         </div>
@@ -45,9 +45,18 @@ export default function Item({
         <Text className="text-white text-base font-lato font-light">
           {item.description}
         </Text>
+
+        {item.discountPrice && item.originalPrice && (
+          <div className="flex-1 flex items-end gap-6">
+            <Text className="text-accent-darker text-2xl font-bold line-through font-lato">
+             ${item.originalPrice}
+            </Text>
+            <Text className="text-white text-4xl">
+             ${item.discountPrice}
+            </Text>
+          </div>
+        )}
       </div>
-
-
     </div>
   )
 }

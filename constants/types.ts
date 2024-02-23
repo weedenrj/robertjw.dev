@@ -13,10 +13,13 @@ export type Review = {
 }
 
 export type Item = {
-  imgSrc?: string
+  image?: string
   name: string
   description: string
   emphasized?: boolean
+  price?: number
+  originalPrice?: number
+  discountPrice?: number
 }
 
 export type Section = {
