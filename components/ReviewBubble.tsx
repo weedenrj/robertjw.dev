@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
 import Image from "next/image"
-import Text from "@components/common/Text"
+import Text from "components/common/Text"
 import type { Review } from "../constants/types"
 
 export type ReviewsProps = {

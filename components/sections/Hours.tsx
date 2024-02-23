@@ -1,8 +1,8 @@
 import React from "react"
 import clsx from "clsx"
 import Image from "next/image"
-import Text from "@components/common/Text"
-import GetDirectionsButton from "@components/common/GetDirectionsButton"
+import Text from "components/common/Text"
+import GetDirectionsButton from "components/common/GetDirectionsButton"
 
 export type HoursProps = {} & React.HTMLAttributes<HTMLDivElement>
 

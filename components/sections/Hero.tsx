@@ -1,10 +1,10 @@
 import React from "react"
 import clsx from "clsx"
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import Image from "next/image"
-import Text from "@components/common/Text"
+import Text from "components/common/Text"
 import Hours from "./Hours"
-import GetDirectionsButton from "@components/common/GetDirectionsButton"
+import GetDirectionsButton from "components/common/GetDirectionsButton"
 
 export type HeroProps = {} & React.HTMLAttributes<HTMLDivElement>
 

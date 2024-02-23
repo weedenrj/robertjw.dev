@@ -1,8 +1,7 @@
-import Page from "@components/common/Page"
+import Page from "components/common/Page"
 import clsx from "clsx"
 import { type Viewport } from "next"
 import Image from "next/image"
-import ENV from "../../constants/env"
 
 export const viewport: Viewport = {
   themeColor: [

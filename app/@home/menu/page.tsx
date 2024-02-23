@@ -1,6 +1,6 @@
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import clsx from "clsx"
-import SectionedList from "@components/common/SectionedList"
+import SectionedList from "components/common/SectionedList"
 import { getMenu } from "../../../api/MenuApi"
 
 export default async function Menu() {

@@ -1,7 +1,7 @@
-import Title from "components/common/Title"
+import { getPromos } from "api"
 import clsx from "clsx"
 import SectionedList from "components/common/SectionedList"
-import { getPromos } from "../../../api/PromosApi"
+import Title from "components/common/Title"
 
 export default async function Promos() {
   const promos = await getPromos()

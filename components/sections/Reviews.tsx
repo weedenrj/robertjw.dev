@@ -2,14 +2,14 @@
 
 import React, { useState } from "react"
 import clsx from "clsx"
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import Image from "next/image"
-import Text from "@components/common/Text"
+import Text from "components/common/Text"
 import ENV from "../../constants/env"
 import useInterval from "@hooks/UseInterval"
 import ms from 'ms'
 import { getCircularIndex } from "../../utils/collection"
-import ReviewBubble from "@components/ReviewBubble"
+import ReviewBubble from "components/ReviewBubble"
 
 const reviews = Object.values(ENV.reviews)
 

@@ -1,10 +1,10 @@
 import React from "react"
 import clsx from "clsx"
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import Image from "next/image"
-import Text from "@components/common/Text"
-import GetDirectionsButton from "@components/common/GetDirectionsButton"
-import GoogleMapView from "@components/common/GoogleMapView"
+import Text from "components/common/Text"
+import GetDirectionsButton from "components/common/GetDirectionsButton"
+import GoogleMapView from "components/common/GoogleMapView"
 
 export type LocationProps = {} & React.HTMLAttributes<HTMLDivElement>
 

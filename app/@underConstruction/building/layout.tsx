@@ -2,7 +2,6 @@ import Navbar from "components/common/Navbar"
 import Page from "components/common/Page"
 import React from "react"
 import { type Viewport } from "next"
-
 import Footer from "components/sections/Footer"
 
 export const viewport: Viewport = {
@@ -16,7 +15,7 @@ export const viewport: Viewport = {
 
 export default function HomeLayout({
   children
-}:{
+}: {
   children: React.ReactNode
 }) {
   return (

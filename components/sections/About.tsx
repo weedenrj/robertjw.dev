@@ -1,8 +1,8 @@
 import React from "react"
 import clsx from "clsx"
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import Image from "next/image"
-import Text from "@components/common/Text"
+import Text from "components/common/Text"
 
 export type AboutProps = {} & React.HTMLAttributes<HTMLDivElement>
 

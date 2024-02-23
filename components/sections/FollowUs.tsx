@@ -1,6 +1,6 @@
 import React from "react"
 import clsx from "clsx"
-import Title from "@components/common/Title"
+import Title from "components/common/Title"
 import Image from "next/image"
 import ENV from "../../constants/env"
 import Link from "next/link"
