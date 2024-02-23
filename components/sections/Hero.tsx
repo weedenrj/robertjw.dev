@@ -13,7 +13,7 @@ export default function Hero({ className, ...rest }: HeroProps) {
     <div
       className={clsx(
         className,
-        `relative flex h-full min-h-screen w-full flex-col items-center justify-center
+        `relative flex h-full min-h-svh w-full flex-col items-center justify-center
           text-white`,
         "gap-4 p-2 lg:px-[5%] xl:gap-6 xl:px-[15%] 2xl:px-[20%]",
         "bg-heroMobile bg-cover bg-center lg:bg-heroDesktop",

@@ -7,7 +7,7 @@ export default function Page({ className, children }: PageProps) {
   return (
     <div className={clsx(
       className,
-      "relative h-screen w-screen grid grid-rows-header-footer",
+      "relative h-svh w-screen grid grid-rows-header-footer",
       "overflow-x-hidden bg-black",
     )}
     >
