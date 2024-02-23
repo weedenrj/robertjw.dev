@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 /**
  * @see [Hook Docs](https://usehooks-ts.com/react-hook/use-interval)
  */
-function useInterval(callback: () => void, delay: number | null, deps = []) {
+function useInterval(callback: () => void, delay: number | undefined, deps = []) {
   const savedCallback = useRef(callback)
 
   // Remember the latest callback if it changes.
@@ -20,7 +20,7 @@ function useInterval(callback: () => void, delay: number | null, deps = []) {
     const id = setInterval(() => savedCallback.current(), delay)
 
     return () => clearInterval(id)
-  }, [delay, ...deps])
+  }, [delay, deps.length])
 }
 
 export default useInterval
