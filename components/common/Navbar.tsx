@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 import ENV from "constants/env"
 
 export const mkNavLink = (url: string) => {
-  return ENV.isBeta ? url : `/building${url}`
+  return ENV.showUnderConstruction ? `/building${url}` : url
 }
 
 export type NavLinks = typeof navLinks
@@ -17,7 +17,7 @@ export const navLinks = [
   { title: "Menu", url: mkNavLink("/menu"), blank: false, enabled: true },
   { title: "Promos", url: mkNavLink("/promos"), blank: false, enabled: true },
   { title: "Find Us", url: mkNavLink("/#findus"), blank: false, enabled: true },
-  { title: "Building", url: mkNavLink("/building"), blank: false, enabled: ENV.isBeta },
+  { title: "Building", url: mkNavLink("/building"), blank: false, enabled: !ENV.showUnderConstruction },
 ]
 
 export default function Navbar() {
