@@ -17,7 +17,7 @@ export default function UnderConstruction() {
     <Page>
       <div
         className={clsx(
-          "flex h-full w-full flex-col items-center justify-center",
+          "flex min-h-screen h-full w-full flex-col items-center justify-center",
           "gap-4 p-2 md:px-12",
           "bg-sketch bg-cover bg-center",
         )}
@@ -26,7 +26,7 @@ export default function UnderConstruction() {
           className={clsx(
             "relative flex flex-col items-center justify-center text-white",
             `rounded-xl bg-red-900 bg-opacity-90 p-4 backdrop-blur-sm md:p-8
-              lg:p-12`,
+            lg:p-12`,
             "border-2",
           )}
         >
@@ -44,13 +44,13 @@ export default function UnderConstruction() {
           />
           <p
             className="md:mp-12 pb-4 pt-7 text-center font-lato text-3xl md:relative md:z-10
-              md:text-5xl"
+            md:text-5xl"
           >
             Coming Back Soon!
           </p>
           <p
             className="text-center font-lato text-base md:relative md:z-10 md:text-xl
-              lg:text-2xl"
+            lg:text-2xl"
           >
             The Red Shed is currently undergoing renovations for our
             new location at 508 State St, Madison.
