@@ -34,7 +34,7 @@ export default function About({ className, ...rest }: AboutProps) {
         </div>
 
         <Image
-          src="/LIT_stamp.svg"
+          src="/LIT_stamp_compressed.svg"
           className={clsx(
             "hidden size-36 xs:block lg:size-52 2xl:size-[360px]",
             `absolute -right-4 top-6 opacity-50 brightness-75 lg:-right-12
