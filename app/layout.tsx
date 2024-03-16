@@ -57,9 +57,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={clsx("bg-black", titleFont.variable, bodyFont.variable)}
+      className={clsx(titleFont.variable, bodyFont.variable)}
+      style={{ backgroundColor: "#000000" }}
     >
-      <body className={clsx("bg-black", titleFont.variable, bodyFont.variable)}>
+      <body className={clsx(titleFont.variable, bodyFont.variable)}
+        style={{ backgroundColor: "#000000" }}
+      >
         {ENV.showUnderConstruction ? underConstruction : home}
       </body>
     </html>

@@ -8,8 +8,9 @@ export default function Page({ className, children }: PageProps) {
     <div className={clsx(
       className,
       "relative h-svh w-screen grid grid-rows-header-footer",
-      "overflow-x-hidden bg-black",
+      "overflow-x-hidden",
     )}
+      style={{ backgroundColor: "#000000" }}
     >
       {children}
     </div>
