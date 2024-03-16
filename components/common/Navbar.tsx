@@ -159,7 +159,7 @@ export default function Navbar() {
             />
           </div>
 
-          {navLinks.filter(link => link.enabled).map((item, i) => (
+          {navLinks.filter(link => link.enabled).map((item) => (
             <Link
               key={item.title}
               className="group font-title text-5xl font-bold transition duration-300"

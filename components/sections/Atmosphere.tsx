@@ -60,7 +60,7 @@ export default function Atmosphere({
             Located at 508 State Street, it&apos;s a short distance from
             the University Campus and within walking distance of Camp
             Randall Stadium, making it perfect for a celebration drink
-            and a fun Friday night with your friends.
+            or an exciting weekend with your friends.
             <br />
             <br />
             The Shed&apos;s busiest hours are at the end of the week
