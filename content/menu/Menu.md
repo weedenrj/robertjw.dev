@@ -3,6 +3,9 @@ sections:
   - title: Specialties
     raisedText: Our classics
     items:
+      - name: White Willy
+        description: An all time classic shot
+        image: /white whale.jpg
       - name: The Nerds drink
         description: >-
           Ever have Nerds candy? This drink is a rich fruity mix of liquors
