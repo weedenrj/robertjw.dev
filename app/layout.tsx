@@ -3,6 +3,7 @@ import "./globals.css"
 import { Antonio, Lato } from "next/font/google"
 import ENV from "../constants/env"
 import { Metadata } from "next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const titleFont = Antonio({
   variable: "--title-font",
@@ -64,6 +65,7 @@ export default function RootLayout({
         style={{ backgroundColor: "#000000" }}
       >
         {ENV.showUnderConstruction ? underConstruction : home}
+        <SpeedInsights />
       </body>
     </html>
   )
