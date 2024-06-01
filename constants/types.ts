@@ -1,3 +1,5 @@
+import { Exact, } from "tina/__generated__/types"
+
 export type Specialty = {
   id: string,
   title: string,
@@ -24,6 +26,22 @@ export type Item = {
 
 export type Section = {
   title: string
-  raisedText?: string
+  raisedText?: string 
   items: Item[]
+}
+
+export type TinaResponse = {
+  data: any;
+  errors?: {
+    message: string;
+    locations: {
+      line: number;
+      column: number;
+    }[];
+    path: string[];
+  }[] | undefined;
+  variables: Exact<{
+    relativePath: string;
+  }>;
+  query: string;
 }

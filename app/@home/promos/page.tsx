@@ -1,10 +1,10 @@
 import Title from "components/common/Title"
 import clsx from "clsx"
 import SectionedList from "components/common/SectionedList"
-import { getPromos } from "../../../api/PromosApi"
+import { getPromos } from "api"
 
 export default async function Promos() {
-  const promos = await getPromos()
+  const response = await getPromos()
 
   return (
     <>
@@ -16,14 +16,14 @@ export default async function Promos() {
           "bg-cover bg-no-repeat bg-center bg-promoHeroMobile md:bg-promoHero",
         )}
       >
-        <div className="flex flex-col gap-2 xl:gap-6 xl:self-start px-6 lg:px-0">
+        <div className="flex flex-col gap-2 px-6 xl:gap-6 xl:self-start lg:px-0">
           <Title className={clsx('text-title font-bold text-center xs:text-left text-[56px]')} >
             Promos
           </Title>
         </div>
       </div>
 
-      <SectionedList sections={promos} className="pb-20" />
+      <SectionedList tinaQuery={response} className="pb-20" />
     </>
   )
 }

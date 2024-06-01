@@ -1,27 +1,28 @@
 ---
 sections:
-  - title: Specialties
-    raisedText: Our classics
+  - raisedText: Our classics
+    title: Specialties
     items:
-      - name: The Nerds drink
-        description: >-
-          Ever have Nerds candy? This drink is a rich fruity mix of liquors
-          suitable for mixers and shots!
-        image: /Drinks/StrawberryShot.png
-        emphasized: true
       - name: Long Island Iced Tea
         description: >-
           Our famous house beverage. A sweet mix of white liquors and lemonade,
           topped with a splash of cola and served with a lemon slice. 
         image: /Long island.jpg
         emphasized: true
-  - title: Drinks
-    raisedText: Refreshing
+      - name: The Nerds drink
+        description: >-
+          Ever have Nerds candy? This drink is a rich fruity mix of liquors
+          suitable for mixers and shots!
+        image: /Drinks/StrawberryShot.png
+        emphasized: true
+  - raisedText: Refreshing
+    title: Drinks
     items:
       - name: Another Drink
-        description: description
+        description: This is a description
         image: /Drinks/beerMug.png
         price: 4
+        emphasized: false
       - name: 'Drink #4'
         description: a description
         image: /Drinks/coldShot.png

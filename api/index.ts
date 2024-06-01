@@ -1,2 +1,2 @@
-export * from "./MenuApi"
-export * from "./PromosApi"
+export { getMenu } from "./MenuApi"
+export { getPromos } from "./PromosApi"

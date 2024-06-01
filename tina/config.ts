@@ -32,14 +32,32 @@ export default defineConfig({
         name: "menu",
         label: "Menu",
         path: "content/menu",
+        ui: {
+          router: ({ document }) => {
+            if (document._sys.filename === 'menu') {
+              return `/menu`
+            }
+            return undefined
+          },
+        },
         fields: [
           {
             type: "object",
             name: "sections",
-            label: "Sections",
+            label: "Page Sections",
             list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item.title }
+              }
+            },
             required: true,
             fields: [
+              {
+                type: "string",
+                name: "raisedText",
+                label: "Raised Text",
+              },
               {
                 type: "string",
                 name: "title",
@@ -47,16 +65,15 @@ export default defineConfig({
                 required: true,
               },
               {
-                type: "string",
-                name: "raisedText",
-                label: "Raised Text",
-              },
-              {
-
                 name: "items",
-                label: "Items",
+                label: "Menu Items",
                 type: "object",
                 list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item.name }
+                  }
+                },
                 fields: [
                   {
                     type: "string",
@@ -96,12 +113,22 @@ export default defineConfig({
         name: "promos",
         label: "Promos",
         path: "content/promos",
+        ui: {
+          router: ({ document }) => {
+            return `/promos`
+          },
+        },
         fields: [
           {
             type: "object",
             name: "sections",
             label: "Sections",
             list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item.title }
+              }
+            },
             required: true,
             fields: [
               {
@@ -121,6 +148,11 @@ export default defineConfig({
                 label: "Items",
                 type: "object",
                 list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item.name }
+                  }
+                },
                 fields: [
                   {
                     type: "string",

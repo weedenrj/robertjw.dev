@@ -4,7 +4,7 @@ import SectionedList from "components/common/SectionedList"
 import Title from "components/common/Title"
 
 export default async function Menu() {
-  const menu = await getMenu()
+  const response = await getMenu()
 
   return (
     <>
@@ -16,14 +16,14 @@ export default async function Menu() {
           "bg-cover bg-no-repeat bg-center bg-menuHeroMobile md:bg-menuHero",
         )}
       >
-        <div className="flex flex-col gap-2 xl:gap-6 xl:self-start px-6 lg:px-0">
+        <div className="flex flex-col gap-2 px-6 xl:gap-6 xl:self-start lg:px-0">
           <Title className={clsx('text-title font-bold text-center xs:text-left text-[56px]')} >
             Our menu
           </Title>
         </div>
       </div>
 
-      <SectionedList sections={menu} alternateBackgrounds className="pb-20" />
+      <SectionedList tinaQuery={response} alternateBackgrounds className="pb-20" />
     </>
   )
 }
