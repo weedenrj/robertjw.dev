@@ -3,10 +3,6 @@ sections:
   - raisedText: Our classics
     title: Specialties
     items:
-      - name: Salted Nut Roll Shot
-        description: How ya feelin? Salty or sweet?
-        image: /salted-nut-roll-shot-afarmgirlsdabbles-01v (1).webp
-        emphasized: true
       - name: Long Island Iced Tea
         description: >-
           Our famous house beverage. A sweet mix of white liquors and lemonade,
@@ -18,6 +14,10 @@ sections:
           Ever have Nerds candy? This drink is a rich fruity mix of liquors
           suitable for mixers and shots!
         image: /Drinks/StrawberryShot.png
+        emphasized: true
+      - name: Salted Nut Roll
+        description: How ya feelin? Salty or sweet?
+        image: /salted-nut-roll-shot-afarmgirlsdabbles-01v (1).webp
         emphasized: true
   - raisedText: Refreshing
     title: Drinks
