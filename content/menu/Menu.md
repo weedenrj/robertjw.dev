@@ -7,12 +7,6 @@ sections:
         description: An all time classic shot
         image: /white whale.jpg
         emphasized: true
-      - name: The Nerds drink
-        description: >-
-          Ever have Nerds candy? This drink is a rich fruity mix of liquors
-          suitable for mixers and shots!
-        image: /Drinks/StrawberryShot.png
-        emphasized: true
       - name: Long Island Iced Tea
         description: >-
           Our famous house beverage. A sweet mix of white liquors and lemonade,
