@@ -3,10 +3,19 @@ import clsx from "clsx"
 import Title from "components/common/Title"
 import Image from "next/image"
 import Text from "components/common/Text"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
-export type AboutProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type AboutProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
-export default function About({ className, ...rest }: AboutProps) {
+export default function About({
+  context,
+
+  className,
+  ...rest
+}: AboutProps) {
   return (
     <div
       className={clsx(

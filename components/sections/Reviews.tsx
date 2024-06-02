@@ -10,12 +10,21 @@ import useInterval from "hooks/UseInterval"
 import ms from 'ms'
 import { getCircularIndex } from "../../utils/collection"
 import ReviewBubble from "components/ReviewBubble"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
 const reviews = Object.values(ENV.reviews)
 
-export type ReviewsProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type ReviewsProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
-export default function Reviews({ className, ...rest }: ReviewsProps) {
+export default function Reviews({
+  context,
+
+  className,
+  ...rest
+}: ReviewsProps) {
   const [selectedReviews, setSelectedReviews] = useState([0, 1, 2])
 
   useInterval(() => {
@@ -38,7 +47,7 @@ export default function Reviews({ className, ...rest }: ReviewsProps) {
     >
 
       <div className="relative flex flex-col items-center sm:items-start ">
-        <Title className="text-4xl uppercase xs:text-5xl lg:text-6xl text-center">
+        <Title className="text-4xl text-center uppercase xs:text-5xl lg:text-6xl">
           A word from <br className="lg:hidden" /> our customers
         </Title>
 

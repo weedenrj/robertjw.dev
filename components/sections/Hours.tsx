@@ -1,12 +1,32 @@
+'use client'
+
 import React from "react"
 import clsx from "clsx"
 import Image from "next/image"
 import Text from "components/common/Text"
 import GetDirectionsButton from "components/common/GetDirectionsButton"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
+import { tinaField, useTina } from "tinacms/dist/react"
 
-export type HoursProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type HoursProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
-export default function Hours({ className, ...rest }: HoursProps) {
+export default function Hours({
+  context,
+
+  className,
+  ...rest
+}: HoursProps) {
+  const { data } = useTina({
+    query: context.query,
+    variables: context.variables,
+    data: context.data,
+  })
+
+  const hours = data.home.hours || []
+
   return (
     <div
       className={clsx(
@@ -28,56 +48,65 @@ export default function Hours({ className, ...rest }: HoursProps) {
           <Image
             src="/icons/Calendar.svg"
             alt="calendar"
-            className="size-6 text-white lg:size-8"
+            className="text-white size-6 lg:size-8"
             width={24}
             height={24}
           />
-          <Text className="w-full">
-            Thursday <span className="lg:ml-10">5pm - 10pm</span>
+          <Text className="w-full whitespace-pre-wrap"
+            data-tina-field={hours[0] && tinaField(hours[0], "text")}
+          >
+            {hours?.[0]?.text}
           </Text>
         </div>
-        <div className="flex gap-2 lg:gap-4">
-          <div className="h-6 w-6 shrink-0" />
-          <Text>Friday, Saturday 5pm - 2am</Text>
-        </div>
+
+        {hours?.slice(1)?.filter(Boolean).map(hour => (
+          <div className="flex gap-2 lg:gap-4" key={hour?.text}>
+            <div className="w-6 h-6 shrink-0" />
+            <Text className="whitespace-pre-wrap"
+              data-tina-field={hour && tinaField(hour, "text")}
+            >
+              {hour?.text}
+            </Text>
+          </div>
+        ))}
       </div>
 
-      <div className="w-px self-stretch bg-white bg-opacity-25" />
+      <div className="self-stretch w-px bg-white bg-opacity-25" />
 
       <div className="flex flex-col gap-4 lg:flex-row lg:gap-6">
         <div className="flex gap-2">
           <Image
             src="/icons/Location.svg"
             alt="calendar"
-            className="size-6 text-white lg:size-8"
+            className="text-white size-6 lg:size-8"
             width={24}
             height={24}
           />
-          <Text className="lg:font-normal">
+          <Text className="lg:font-normal" data-tina-field={tinaField(data.home, "location")}>
             <span className="hidden font-semibold lg:block">
               New Location
               <br />
             </span>
-            508 State St, Madison WI 53703
+            {data.home.location}
           </Text>
         </div>
 
-        <div className="hidden h-14 w-px self-stretch bg-white bg-opacity-25 lg:flex" />
+        <div className="self-stretch hidden w-px bg-white bg-opacity-25 h-14 lg:flex" />
 
         <div className="flex items-center gap-2 lg:items-start">
           <Image
             src="/icons/Phone.svg"
             alt="calendar"
-            className="size-6 text-white lg:size-8"
+            className="text-white size-6 lg:size-8"
             width={24}
             height={24}
           />
-          <Text className="lg:font-normal">
+          <Text className="lg:font-normal" data-tina-field={tinaField(data.home, "phone")}>
             <span className="hidden font-semibold lg:block">
               Phone
               <br />
             </span>
-            608 (999) 9999
+            {data.home.phone}
           </Text>
         </div>
       </div>

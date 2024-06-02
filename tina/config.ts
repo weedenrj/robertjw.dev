@@ -115,7 +115,10 @@ export default defineConfig({
         path: "content/promos",
         ui: {
           router: ({ document }) => {
-            return `/promos`
+            if (document._sys.filename === 'promos') {
+              return `/promos`
+            }
+            return undefined
           },
         },
         fields: [
@@ -143,7 +146,6 @@ export default defineConfig({
                 label: "Raised Text",
               },
               {
-
                 name: "items",
                 label: "Items",
                 type: "object",
@@ -190,6 +192,44 @@ export default defineConfig({
                 ],
               }
             ],
+          },
+        ],
+      },
+      {
+        name: "home",
+        label: "Home Page",
+        path: "content/home",
+        fields: [
+          {
+            name: "hours",
+            label: "Hours",
+            type: "object",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item.text }
+              }
+            },
+            fields: [
+              {
+                type: "string",
+                name: "text",
+                label: "Text",
+                required: true
+              },
+            ]
+          },
+          {
+            name: "location",
+            label: "Location",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "phone",
+            label: "Phone number",
+            type: "string",
+            required: true,
           },
         ],
       },

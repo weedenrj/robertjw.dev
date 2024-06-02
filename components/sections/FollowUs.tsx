@@ -4,15 +4,24 @@ import Title from "components/common/Title"
 import Image from "next/image"
 import ENV from "../../constants/env"
 import Link from "next/link"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
-export type FollowUsProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type FollowUsProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
 const images = [
   "/AtNight.webp", "/TopGun.webp", "/Booths.webp", "/JeffAndFriend.webp",
   "/JoelAndFriend.webp", "/Long-island-2.webp", "/BrightLights.webp", "/LITBartop.webp"
 ]
 
-export default function FollowUs({ className, ...rest }: FollowUsProps) {
+export default function FollowUs({
+  context,
+
+  className,
+  ...rest
+}: FollowUsProps) {
   return (
     <div
       className={clsx(
@@ -25,7 +34,7 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
     >
 
       <div className="relative flex flex-col items-center sm:items-start ">
-        <Title className="text-4xl uppercase xs:text-5xl lg:text-6xl text-center">
+        <Title className="text-4xl text-center uppercase xs:text-5xl lg:text-6xl">
           Follow us
         </Title>
 
@@ -41,7 +50,7 @@ export default function FollowUs({ className, ...rest }: FollowUsProps) {
 
       <div className="flex justify-center gap-12">
         {Object.entries(ENV.socials).map(([socialKey, socialLink]) => (
-          <Link href={socialLink} key={socialKey} className=" transition-transform hover:scale-110 active:animate-pop">
+          <Link href={socialLink} key={socialKey} className="transition-transform hover:scale-110 active:animate-pop">
             <Image
               src={`/icons/${socialKey}.svg`}
               alt={socialKey}

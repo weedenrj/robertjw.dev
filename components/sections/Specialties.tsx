@@ -11,14 +11,19 @@ import useWindowDimensions from "hooks/UseWindowDimensions"
 import ENV from "../../constants/env"
 import { getCircularIndex } from "../../utils/collection"
 import { mkNavLink } from "components/common/Navbar"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
 const SpecialtiesArray = Object.values(ENV.ourSpecialties)
 
 // TODO: Build carousel and add more specialties
-export type SpecialtiesProps =
-  {} & React.HTMLAttributes<HTMLDivElement>
+export type SpecialtiesProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
 export default function Specialties({
+  context,
+
   className,
   ...rest
 }: SpecialtiesProps) {
@@ -43,7 +48,7 @@ export default function Specialties({
       {...rest}
     >
       <div className="flex flex-col gap-3">
-        <Title className="text-center text-4xl uppercase xs:text-5xl lg:text-6xl">
+        <Title className="text-4xl text-center uppercase xs:text-5xl lg:text-6xl">
           Our Specialties
         </Title>
         <Image
@@ -57,8 +62,8 @@ export default function Specialties({
       </div>
 
       {/* Fades */}
-      <div className="absolute z-10 w-1/2 h-full left-0 top-0 2xl:bg-fade-left pointer-events-none" />
-      <div className="absolute z-10 w-1/2 h-full right-0 top-0 2xl:bg-fade-right pointer-events-none" />
+      <div className="absolute top-0 left-0 z-10 w-1/2 h-full pointer-events-none 2xl:bg-fade-left" />
+      <div className="absolute top-0 right-0 z-10 w-1/2 h-full pointer-events-none 2xl:bg-fade-right" />
 
       {SpecialtiesArray.map(({ id, title, text, smallImg, bigImg }, i) => (
         <div key={id} className={clsx("relative flex flex-col sm:flex-row",
@@ -110,7 +115,7 @@ export default function Specialties({
 
             <Image
               src={smallImg}
-              className="mx-auto w-full sm:hidden"
+              className="w-full mx-auto sm:hidden"
               alt=""
               width={375}
               height={268}

@@ -5,10 +5,20 @@ import Image from "next/image"
 import Text from "components/common/Text"
 import Hours from "./Hours"
 import GetDirectionsButton from "components/common/GetDirectionsButton"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
-export type HeroProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type HeroProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
-export default function Hero({ className, ...rest }: HeroProps) {
+export default function Hero({
+  context,
+
+  className,
+  ...rest
+}: HeroProps) {
+
   return (
     <div
       className={clsx(
@@ -48,7 +58,7 @@ export default function Hero({ className, ...rest }: HeroProps) {
         className="hidden sm:flex xl:self-start"
       />
 
-      <Hours className="absolute bottom-0" />
+      <Hours className="absolute bottom-0" context={context} />
     </div>
   )
 }

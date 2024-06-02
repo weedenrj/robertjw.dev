@@ -3,11 +3,16 @@ import clsx from "clsx"
 import Title from "components/common/Title"
 import Image from "next/image"
 import Text from "components/common/Text"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
 
-export type AtmosphereProps =
-  {} & React.HTMLAttributes<HTMLDivElement>
+export type AtmosphereProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
 export default function Atmosphere({
+  context,
+
   className,
   ...rest
 }: AtmosphereProps) {
@@ -21,7 +26,7 @@ export default function Atmosphere({
       )}
       {...rest}
     >
-      <div className="flex w-full 2xl:w-1/2 justify-center">
+      <div className="flex justify-center w-full 2xl:w-1/2">
         <div
           className={clsx(
             `flex w-full 2xl:w-1/2 flex-col lg:flex-row 2xl:flex-col justify-center text-white`,

@@ -30,8 +30,8 @@ export type Section = {
   items: Item[]
 }
 
-export type TinaResponse = {
-  data: any;
+export type TinaResponse<Query> = {
+  data: Query;
   errors?: {
     message: string;
     locations: {

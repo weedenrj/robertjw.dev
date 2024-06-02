@@ -8,9 +8,10 @@ import Title from "./Title"
 import Image from "next/image"
 import Item from "./Item"
 import { useTina, tinaField } from 'tinacms/dist/react'
+import { MenuQuery, PromosQuery } from "tina/__generated__/types"
 
 export type SectionedListProps = {
-  tinaQuery: TinaResponse
+  tinaQuery: TinaResponse<MenuQuery> | TinaResponse<PromosQuery>
   alternateBackgrounds?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
@@ -27,6 +28,7 @@ export default function SectionedList({
     data: tinaQuery.data,
   })
 
+  //@ts-expect-error
   const sections: Section[] = data?.menu?.sections || data?.promos?.sections || []
 
   return (

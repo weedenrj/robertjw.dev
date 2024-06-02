@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react"
 import clsx from "clsx"
 import Title from "components/common/Title"
@@ -5,10 +7,28 @@ import Image from "next/image"
 import Text from "components/common/Text"
 import GetDirectionsButton from "components/common/GetDirectionsButton"
 import GoogleMapView from "components/common/GoogleMapView"
+import { HomeQuery } from "tina/__generated__/types"
+import { TinaResponse } from "constants/types"
+import { useTina, tinaField } from "tinacms/dist/react"
 
-export type LocationProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type LocationProps = {
+  context: TinaResponse<HomeQuery>
+} & React.HTMLAttributes<HTMLDivElement>
 
-export default function Location({ className, ...rest }: LocationProps) {
+export default function Location({
+  context,
+
+  className,
+  ...rest
+}: LocationProps) {
+  const { data } = useTina({
+    query: context.query,
+    variables: context.variables,
+    data: context.data,
+  })
+
+  const hours = data.home.hours || []
+
   return (
     <div
       className={clsx(
@@ -46,7 +66,7 @@ export default function Location({ className, ...rest }: LocationProps) {
           <Image
             src="/icons/Location.svg"
             alt="calendar"
-            className="size-6 text-white lg:size-8"
+            className="text-white size-6 lg:size-8"
             width={24}
             height={24}
           />
@@ -55,8 +75,8 @@ export default function Location({ className, ...rest }: LocationProps) {
               New Location
               <br />
             </span>
-            <span className="font-light text-white text-opacity-60">
-              508 State St, Madison WI 53703
+            <span className="font-light text-white text-opacity-60" data-tina-field={tinaField(data.home, "location")}>
+              {data.home.location}
             </span>
           </Text>
         </div>
@@ -67,7 +87,7 @@ export default function Location({ className, ...rest }: LocationProps) {
             <Image
               src="/icons/Calendar.svg"
               alt="calendar"
-              className="size-6 text-white lg:size-8"
+              className="text-white size-6 lg:size-8"
               width={24}
               height={24}
             />
@@ -76,17 +96,25 @@ export default function Location({ className, ...rest }: LocationProps) {
             </Text>
           </div>
 
-          <div className="flex gap-2 lg:gap-4 font-light text-white text-opacity-60">
-            <div className="h-6 w-6 shrink-0" />
-            <Text className="w-full">
-              Thursday <span className="lg:ml-10">5pm - 10pm</span>
+          <div className="flex gap-2 font-light text-white lg:gap-4 text-opacity-60">
+            <div className="w-6 h-6 shrink-0" />
+            <Text className="w-full whitespace-pre-wrap"
+              data-tina-field={hours[0] && tinaField(hours[0], "text")}
+            >
+              {hours?.[0]?.text}
             </Text>
           </div>
 
-          <div className="flex gap-2 lg:gap-4 font-light text-white text-opacity-60">
-            <div className="h-6 w-6 shrink-0" />
-            <Text>Friday, Saturday 5pm - 2am</Text>
-          </div>
+          {hours?.slice(1)?.filter(Boolean).map(hour => (
+            <div className="flex gap-2 font-light text-white lex lg:gap-4 text-opacity-60" key={hour?.text}>
+              <div className="w-6 h-6 shrink-0" />
+              <Text className="w-full whitespace-pre-wrap"
+                data-tina-field={hour && tinaField(hour, "text")}
+              >
+                {hour?.text}
+              </Text>
+            </div>
+          ))}
         </div>
 
         {/* Phone */}
@@ -103,12 +131,12 @@ export default function Location({ className, ...rest }: LocationProps) {
               Phone
               <br />
             </span>
-            <span className="font-light text-white text-opacity-60">
-              608 (999) 9999
+            <span className="font-light text-white text-opacity-60" data-tina-field={tinaField(data.home, "phone")}>
+              {data.home.phone}
             </span>
           </Text>
         </div>
-        <GetDirectionsButton size="sm" className="w-fit mx-auto md:mx-0" />
+        <GetDirectionsButton size="sm" className="mx-auto w-fit md:mx-0" />
       </div>
 
       <div className="md:flex-1">
