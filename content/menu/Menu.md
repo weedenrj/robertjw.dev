@@ -3,8 +3,8 @@ sections:
   - raisedText: Our classics
     title: Specialties
     items:
-      - name: White Willy
-        description: An all time classic shot
+      - name: Salted Nut Roll Shot
+        description: How ya feelin? Salty or sweet?
         image: /salted-nut-roll-shot-afarmgirlsdabbles-01v (1).webp
         emphasized: true
       - name: Long Island Iced Tea
