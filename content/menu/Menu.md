@@ -5,7 +5,7 @@ sections:
     items:
       - name: White Willy
         description: An all time classic shot
-        image: /white whale.jpg
+        image: /salted-nut-roll-shot-afarmgirlsdabbles-01v (1).webp
         emphasized: true
       - name: Long Island Iced Tea
         description: >-
