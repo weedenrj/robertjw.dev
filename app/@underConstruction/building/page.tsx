@@ -9,6 +9,7 @@ import Location from "components/sections/Location"
 import { type Viewport } from "next"
 import Reviews from "components/sections/Reviews"
 import FollowUs from "components/sections/FollowUs"
+import { getHomepageContext } from "api"
 
 export const viewport: Viewport = {
   themeColor: [
@@ -19,17 +20,19 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function Home() {
+export default async function Home() {
+  const response = await getHomepageContext()
+
   return (
     <>
-      <Hero id="hero" />
+      <Hero id="hero" context={response} />
       <div className="flex flex-col gap-24 xs:gap-40 sm:gap-[200px]">
-        <About />
-        <Specialties />
-        <Atmosphere />
-        <Location id="findus" />
-        <Reviews />
-        <FollowUs />
+        <About context={response} />
+        <Specialties context={response} />
+        <Atmosphere context={response} />
+        <Location id="findus" context={response} />
+        <Reviews context={response} />
+        <FollowUs context={response} />
       </div>
     </>
   )
