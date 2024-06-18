@@ -1,13 +1,9 @@
 ---
 clientImg:
-  - /assets/slider/Logo.webp
-  - /assets/slider/Eternity.png
-  - /assets/slider/RedShed.png
-  - /assets/Sage.webp
-  - /assets/slider/Badgerworks.webp
+  - /assets/assets/slider/Logo.webp
+  - /assets/assets/slider/Eternity.png
+  - /assets/assets/slider/RedShed.png
+  - /assets/assets/slider/Badgerworks.webp
+  - /assets/assets/Sage.webp
 ---
-
-
-
-
 
