@@ -8,11 +8,11 @@
 
 @font-face {
   font-family: "basier";
-  src: url("basier/basiersquaremono-regular-webfont.eot");
-  src: url("basier/basiersquaremono-regular-webfont.eot?#iefix") format("embedded-opentype"),
-    url("basier/basiersquaremono-regular-webfont.woff2") format("woff2"),
-    url("basier/basiersquaremono-regular-webfont.woff") format("woff"),
-    url("basier/basiersquaremono-regular-webfont.ttf") format("truetype");
+  src: url("/basier/basiersquaremono-regular-webfont.eot");
+  src: url("/basier/basiersquaremono-regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("/basier/basiersquaremono-regular-webfont.woff2") format("woff2"),
+    url("/basier/basiersquaremono-regular-webfont.woff") format("woff"),
+    url("/basier/basiersquaremono-regular-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

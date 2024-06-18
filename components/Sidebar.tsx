@@ -9,9 +9,10 @@ import {
 } from "react-icons/fa";
 import { PersonalInfoQuery } from "tina/__generated__/types";
 import clsx from "clsx";
+import { TinaResponse } from "constants/types";
 
 export type SidebarProps = {
-  personalInfo: PersonalInfoQuery["personalInfo"]
+  personalInfo: TinaResponse<PersonalInfoQuery>["data"]["personalInfo"]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Sidebar({

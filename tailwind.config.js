@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [".//**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -71,12 +75,14 @@ module.exports = {
         "gradient-to": "#dd2476",
       },
       backgroundImage: {
-        "bg-gradient-to-r":
-          "linear-gradient(to right, var(--tw-gradient-stops))",
         "home-bg": "url('/src/images/light-bg.jpg')",
         "close-light": "url('/src/images/close-light.jpg')",
         "home-bg-dark": "url('/src/images/dark-bg.jpg')",
         "close-dark": "url('/src/images/close-dark.png')",
+
+        "bg-gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
+        'gradient-fade-black-right': 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
+        'gradient-fade-black-left': 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
       },
       animation: {
         fadeOut: "1s ease-in-out 4s fadeOut",
@@ -137,6 +143,13 @@ module.exports = {
           "&::-webkit-scrollbar": {
             "display": "none",
           }
+        },
+
+        '.text-input': {
+          "@apply block autofill:bg-transparent py-2.5 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b-[2px] border-light-border appearance-none dark:text-white dark:border-dark-borde-secondary dark:focus:border-dark-focus-border focus:outline-none focus:ring-0 focus:border-dark-focus-border": {}
+        },
+        '.text-input-label': {
+          "@apply peer-focus:font-medium absolute text-sm text-gray-500 dark:text-main-text duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-focus-border-two peer-focus:dark:text-dark-focus-border peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8": {}
         },
         '.card': {
           '@apply bg-card-bg rounded-3xl border border-card-border': {}

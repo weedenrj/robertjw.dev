@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx';
 import React, { useState } from 'react'
 import useDebounce from 'hooks/UseDebounce';
@@ -52,11 +54,11 @@ export default function ContactForm({
         <input
           type="text"
           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-          className="block autofill:bg-transparent py-2.5 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b-[2px] border-light-border appearance-none dark:text-white dark:border-dark-borde-secondary dark:focus:border-dark-focus-border focus:outline-none focus:ring-0 focus:border-dark-focus-border peer"
+          className="text-input peer"
           required
         />
         <label
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-main-text duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-dark-focus-border peer-focus:dark:text-dark-focus-border peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+          className="text-input-label"
         >
           Name *
         </label>
@@ -66,13 +68,10 @@ export default function ContactForm({
       <div className="relative z-0 w-full mb-8 group">
         <input
           onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-          className="block autofill:text-red-900 needed py-2.5 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b-[2px] border-light-border appearance-none dark:text-white dark:border-dark-borde-secondary dark:focus:border-dark-focus-border focus:outline-none focus:ring-0 focus:border-focus-border-one peer"
+          className="text-input peer"
           required
         />
-        <label
-
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-main-text duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-focus-text-one peer-focus:dark:text-dark-focus-border peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
-        >
+        <label className="text-input-label">
           Email *
           {debouncedEmail !== "" && !debouncedEmail.includes("@") && (
             <span className='ml-2 text-red-500'>
@@ -86,11 +85,11 @@ export default function ContactForm({
       <div className="relative z-0 w-full mb-8 group">
         <input
           onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-          className="block py-2.5 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b-[2px] border-light-border appearance-none dark:text-white dark:border-dark-borde-secondary dark:focus:border-dark-focus-border focus:outline-none focus:ring-0 focus:border-focus-border-two peer"
+          className="text-input peer"
           required
         />
         <label
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-main-text duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-focus-border-two peer-focus:dark:text-dark-focus-border peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+          className="text-input-label"
         >
           Message *
         </label>
