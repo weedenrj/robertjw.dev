@@ -8,6 +8,7 @@ import Sidebar from "components/Sidebar"
 import Navbar from "components/Navbar"
 import { getMenu, getPersonalInfo } from "api/collections"
 import Script from "next/script"
+import { Provider } from "jotai"
 
 const titleFont = Antonio({
   variable: "--title-font",
@@ -40,7 +41,7 @@ export default async function Layout({
   return (
     <html
       lang="en"
-      className={clsx(titleFont.variable, bodyFont.variable,"dark" )}
+      className={clsx(titleFont.variable, bodyFont.variable, "dark")}
     >
       <body>
         <div className="w-full min-h-screen bg-zinc-200 dark:bg-neutral-900 md:pb-16">
@@ -58,7 +59,9 @@ export default async function Layout({
           />
 
           <div className="relative w-full h-full">
-            <Header menuItems={menuItems} className="" />
+            <Provider>
+              <Header menuItems={menuItems} className="" />
+            </Provider>
 
             <div className={clsx("container mr-auto ml-auto",
               "grid grid-cols-12 md:gap-10 justify-between lg:mt-[220px]"

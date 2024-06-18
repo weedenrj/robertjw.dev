@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { themeToggler } from "../utils/theme";
 import { FaMoon, FaSun, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import * as Icon from "react-icons/fa";
@@ -9,6 +8,10 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { MenuQuery } from "tina/__generated__/types";
 import { TinaResponse } from "constants/types";
+import { useAtom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
+
+const themeAtom = atomWithStorage('theme', "dark")
 
 export type HeaderProps = {
   menuItems: TinaResponse<MenuQuery>["data"]["menu"][]
@@ -22,30 +25,17 @@ export function Header({
 }: HeaderProps) {
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false);
+  const [theme, setTheme] = useAtom(themeAtom)
+
   const mobileMenuToggle = () => {
     setShowMenu(!showMenu);
   };
 
   useEffect(() => {
-    themeToggler();
-  }, []);
-
-  const toggleTheme = () => {
-    const darkBtn = document.getElementById("theme-toggle-dark-icon")
-    const lightBtn = document.getElementById("theme-toggle-light-icon")
-    
-    if (document.documentElement.classList.contains("light")) {
-      document.documentElement.classList.replace("light", "dark");
-      darkBtn.classList.remove("hidden");
-      lightBtn.classList.add("hidden");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.replace("dark", "light");
-      lightBtn.classList.remove("hidden");
-      darkBtn.classList.add("hidden");
-      localStorage.setItem("theme", "light");
-    }
-  }
+    document.documentElement.classList.remove("dark")
+    document.documentElement.classList.remove("light")
+    document.documentElement.classList.add(theme)
+  }, [theme]);
 
   return (
     <>
@@ -68,12 +58,13 @@ export function Header({
               aria-label="Theme toggler"
               type="button"
               className="flex h-[40px] w-[40px] lg:w-[50px] lg:h-[50px] cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
-              onClick={toggleTheme}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             >
-              <span id="theme-toggle-light-icon" className="hidden">
+              <span id="theme-toggle-light-icon" className="pointer-events-none dark:hidden">
                 <FaMoon className="text-xl" />
               </span>
-              <span id="theme-toggle-dark-icon" className="hidden">
+
+              <span id="theme-toggle-dark-icon" className="hidden pointer-events-none dark:block">
                 <FaSun className="text-xl" />
               </span>
             </button>
