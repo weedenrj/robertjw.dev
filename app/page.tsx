@@ -58,7 +58,7 @@ export default async function Home() {
       <div className="">
         <div className="h-auto max-w-full rounded-xl">
           <h3 className="text-center dark:text-white text-[1.75rem] mb-3 font-semibold pt-10 px-2 sm:px-5 md:px-10 lg:px-14">
-            Clients
+            Projects
           </h3>
           <MainCarousel clients={clientImages} className="" />
         </div>

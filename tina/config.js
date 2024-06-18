@@ -67,7 +67,7 @@ export default defineConfig({
       {
         name: "personalInfo",
         label: "Personal Information",
-        path: "/src/content/personalInfo",
+        path: "/content/personalInfo",
         ui: {
           // Don't allow editors to create new items
           allowedActions: {
@@ -160,7 +160,7 @@ export default defineConfig({
       {
         name: "clients",
         label: "Clients",
-        path: "/src/content/clients",
+        path: "/content/clients",
         ui: {
           // Don't allow editors to create new items
           allowedActions: {
@@ -186,7 +186,7 @@ export default defineConfig({
       {
         name: "blogs",
         label: "Blogs",
-        path: "/src/content/blogs",
+        path: "/content/blogs",
         fields: [
           {
             name: "title",
@@ -253,7 +253,7 @@ export default defineConfig({
       {
         name: "education",
         label: "Education",
-        path: "/src/content/education",
+        path: "/content/education",
         fields: [
           {
             name: "year",
@@ -282,7 +282,7 @@ export default defineConfig({
       {
         name: "experience",
         label: "Experience",
-        path: "/src/content/experience",
+        path: "/content/experience",
         fields: [
           {
             name: "year",
@@ -311,7 +311,7 @@ export default defineConfig({
       {
         name: "progressBar",
         label: "Skills In Progress Bar",
-        path: "/src/content/progressBar",
+        path: "/content/progressBar",
         fields: [
           {
             name: "title",
@@ -335,7 +335,7 @@ export default defineConfig({
       {
         name: "menu",
         label: "Menu",
-        path: "/src/content/menu",
+        path: "/content/menu",
         fields: [
           {
             name: "name",
@@ -366,7 +366,7 @@ export default defineConfig({
       {
         name: "portfolioFilters",
         label: "Portfolio Filters",
-        path: "/src/content/portfolioFilters",
+        path: "/content/portfolioFilters",
         fields: [
           {
             name: "name",
@@ -385,7 +385,7 @@ export default defineConfig({
       {
         label: "Knowledges",
         name: "knowledges",
-        path: "/src/content/knowledges",
+        path: "/content/knowledges",
         fields: [
           {
             label: "Tags",
@@ -398,7 +398,7 @@ export default defineConfig({
       {
         name: "works",
         label: "Portfolio",
-        path: "/src/content/works",
+        path: "/content/works",
         fields: [
           {
             name: "title",
