@@ -50,7 +50,7 @@ export default async function Home() {
         </h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-2">
           {skills.map((item) =>
-            <SkillCard skill={item} />
+            <SkillCard key={item.id} skill={item} />
           )}
         </div>
       </div>
