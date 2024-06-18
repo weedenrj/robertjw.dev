@@ -15,7 +15,8 @@ export function SkillCard({
   return (
     <div
       className={clsx('flex gap-4 rounded-xl p-6 border-dark-border',
-        `bg-opacity-20 dark:border-2 ${skill.bgColor} dark:bg-transparent`
+        'bg-opacity-20 dark:border-2 dark:bg-transparent',
+        skill.bgColor
       )}
       {...rest}
     >

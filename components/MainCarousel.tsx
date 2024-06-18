@@ -64,11 +64,11 @@ export function MainCarousel({
       })}
 
       <div
-        className="absolute z-10 w-12 h-full pointer-events-none -left-2 md:w-24 bg-gradient-fade-black-left"
+        className="absolute z-10 w-12 h-full pointer-events-none -left-2 md:w-24 dark:bg-gradient-fade-black-left bg-gradient-fade-white-left"
         onContextMenu={(e) => e.preventDefault()}
       />
       <div
-        className="absolute z-10 w-12 h-full pointer-events-none -right-2 md:w-24 bg-gradient-fade-black-right"
+        className="absolute z-10 w-12 h-full pointer-events-none -right-2 md:w-24 bg-gradient-fade-white-right dark:bg-gradient-fade-black-right"
         onContextMenu={(e) => e.preventDefault()}
       />
     </div>

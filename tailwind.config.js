@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,md,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,md,mdx}",
+    "./content/**/*.{js,ts,jsx,tsx,md,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,md,mdx}",
   ],
   theme: {
     extend: {
@@ -19,7 +20,7 @@ module.exports = {
         white: "#fbf8f9",
         codeOrange: '#fa8231',
         codeGreen: '#649664',
-        codePurple: '#c678dd',
+        codePurple: '#C678DD',
         codeRed: '#f85149',
         codeBlue: "#9CDCFE",
         "dark-primary": "#111111",
@@ -81,8 +82,11 @@ module.exports = {
         "close-dark": "url('/src/images/close-dark.png')",
 
         "bg-gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
+        
         'gradient-fade-black-right': 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
         'gradient-fade-black-left': 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
+        'gradient-fade-white-right': 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #FFFFFF 100%)',
+        'gradient-fade-white-left': 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #FFFFFF 100%)',
       },
       animation: {
         fadeOut: "1s ease-in-out 4s fadeOut",
