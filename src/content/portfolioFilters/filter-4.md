@@ -1,0 +1,4 @@
+---
+name: "Logo"
+tag: ".branding"
+---
