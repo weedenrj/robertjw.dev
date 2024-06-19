@@ -5,19 +5,17 @@ tags: 'advanced, portal, saas'
 img: /assets/work-images/scottStripedBass.png
 link: '#portfolioTwo'
 modal:
-  title: UI/UX Project
-  project: Website
-  client: Envato
-  languages: 'Photoshop, Figma'
-  preview: www.envato.com
-  link: www.envato.com
-  description: >
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia placeat
-    magnam possimus iusto blanditiis pariatur labore explicabo quo repellat hic
-    dolorum numquam asperiores, voluptatum fugiat reiciendis aspernatur, non,
-    odio aperiam voluptas ex tempora vitae. Dolor, consequatur quidem! Quas
-    magni distinctio dolorum dolore natus, vel numquam accusamus. Nostrum
-    eligendi recusandae qui tempore deserunt!
-  img: /assets/work-images/2.jpg
+  title: Vally Pro
+  project: Payments and Scheduling Saas Product
+  client: Vally Pro
+  languages: 'Next.js, TailwindCSS, REST API, Stripe API, Email System'
+  preview: vallypro.com
+  link: 'https://vallypro.com/'
+  description: >-
+    Vally Pro is an up-and-coming B2B application in the fishing industry. The
+    application is used by business owners and their customers to schedule,
+    book, and pay for fishing excursions and boat trips.  This app has lots of
+    complex logic going on behind the scenes and has been a blast to create.
+  img: /assets/work-images/Screenshot 2024-06-04 at 4.05.24 PM.png
 ---
 

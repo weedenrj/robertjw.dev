@@ -5,19 +5,19 @@ tags: 'advanced, game'
 img: /assets/work-images/gamerPack.webp
 link: '#portfolioOne'
 modal:
-  title: UI/UX Project
-  project: Website
-  client: Envato
-  languages: 'Photoshop, Figma'
-  preview: www.envato.com
-  link: www.envato.com
-  description: >
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia placeat
-    magnam possimus iusto blanditiis pariatur labore explicabo quo repellat hic
-    dolorum numquam asperiores, voluptatum fugiat reiciendis aspernatur, non,
-    odio aperiam voluptas ex tempora vitae. Dolor, consequatur quidem! Quas
-    magni distinctio dolorum dolore natus, vel numquam accusamus. Nostrum
-    eligendi recusandae qui tempore deserunt!
-  img: /assets/work-images/1.jpg
+  title: Eternity RPG
+  project: Web based video game
+  client: Eternity DAO
+  languages: 'React, Vite, Redux, TailwindCSS, Phaser 3'
+  preview: 'https://playeternity.io/'
+  link: 'https://playeternity.io/'
+  description: >-
+    Eternity is a browser based video game that I helped build with a small
+    team. The game is fully functional and still active today.  Eternity is
+    built entirely with the same technologies used to power the apps you know
+    and love today. This project took a tremendous amount of problem solving and
+    outside-the-box thinking and proved to be the most educational and advanced
+    app I've built yet.
+  img: /assets/work-images/victory.webp
 ---
 
