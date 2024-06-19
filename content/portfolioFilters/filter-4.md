@@ -1,4 +1,5 @@
 ---
-name: "Logo"
-tag: ".branding"
+name: Advanced Projects
+tag: advanced
 ---
+

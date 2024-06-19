@@ -1,9 +1,7 @@
 ---
 name: Contact
-link: /contact/
+link: /contact
 icon: FaAddressBook
 enabled: true
 ---
-
-
 

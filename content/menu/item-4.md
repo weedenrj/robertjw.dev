@@ -1,6 +1,6 @@
 ---
 name: Blogs
-link: /blogs/
+link: /blogs
 icon: FaBlogger
 enabled: false
 ---

@@ -1,13 +1,15 @@
-import Isotope from "isotope-layout";
-import imagesLoaded from "imagesloaded";
+'use client'
+
 import PortfolioCard from "./PortfolioCard";
 import { useEffect, useRef, useState } from "react";
-import { PortfolioFilters, Works } from "tina/__generated__/types";
+import { PortfolioFiltersQuery, PortfolioQuery } from "tina/__generated__/types";
 import clsx from "clsx";
+import { TinaResponse } from "constants/types";
+import autoAnimate from "@formkit/auto-animate";
 
 export type PortfolioContentProps = {
-  portfolio: Works[]
-  filters: PortfolioFilters[]
+  portfolio: TinaResponse<PortfolioQuery>["data"]["portfolio"][]
+  filters: TinaResponse<PortfolioFiltersQuery>["data"]["portfolioFilters"][]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function PortfolioContent({
@@ -17,37 +19,13 @@ export function PortfolioContent({
   className,
   ...rest
 }: PortfolioContentProps) {
-  const isotopeRef = useRef(null);
+  const parent = useRef(null)
   const [activeFilter, setActiveFilter] = useState("*");
 
   useEffect(() => {
-    // Initialize Isotope after component mounts
-    const grid = document.querySelector(".portfolio_list-two");
+    parent.current && autoAnimate(parent.current)
+  }, [parent])
 
-    // Initialize Isotope
-    isotopeRef.current = new Isotope(grid, {
-      itemSelector: ".portfolio_list-two-items",
-      percentPosition: true,
-      masonry: {
-        columnWidth: ".grid-sizer",
-      },
-    });
-
-    // Wait for images to load before initializing Isotope
-    imagesLoaded(grid).on("progress", () => {
-      isotopeRef.current.layout();
-    });
-
-    return () => {
-      // Clean up Isotope instance when component unmounts
-      isotopeRef.current.destroy();
-    };
-  }, []);
-
-  const handleFilter = (filterValue) => {
-    isotopeRef.current.arrange({ filter: filterValue });
-    setActiveFilter(filterValue);
-  };
   return (
     <div className={clsx(className, "container mr-auto ml-auto mb-8",
       "px-4 sm:px-5 md:px-10 lg:px-[60px]"
@@ -67,8 +45,9 @@ export function PortfolioContent({
                 "fillter-btn mr-4 md:mx-4",
                 filter.tag === activeFilter && "!text-btn-primary"
               )}
-              data-filter={filter.tag}
-              onClick={() => handleFilter(filter.tag)}
+              onClick={() => {
+                setActiveFilter(filter.tag);
+              }}
             >
               {filter.name}
             </li>
@@ -76,16 +55,13 @@ export function PortfolioContent({
         </ul>
       </div>
 
-      <div id="isotop-gallery-wrapper" className="portfolio_list-two two-col">
-        <div className="grid-sizer w-[50%] px-[10px] py-[10px]"></div>
-        {portfolio.map((item, index) => (
-          <div
-            key={index}
-            className={`portfolio_list-two-items isotop-details ${item.tag} mb-5 w-full md:w-[48%]`}
-          >
-            <PortfolioCard details={item} />
-          </div>
-        ))}
+      <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2" ref={parent}>
+        {portfolio.filter(item => activeFilter === "*" || item.tags?.includes(activeFilter))
+          .map(item => (
+            <div key={item.id} className={``} >
+              <PortfolioCard details={item} />
+            </div>
+          ))}
       </div>
     </div>
   );

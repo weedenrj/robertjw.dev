@@ -14,15 +14,15 @@ export type NavbarProps = {
     icon: string;
     enabled?: boolean;
     _sys: {
-        __typename?: "SystemInfo";
-        filename: string;
-        basename: string;
-        breadcrumbs: string[];
-        path: string;
-        relativePath: string;
-        extension: string;
+      __typename?: "SystemInfo";
+      filename: string;
+      basename: string;
+      breadcrumbs: string[];
+      path: string;
+      relativePath: string;
+      extension: string;
     };
-}[]
+  }[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Navbar({
@@ -32,7 +32,7 @@ export function Navbar({
   ...rest
 }: NavbarProps) {
   const pathname = usePathname()
-  
+
   return (
     <header className={clsx(className, "lg:w-fit h-[144px] hidden lg:block p-[30px]",
       "ml-auto mb-10 rounded-[16px] bg-white dark:bg-dark-primary"

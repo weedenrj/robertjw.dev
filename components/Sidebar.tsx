@@ -10,6 +10,7 @@ import {
 import { PersonalInfoQuery } from "tina/__generated__/types";
 import clsx from "clsx";
 import { TinaResponse } from "constants/types";
+import Image from "next/image";
 
 export type SidebarProps = {
   personalInfo: TinaResponse<PersonalInfoQuery>["data"]["personalInfo"]
@@ -29,10 +30,12 @@ export function Sidebar({
       {...rest}
     >
       {/* <!-- profile image --> */}
-      <img
+      <Image
         src="/assets/about/portrait.webp"
-        className="w-[240px] absolute left-[50%] transform -translate-x-[50%] h-[240px] drop-shadow-xl mx-auto rounded-[20px] -mt-[140px]"
+        className="absolute left-[50%] transform -translate-x-[50%] drop-shadow-xl mx-auto rounded-[20px] -mt-[140px]"
         alt="about"
+        width={240} 
+        height={240}
       />
       <div className="pt-[100px] pb-8">
         <h2 className="mt-6 mb-1 text-[26px] font-semibold dark:text-white font-jetbrains">

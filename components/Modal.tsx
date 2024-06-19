@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Icon } from "./icon/Icon";
 
 export type ModalProps = {
   closeModal: () => void
@@ -22,16 +23,19 @@ export function Modal({
         id="portfiloOne"
         className="!max-w-[800px] absolute left-[50%] top-[50%] mr-auto ml-auto flex w-[85%] translate-x-[-50%] translate-y-[-50%] items-center rounded-[0.75rem] p-4 bg-white dark:bg-[rgb(50,50,50)] shadow-sm"
       >
-        <div className="overflow-y-scroll min-[1700px]:overflow-hidden max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
+        <div className="overflow-y-auto max-h-[60vh] lg:max-h-[80vh] dark:scrollbarDark scrollbarLight">
           {children}
         </div>
-        <a
-          href="#close-modal"
-          className="absolute !top-[-20px] !right-[-20px] block !w-[50px] !h-[50px] indent-[-9999px] bg-contain bg-no-repeat bg-center rounded-full invert-[0.9] hover:invert-[1] transition-[0.3ms] bg-close-light dark:bg-close-dark"
+
+        <button
+          className={clsx("size-[40px] absolute z-40 -top-5 -right-5",
+            "block bg-contain bg-no-repeat bg-center rounded-full transition-[0.3ms]",
+            "cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
+          )}
           onClick={closeModal}
         >
-          Close
-        </a>
+          <Icon name="X"  size="xl" />
+        </button>
       </div>
     </div>
   );

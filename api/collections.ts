@@ -1,3 +1,4 @@
+import { Portfolio } from './../tina/__generated__/types.d';
 import client from "tina/__generated__/client";
 
 export async function getProgressBars() {
@@ -62,12 +63,12 @@ export async function getSkills() {
   return skills
 }
 
-export async function getWorks() {
-  const worksConnection = await client.queries.worksConnection();
-  const works = worksConnection.data.worksConnection.edges
+export async function getPortfolio() {
+  const portfolioConnection = await client.queries.portfolioConnection();
+  const portfolio = portfolioConnection.data.portfolioConnection.edges
     ?.map(work => work.node).filter(Boolean) || []
 
-  return works
+  return portfolio
 }
 
 export async function getPortfolioFilters() {

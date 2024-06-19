@@ -1,9 +1,7 @@
 ---
-name: Works
-link: /portfolio/
+name: Portfolio
+link: /portfolio
 icon: FaBriefcase
-enabled: false
+enabled: true
 ---
-
-
 

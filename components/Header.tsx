@@ -38,57 +38,55 @@ export function Header({
   }, [theme]);
 
   return (
-    <>
-      <div className={clsx(className, "container flex w-full justify-between bg-light-bg-five",
-        "dark:bg-black py-5 mr-auto ml-auto lg:bg-transparent lg:pl-0 lg:pr-0 lg:pt-[50px]",
-        "lg:dark:bg-transparent"
-      )}
-        {...rest}
-      >
-        <div className="flex items-center justify-between w-full px-4">
-          <a href="/">
-            <p className="text-3xl dark:text-white font-jetbrains">
-              <span className="font-bold text-codeRed">
-                &lt;RJW</span>.dev/&gt;
-            </p>
-          </a>
-          <div className="flex items-center">
-            <button
-              id="theme-toggle"
-              aria-label="Theme toggler"
-              type="button"
-              className="flex h-[40px] w-[40px] lg:w-[50px] lg:h-[50px] cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              <span id="theme-toggle-light-icon" className="pointer-events-none dark:hidden">
-                <FaMoon className="text-xl" />
-              </span>
+    <div className={clsx(className, "relative lg:container flex w-full justify-between bg-light-bg-five",
+      "dark:bg-black py-5 mr-auto ml-auto lg:bg-transparent lg:pl-0 lg:pr-0 lg:pt-[50px]",
+      "lg:dark:bg-transparent"
+    )}
+      {...rest}
+    >
+      <div className="flex items-center justify-between w-full px-4">
+        <a href="/">
+          <p className="text-3xl dark:text-white font-jetbrains">
+            <span className="font-bold text-codeRed">
+              &lt;RJW</span>.dev/&gt;
+          </p>
+        </a>
+        <div className="flex items-center">
+          <button
+            id="theme-toggle"
+            aria-label="Theme toggler"
+            type="button"
+            className="flex h-[40px] w-[40px] lg:w-[50px] lg:h-[50px] cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            <span id="theme-toggle-light-icon" className="pointer-events-none dark:hidden">
+              <FaMoon className="text-xl" />
+            </span>
 
-              <span id="theme-toggle-dark-icon" className="hidden pointer-events-none dark:block">
-                <FaSun className="text-xl" />
-              </span>
-            </button>
+            <span id="theme-toggle-dark-icon" className="hidden pointer-events-none dark:block">
+              <FaSun className="text-xl" />
+            </span>
+          </button>
 
-            <button
-              id="menu-toggle"
-              type="button"
-              className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[white] text-[black] hover:bg-modal-text hover:text-white hover:dark:text-white transition-all duration-300 ease-in-out ml-3 rounded-full dark:text-black lg:hidden"
-              onClick={mobileMenuToggle}
-              aria-label="Mobile Menu Togglers"
-            >
-              {showMenu ? (
-                <ImCross id="menu-toggle-close-icon" className="text-xl" />
-              ) : (
-                <FaBars id="menu-toggle-open-icon" className="text-xl" />
-              )}
-            </button>
-          </div>
+          <button
+            id="menu-toggle"
+            type="button"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[white] text-[black] hover:bg-modal-text hover:text-white hover:dark:text-white transition-all duration-300 ease-in-out ml-3 rounded-full dark:text-black lg:hidden"
+            onClick={mobileMenuToggle}
+            aria-label="Mobile Menu Togglers"
+          >
+            {showMenu ? (
+              <ImCross id="menu-toggle-close-icon" className="text-xl" />
+            ) : (
+              <FaBars id="menu-toggle-open-icon" className="text-xl" />
+            )}
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <nav id="navbar" className={clsx(showMenu && "hidden", "lg:hidden")}>
-        <ul className="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-[22222222222222] w-full bg-white dark:bg-dark-mobile-primary">
+      <nav className={clsx(!showMenu ? "hidden" : "lg:hidden")}>
+        <ul className="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-30 max-w-[1052px] w-full bg-white dark:bg-dark-mobile-primary">
           {menuItems.filter(item => item.enabled).map((item, index) => {
             const ReactIcon = Icon[item.icon];
             return (
@@ -112,7 +110,7 @@ export function Header({
           })}
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 

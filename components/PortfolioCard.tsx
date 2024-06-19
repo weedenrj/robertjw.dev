@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Modal from "./Modal";
-import { Works } from "tina/__generated__/types";
+import { PortfolioQuery } from "tina/__generated__/types";
 import clsx from "clsx";
+import { TinaResponse } from "constants/types";
 
 export type PortfolioCardProps = {
-  details: Works
+  details: TinaResponse<PortfolioQuery>["data"]["portfolio"]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function PortfolioCard({
@@ -21,7 +22,7 @@ export function PortfolioCard({
         <div className="overflow-hidden rounded-lg">
           <a href={details.link}>
             <img
-              className="w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 rounded-lg h-auto"
+              className="w-full h-auto transition duration-200 ease-in-out transform rounded-lg cursor-pointer hover:scale-110"
               src={details.img}
               alt="portfolio image"
               onClick={() => setModal(true)}
@@ -33,7 +34,7 @@ export function PortfolioCard({
         </span>
 
         <h2
-          className="font-medium cursor-pointer text-xl duration-300 transition hover:text-btn-primary dark:hover:text-btn-primary dark:text-white mt-2"
+          className="mt-2 text-xl font-medium transition duration-300 cursor-pointer hover:text-btn-primary dark:hover:text-btn-primary dark:text-white"
           onClick={() => setModal(true)}
         >
           <a href={details.link}>{details.title}</a>
@@ -42,20 +43,20 @@ export function PortfolioCard({
 
       {modal && (
         <Modal closeModal={() => setModal(false)}>
-          <h2 className="text-modal-text dark:hover:text-btn-primary text-4xl text-center font-bold">
+          <h2 className="text-4xl font-bold text-center text-modal-text dark:hover:text-btn-primary">
             {details.modal.title}
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 my-6 pr-3">
+          <div className="grid grid-cols-1 pr-3 my-6 lg:grid-cols-2">
             <div className="space-y-2">
               <p className="dark:text-white flex items-center text-[15px] sm:text-lg">
-                <i className="fa-regular fa-file-lines sm:text-lg hidden sm:block mr-4 md:text-xl" />
+                <i className="hidden mr-4 fa-regular fa-file-lines sm:text-lg sm:block md:text-xl" />
                 Project :&nbsp;
                 <span className="font-medium">
                   {details.modal.project}
                 </span>
               </p>
               <p className="dark:text-white flex items-center text-[15px] sm:text-lg">
-                <i className="fa-solid fa-code text-lg mr-2 hidden sm:block" />
+                <i className="hidden mr-2 text-lg fa-solid fa-code sm:block" />
                 Langages :&nbsp;
                 <span className="font-medium">
                   {details.modal.languages}
@@ -65,12 +66,12 @@ export function PortfolioCard({
 
             <div className="space-y-2">
               <p className="dark:text-white flex items-center mt-2 lg:mt-0 text-[15px] sm:text-lg">
-                <i className="fa-regular fa-user text-lg mr-2 hidden sm:block" />
+                <i className="hidden mr-2 text-lg fa-regular fa-user sm:block" />
                 Client :&nbsp;{" "}
                 <span className="font-medium">{details.modal.client}</span>
               </p>
               <p className="dark:text-white flex items-center text-[15px] sm:text-lg">
-                <i className="fa-solid fa-arrow-up-right-from-square text-lg mr-2 hidden sm:block" />
+                <i className="hidden mr-2 text-lg fa-solid fa-arrow-up-right-from-square sm:block" />
                 Preview :&nbsp;
                 <span className="font-medium transition-all duration-300 ease-in-out hover:text-modal-text">
                   <a

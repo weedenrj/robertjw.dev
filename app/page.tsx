@@ -28,7 +28,7 @@ export default async function Home() {
           About Me
         </h2>
         <div className="lg:hidden">
-          <Sidebar personalInfo={personalInfo?.body.children} />
+          <Sidebar personalInfo={personalInfo} />
         </div>
         <div
           className="lg:grid grid-cols-12 md:gap-10 pt-4 md:pt-[30px] items-center hidden"
@@ -55,8 +55,8 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="">
-        <div className="h-auto max-w-full rounded-xl">
+      <div className="py-10">
+        <div className="flex flex-col max-w-full gap-6 rounded-xl">
           <h3 className="text-center dark:text-white text-[1.75rem] mb-3 font-semibold pt-10 px-2 sm:px-5 md:px-10 lg:px-14">
             Projects
           </h3>

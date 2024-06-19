@@ -52,7 +52,7 @@ export function MainCarousel({
             )}
           >
             <Image
-              className="w-auto h-auto"
+              className="w-auto h-auto min-w-[250px]"
               key={img}
               width={250}
               height={250}

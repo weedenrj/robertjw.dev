@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { TinaResponse } from "constants/types";
+import Image from "next/image";
 import { SkillsQuery } from "tina/__generated__/types";
 
 export type SkillCardProps = {
@@ -20,8 +21,10 @@ export function SkillCard({
       )}
       {...rest}
     >
-      <img
+      <Image
         className="block object-contain w-10 h-10"
+        width={40}
+        height={40}
         src={skill.img}
         alt="icon"
       />

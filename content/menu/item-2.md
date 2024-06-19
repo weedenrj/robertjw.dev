@@ -1,9 +1,7 @@
 ---
 name: Resume
-link: /resume/
+link: /resume
 icon: FaFileAlt
 enabled: false
 ---
-
-
 

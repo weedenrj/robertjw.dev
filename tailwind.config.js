@@ -76,10 +76,10 @@ module.exports = {
         "gradient-to": "#dd2476",
       },
       backgroundImage: {
-        "home-bg": "url('/src/images/light-bg.jpg')",
-        "close-light": "url('/src/images/close-light.jpg')",
-        "home-bg-dark": "url('/src/images/dark-bg.jpg')",
-        "close-dark": "url('/src/images/close-dark.png')",
+        "home-bg": "url('/light-bg.jpg')",
+        "close-light": "url('/close-light.jpg')",
+        "home-bg-dark": "url('/dark-bg.jpg')",
+        "close-dark": "url('/close-dark.png')",
 
         "bg-gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
         

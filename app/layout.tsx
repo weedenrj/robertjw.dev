@@ -63,7 +63,7 @@ export default async function Layout({
               <Header menuItems={menuItems} className="" />
             </Provider>
 
-            <div className={clsx("container mr-auto ml-auto",
+            <div className={clsx("lg:container mr-auto ml-auto",
               "grid grid-cols-12 md:gap-10 justify-between lg:mt-[220px]"
             )}>
               <div className={clsx("sticky hidden h-screen col-span-12",

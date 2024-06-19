@@ -10,7 +10,7 @@ const branch =
 
 export default defineConfig({
   branch,
-  
+
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
@@ -26,6 +26,37 @@ export default defineConfig({
   },
   schema: {
     collections: [
+      {
+        name: "menu",
+        label: "Menu",
+        path: "/content/menu",
+        fields: [
+          {
+            name: "name",
+            label: "Name",
+            type: "string",
+            isTitle: true,
+            required: true,
+          },
+          {
+            name: "link",
+            label: "Link",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "icon",
+            label: "Icon",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "enabled",
+            label: "Enabled",
+            type: "boolean",
+          }
+        ],
+      },
       {
         name: "skills",
         label: "Skills",
@@ -333,37 +364,6 @@ export default defineConfig({
         ],
       },
       {
-        name: "menu",
-        label: "Menu",
-        path: "/content/menu",
-        fields: [
-          {
-            name: "name",
-            label: "Name",
-            type: "string",
-            isTitle: true,
-            required: true,
-          },
-          {
-            name: "link",
-            label: "Link",
-            type: "string",
-            required: true,
-          },
-          {
-            name: "icon",
-            label: "Icon",
-            type: "string",
-            required: true,
-          },
-          {
-            name: "enabled",
-            label: "Enabled",
-            type: "boolean",
-          }
-        ],
-      },
-      {
         name: "portfolioFilters",
         label: "Portfolio Filters",
         path: "/content/portfolioFilters",
@@ -392,13 +392,14 @@ export default defineConfig({
             name: "skill",
             type: "string",
             list: true,
+            
           },
         ],
       },
       {
-        name: "works",
+        name: "portfolio",
         label: "Portfolio",
-        path: "/content/works",
+        path: "/content/portfolio",
         fields: [
           {
             name: "title",
@@ -413,8 +414,8 @@ export default defineConfig({
             type: "string",
           },
           {
-            name: "tag",
-            label: "Tag",
+            name: "tags",
+            label: "Tags",
             type: "string",
           },
           {

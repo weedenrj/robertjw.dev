@@ -1,4 +1,5 @@
 ---
-name: "Graphic Design"
-tag: ".custom"
+name: Game Design
+tag: game
 ---
+
