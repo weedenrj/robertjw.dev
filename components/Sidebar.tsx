@@ -159,10 +159,10 @@ export function Sidebar({
           </div>
         </div>
         {/* <!-- personal infomation end--> */}
-        {/* <!-- dowanload button --> */}
+        {/* <!-- download button --> */}
         <button className="flex items-center text-lg text-white transition-all ease-in-out duration-200 mt-6 mx-auto px-8 py-3 rounded-[35px] bg-gradient-to-r from-btn-secondary to-btn-primary hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary">
           <img className="mr-3" src="/assets/icons/dowanload.png" alt="icon" />
-          <a href="/Robert Weeden Resume May 2024.pdf" download aria-label="Download CV">
+          <a href="/Robert Weeden Resume July 2024.pdf" download aria-label="Download resume">
             {" "}
             Download Resume
           </a>
