@@ -47,7 +47,7 @@ export default async function Layout({
         <script
           src='https://devapi.vallypro.com/api/embed'
           id="vally-embeded-checkout"
-          data-business="peacock-adventures"
+          data-business="peacock-adventures-llc"
           data-env="preview"
           defer
         ></script>
