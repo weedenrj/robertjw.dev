@@ -44,10 +44,15 @@ export default async function Layout({
       className={clsx(titleFont.variable, bodyFont.variable, "dark")}
     >
       <head>
+        {/* <script src="https://cdn.jsdelivr.net/npm/dialog-polyfill/dist/dialog-polyfill.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dialog-polyfill/dist/dialog-polyfill.css" /> */}
+
         <script
+          // src='http://localhost:3004/api/embed'
           src='https://devapi.vallypro.com/api/embed'
           id="vally-embeded-checkout"
           data-business="peacock-adventures-llc"
+          // data-business="kfc-supreme"
           data-env="preview"
           defer
         ></script>
