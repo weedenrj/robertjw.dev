@@ -3,7 +3,7 @@ information:
   name: Robert Weeden
   profession: 'Software engineer, Gamer, Dog Dad'
   experience: 5 years
-  email: rob@4-cube.io
+  email: rob@vallypro.com
   location: 'Madison, WI'
   birthday: 'Nov 1, 1997'
   socialMedia:
