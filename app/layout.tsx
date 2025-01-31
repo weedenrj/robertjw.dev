@@ -43,17 +43,17 @@ export default async function Layout({
       lang="en"
       className={clsx(titleFont.variable, bodyFont.variable, "dark")}
     >
-      <head>
+      {/* <head>
         <script
-          // src='http://localhost:3004/api/embed'
-          src='https://devapi.vallypro.com/api/embed'
-          id="vally-embeded-checkout"
-          data-business="peacock-adventures-llc"
+          src='http://localhost:3004/api/embed'
+          // src='https://devapi.vallypro.com/api/embed'
+          id="vally-embedded-checkout"
+          data-business="hamms"
           // data-business="kfc-supreme"
-          data-env="preview"
+          data-env="dev"
           defer
         ></script>
-      </head>
+      </head> */}
       <body>
         <div className="w-full min-h-screen bg-zinc-200 dark:bg-neutral-900 md:pb-16">
           <div className={clsx("dark:hidden fixed bottom-0 left-0 right-0 top-0",
@@ -61,6 +61,11 @@ export default async function Layout({
             "bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_90%_at_50%_0%,#000_70%,transparent_110%)]"
           )} />
 
+          {/* <a href="http://localhost:3005/p/hamms/trips/66be2a669d245184a798f0d3"
+            className="bg-white text-pink-400 font-semibold text-lg p-4 z-50 relative top-6 left-6 rounded-xl"
+          >
+            canada fishing trip
+          </a> */}
           <div
             className="hidden dark:block fixed bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
           />
