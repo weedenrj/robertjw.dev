@@ -1,9 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { FaMoon, FaSun, FaBars } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import * as Icon from "react-icons/fa";
+import { Icon } from "./icon/Icon";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { MenuQuery } from "tina/__generated__/types";
@@ -61,11 +59,11 @@ export function Header({
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             <span id="theme-toggle-light-icon" className="pointer-events-none dark:hidden">
-              <FaMoon className="text-xl" />
+              <Icon name="Moon" className="text-xl" />
             </span>
 
             <span id="theme-toggle-dark-icon" className="hidden pointer-events-none dark:block">
-              <FaSun className="text-xl" />
+              <Icon name="Sun" className="text-xl" />
             </span>
           </button>
 
@@ -79,9 +77,9 @@ export function Header({
             aria-label="Mobile Menu Togglers"
           >
             {showMenu ? (
-              <ImCross id="menu-toggle-close-icon" className="text-xl" />
+              <Icon name="X" className="text-xl" />
             ) : (
-              <FaBars id="menu-toggle-open-icon" className="text-xl" />
+              <Icon name="Menu" className="text-xl" />
             )}
           </button>
         </div>
@@ -98,7 +96,6 @@ export function Header({
           </li>
 
           {menuItems.filter(item => item.enabled).map((item, index) => {
-            const ReactIcon = Icon[item.icon];
             return (
               <li key={index}>
                 <a
@@ -111,7 +108,7 @@ export function Header({
                   href={item.link}
                 >
                   <span className="mr-2 text-xl">
-                    <ReactIcon />
+                    <Icon name={item.icon as keyof typeof import("./icon/Icon.fontawesome").AppFontAwesomeIcons} />
                   </span>
                   {item.name}
                 </a>

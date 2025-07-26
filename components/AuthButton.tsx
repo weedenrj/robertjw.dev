@@ -2,7 +2,7 @@
 
 import { signOut, useSession } from "next-auth/react"
 import clsx from "clsx"
-import { FaLockOpen, FaUser, FaUserLock, FaUserSecret } from "react-icons/fa"
+import { Icon } from "./icon/Icon"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -40,7 +40,7 @@ export function AuthButton({ className }: AuthButtonProps) {
             />
           ) : (
             <span id="theme-toggle-dark-icon" className="pointer-events-none dark:block">
-              <FaUser className="text-xl" />
+              <Icon name="User" className="text-xl" />
             </span>
           )}
         </button>
@@ -81,7 +81,7 @@ export function AuthButton({ className }: AuthButtonProps) {
       title="Sign in with Google"
     >
       <div className="flex size-[40px] lg:size-[50px] items-center justify-center">
-        <FaUserLock className="text-xl" />
+        <Icon name="Lock" className="text-xl" />
       </div>
     </Link>
   )

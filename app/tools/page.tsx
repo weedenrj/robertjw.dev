@@ -1,12 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import clsx from "clsx"
 import { AuthButton } from "../../components/AuthButton"
 import Link from "next/link"
-import { FaRobot, } from "react-icons/fa"
 
 
 type ToolTab = "schedule-parser" | "weather-chat"
@@ -20,7 +19,7 @@ const tools = [
   },
 ]
 
-export default function ToolsPage() {
+function ToolsContent() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const pathname = usePathname()
@@ -118,5 +117,20 @@ export default function ToolsPage() {
         ))}
       </div>
     </div>
+  )
+}
+
+export default function ToolsPage() {
+  return (
+    <Suspense fallback={
+      <div className="mx-4 md:mx-[60px] p-4 md:p-16 flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center space-x-2">
+          <div className="w-6 h-6 border-2 border-btn-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-text-primary dark:text-main-text">Loading...</span>
+        </div>
+      </div>
+    }>
+      <ToolsContent />
+    </Suspense>
   )
 } 

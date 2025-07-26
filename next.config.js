@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  serverExternalPackages: ["@mastra/*"],
+  serverExternalPackages: ["mastra"],
   images: {
     remotePatterns: [
       {
@@ -14,9 +14,6 @@ const nextConfig = {
       }
     ]
   },
-  experimental: {
-    serverComponentsExternalPackages: ["mastra"],
-  }
 }
 
 module.exports = nextConfig

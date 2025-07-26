@@ -1,12 +1,4 @@
-import {
-  FaEnvelopeOpenText,
-  FaMapMarkerAlt,
-  FaCalendarAlt,
-  FaLinkedinIn,
-  FaGithub,
-  FaGitlab,
-  FaStar
-} from "react-icons/fa";
+import { Icon } from "./icon/Icon";
 import { PersonalInfoQuery } from "tina/__generated__/types";
 import clsx from "clsx";
 import { TinaResponse } from "constants/types";
@@ -34,7 +26,7 @@ export function Sidebar({
         src="/assets/about/portrait.webp"
         className="absolute left-[50%] transform -translate-x-[50%] drop-shadow-xl mx-auto rounded-[20px] -mt-[140px]"
         alt="about"
-        width={240} 
+        width={240}
         height={240}
       />
       <div className="pt-[100px] pb-8">
@@ -54,7 +46,7 @@ export function Sidebar({
               rel="noopener noreferrer"
             >
               <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out rounded-lg bg-light-bg-five dark:bg-dark-border hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white text-fb-icon">
-                <FaGithub />
+                <Icon name="GitHub" />
               </span>
             </a>
           )}
@@ -67,7 +59,7 @@ export function Sidebar({
               rel="noopener noreferrer"
             >
               <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out rounded-lg bg-light-bg-five dark:bg-dark-border hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white text-fb-icon">
-                <FaGitlab />
+                <Icon name="GitLab" />
               </span>
             </a>
           )}
@@ -95,7 +87,7 @@ export function Sidebar({
               rel="noopener noreferrer"
             >
               <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out rounded-lg bg-light-bg-five dark:bg-dark-border hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white text-linkedin-icon">
-                <FaLinkedinIn />
+                <Icon name="LinkedIn" />
               </span>
             </a>
           )}
@@ -106,7 +98,7 @@ export function Sidebar({
 
           <div className="flex border-b border-light-border-two dark:border-dark-border-two pb-2.5">
             <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out bg-white rounded-lg shadow-md hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white dark:bg-black text-icon-color-one">
-              <FaStar />
+              <Icon name="Star" />
             </span>
             <div className="text-left ml-2.5">
               <p className="text-xs text-text-primary dark:text-main-text">
@@ -120,7 +112,7 @@ export function Sidebar({
 
           <div className="flex border-b border-light-border-two dark:border-dark-border-two py-2.5">
             <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out bg-white rounded-lg shadow-md hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white dark:bg-black text-icon-color-two">
-              <FaEnvelopeOpenText />
+              <Icon name="MailOpen" />
             </span>
             <div className="text-left ml-2.5">
               <p className="text-xs text-text-primary dark:text-main-text">
@@ -133,7 +125,7 @@ export function Sidebar({
           </div>
           <div className="flex border-b border-light-border-two dark:border-dark-border-two py-2.5">
             <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out bg-white rounded-lg shadow-md hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white dark:bg-black text-icon-color-three">
-              <FaMapMarkerAlt />
+              <Icon name="Location" />
             </span>
             <div className="text-left ml-2.5">
               <p className="text-xs text-text-primary dark:text-main-text">
@@ -146,7 +138,7 @@ export function Sidebar({
           </div>
           <div className="flex py-2.5">
             <span className="flex items-center justify-center w-10 h-10 transition-all duration-300 ease-in-out bg-white rounded-lg shadow-md hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary hover:text-white dark:bg-black text-icon-color-four">
-              <FaCalendarAlt />
+              <Icon name="Calendar" />
             </span>
             <div className="text-left ml-2.5">
               <p className="text-xs text-text-primary dark:text-main-text">

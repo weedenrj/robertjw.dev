@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { addEventToCalendar } from "../../../../lib/google-calendar"
+import { createCalendarEvent } from "../../../../lib/google-calendar"
 import { GoogleCalendarEventSchema } from "../../../../lib/types/schedule"
 import { auth } from "../../../../auth"
 
@@ -21,15 +21,15 @@ export async function POST(request: NextRequest) {
     const calendarId = body.calendarId || 'primary'
 
     // Add event to Google Calendar
-    const eventId = await addEventToCalendar(
+    const eventResponse = await createCalendarEvent(
       session.accessToken,
-      validatedEvent,
+      validatedEvent as any,
       calendarId
     )
 
     return NextResponse.json({
       success: true,
-      eventId,
+      eventId: eventResponse.id,
       message: "Event added successfully"
     })
 

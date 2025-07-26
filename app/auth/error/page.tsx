@@ -1,82 +1,107 @@
 "use client"
 
 import { Suspense } from 'react'
-import { FaExclamationTriangle, FaGoogle, FaTimes } from 'react-icons/fa'
+import { Icon } from '../../../components/icon/Icon'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
+
+const ERROR_METADATA = {
+  OAuthCallbackError: {
+    iconName: 'X' as const,
+    title: 'Sign-in Cancelled',
+    message: 'It looks like you cancelled the sign-in process. No worries - you can try again whenever you\'re ready.',
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    bgColor: 'bg-orange-100 dark:bg-orange-900/20',
+    helpText: 'Your sign-in attempt was cancelled. No personal information was shared.'
+  },
+  OAuthSignin: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Error',
+    message: 'There was a problem with the sign-in process. Please try again.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  OAuthCallback: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Error',
+    message: 'There was a problem with the sign-in process. Please try again.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  OAuthCreateAccount: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Error',
+    message: 'There was a problem with the sign-in process. Please try again.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  EmailCreateAccount: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Error',
+    message: 'There was a problem with the sign-in process. Please try again.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  Callback: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Error',
+    message: 'There was a problem with the sign-in process. Please try again.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  OAuthAccountNotLinked: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Account Already Linked',
+    message: 'This email is already associated with another account. Please use the original sign-in method.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  EmailSignin: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Email Error',
+    message: 'Unable to send verification email. Please check your email address.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  CredentialsSignin: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Invalid Credentials',
+    message: 'Invalid credentials. Please check your login details.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  SessionRequired: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Sign-in Required',
+    message: 'You need to be signed in to access this page.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  },
+  default: {
+    iconName: 'TriangleExclamation' as const,
+    title: 'Authentication Issue',
+    message: 'There was a problem with your sign-in request. This could happen if you cancelled the request or there was a temporary issue.',
+    iconColor: 'text-red-600 dark:text-red-400',
+    bgColor: 'bg-red-100 dark:bg-red-900/20',
+    helpText: 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
+  }
+} as const
 
 function AuthErrorContent() {
   const searchParams = useSearchParams()
   const error = searchParams.get('error')
 
-  const getErrorInfo = (error: string | null) => {
-    switch (error) {
-      case 'OAuthCallbackError':
-        return {
-          icon: FaTimes,
-          title: 'Sign-in Cancelled',
-          message: 'It looks like you cancelled the sign-in process. No worries - you can try again whenever you\'re ready.',
-          iconColor: 'text-orange-600 dark:text-orange-400',
-          bgColor: 'bg-orange-100 dark:bg-orange-900/20'
-        }
-      case 'OAuthSignin':
-      case 'OAuthCallback':
-      case 'OAuthCreateAccount':
-      case 'EmailCreateAccount':
-      case 'Callback':
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Authentication Error',
-          message: 'There was a problem with the sign-in process. Please try again.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-      case 'OAuthAccountNotLinked':
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Account Already Linked',
-          message: 'This email is already associated with another account. Please use the original sign-in method.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-      case 'EmailSignin':
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Email Error',
-          message: 'Unable to send verification email. Please check your email address.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-      case 'CredentialsSignin':
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Invalid Credentials',
-          message: 'Invalid credentials. Please check your login details.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-      case 'SessionRequired':
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Sign-in Required',
-          message: 'You need to be signed in to access this page.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-      default:
-        return {
-          icon: FaExclamationTriangle,
-          title: 'Authentication Issue',
-          message: 'There was a problem with your sign-in request. This could happen if you cancelled the request or there was a temporary issue.',
-          iconColor: 'text-red-600 dark:text-red-400',
-          bgColor: 'bg-red-100 dark:bg-red-900/20'
-        }
-    }
-  }
-
-  const errorInfo = getErrorInfo(error)
-  const IconComponent = errorInfo.icon
+  const errorInfo = ERROR_METADATA[error as keyof typeof ERROR_METADATA] || ERROR_METADATA.default
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
@@ -84,7 +109,10 @@ function AuthErrorContent() {
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className={`p-3 ${errorInfo.bgColor} rounded-full`}>
-              <IconComponent className={`w-6 h-6 ${errorInfo.iconColor}`} />
+              <Icon
+                name={errorInfo.iconName}
+                className={`w-6 h-6 ${errorInfo.iconColor}`}
+              />
             </div>
           </div>
 
@@ -101,7 +129,7 @@ function AuthErrorContent() {
               onClick={() => signIn('google')}
               className="w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
             >
-              <FaGoogle className="w-5 h-5 text-blue-500" />
+              <Icon name="Google" className="w-5 h-5 text-blue-500" />
               Try signing in again
             </button>
 
@@ -115,10 +143,7 @@ function AuthErrorContent() {
 
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              {error === 'OAuthCallbackError'
-                ? 'Your sign-in attempt was cancelled. No personal information was shared.'
-                : 'If you continue to experience issues, please try clearing your browser cookies or contact support.'
-              }
+              {errorInfo.helpText}
             </p>
           </div>
         </div>

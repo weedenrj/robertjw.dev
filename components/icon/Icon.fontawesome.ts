@@ -14,7 +14,7 @@ import {
   faListCheck, faList, faCircleNotch, faEye, faUserTie, faUserPen, faKey, faShip, faLock, faEarthAmericas,
   faPalette, faCalendarCheck, faLink, faClock, faSquarePlus, faBell as faBellSolid, faLocationDot, faCreditCard,
   faRightLeft, faComment as faCommentSolid, faReceipt, faCopy, faPercent, faArrowTurnUp, faArrowTurnDown,
-  faTag,
+  faTag, faMoon, faSun,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faCheckCircle, faCalendarMinus, faBuilding, faComment,
@@ -22,7 +22,7 @@ import {
   faCircleCheck, faCalendarPlus, faCalendarXmark, faAddressCard, faPaperPlane, faCircle,
 } from '@fortawesome/free-regular-svg-icons';
 import { config, library } from "@fortawesome/fontawesome-svg-core";
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle, faGithub, faLinkedin, faGitlab } from '@fortawesome/free-brands-svg-icons';
 
 /**
  * @see https://fontawesome.com/search?o=r&m=free
@@ -140,6 +140,11 @@ export const AppFontAwesomeIcons = {
   UserPlus: faUserPlus,
   Wrench: faWrench,
   X: faXmark,
+  Moon: faMoon,
+  Sun: faSun,
+  GitHub: faGithub,
+  LinkedIn: faLinkedin,
+  GitLab: faGitlab,
 }
 
 export function faInit() {

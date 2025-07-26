@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import * as Icon from "react-icons/fa";
+import { Icon, IconProps } from "./icon/Icon";
 import { Menu } from "tina/__generated__/types";
 
 export type NavbarProps = {
@@ -42,7 +42,17 @@ export function Navbar({
       <nav className="hidden lg:block">
         <ul className="flex">
           {menuItems.filter(item => item.enabled).map((item, index) => {
-            const ReactIcon = Icon[item.icon];
+            // Map react-icons names to FontAwesome icon names
+            const iconMapping: Record<string, IconProps["name"]> = {
+              'FaUser': 'User',
+              'FaBriefcase': 'Building', // Using Building as closest alternative
+              'FaWrench': 'Wrench',
+              'FaBlogger': 'PenToSquare', // Using PenToSquare for blog
+              'FaFileAlt': 'DownloadFile', // Using DownloadFile for file
+            }
+
+            const iconName = iconMapping[item.icon] || 'Home' // Default fallback
+
             return (
               <li key={index}>
                 <a
@@ -57,7 +67,7 @@ export function Navbar({
                   href={item.link}
                 >
                   <span className="mb-1 text-xl">
-                    <ReactIcon />
+                    <Icon name={iconName} />
                   </span>{" "}
                   {item.name}
                 </a>
