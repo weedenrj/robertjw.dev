@@ -24,7 +24,7 @@ export const weatherAgent = new Agent({
   tools: { weatherTool },
   memory: new Memory({
     storage: new LibSQLStore({
-      url: 'file:../mastra.db', // path is relative to the .mastra/output directory
+      url: ':memory:', // Use in-memory storage to avoid better-sqlite3 compilation issues
     }),
   }),
 });

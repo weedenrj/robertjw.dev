@@ -51,7 +51,7 @@ QUALITY STANDARDS:
 - Return only valid JSON, no additional text`,
   memory: new Memory({
     storage: new LibSQLStore({
-      url: 'file:../mastra.db',
+      url: ':memory:', // Use in-memory storage to avoid better-sqlite3 compilation issues
     }),
   }),
 }) 
