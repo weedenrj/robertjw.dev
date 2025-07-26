@@ -1,7 +1,6 @@
 import { Agent } from "@mastra/core/agent"
 import { openai } from "@ai-sdk/openai"
 import { Memory } from "@mastra/memory"
-import { LibSQLStore } from "@mastra/libsql"
 
 export const scheduleParserAgent = new Agent({
   name: "scheduleParser",
@@ -49,9 +48,5 @@ QUALITY STANDARDS:
 - Generate unique UUIDs for each event ID
 - Be precise with time formats (HH:MM in 24-hour format)
 - Return only valid JSON, no additional text`,
-  memory: new Memory({
-    storage: new LibSQLStore({
-      url: ':memory:', // Use in-memory storage to avoid better-sqlite3 compilation issues
-    }),
-  }),
+  memory: new Memory(),
 }) 

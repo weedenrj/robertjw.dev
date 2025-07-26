@@ -20,7 +20,7 @@ export async function sendChatMessage(
   message: string,
   conversationId?: string
 ): Promise<ChatMessage> {
-  const agent = mastra.getAgent("weatherAgent")
+  const agent = mastra.getAgent("scheduleParserAgent")
 
   const result = await agent.generate(message, {
     ...(conversationId && {
@@ -92,7 +92,7 @@ export async function streamChatMessage(
   message: string,
   conversationId?: string
 ) {
-  const agent = mastra.getAgent("weatherAgent")
+  const agent = mastra.getAgent("scheduleParserAgent")
 
   return agent.stream(message, {
     ...(conversationId && {

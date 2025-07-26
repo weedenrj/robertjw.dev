@@ -8,7 +8,7 @@ import { AuthButton } from "../../components/AuthButton"
 import Link from "next/link"
 
 
-type ToolTab = "schedule-parser" | "weather-chat"
+type ToolTab = "schedule-parser" 
 
 const tools = [
   {

@@ -100,7 +100,7 @@ export function Header({
               <li key={index}>
                 <a
                   className={clsx("flex cursor-pointer items-center pt-[0.625rem]",
-                    "pb-[0.625rem] pl-4 pr-1 xl:pl-5 xl:pr-5 font-jetbrains font-sans text-xs",
+                    "pb-[0.625rem] pl-4 pr-1 xl:pl-5 xl:pr-5 font-jetbrain text-xs",
                     "font-medium text-text-primary dark:text-white hover:text-btn-primary",
                     "transition-all duration-300 ease-in-out",
                     pathname === item.link && "!text-btn-primary"

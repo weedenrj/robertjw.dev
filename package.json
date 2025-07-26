@@ -22,7 +22,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mastra/core": "^0.11.1",
-    "@mastra/libsql": "^0.11.2",
     "@mastra/loggers": "^0.10.4",
     "@mastra/memory": "^0.11.5",
     "@react-email/button": "0.0.10",
