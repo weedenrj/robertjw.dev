@@ -1,0 +1,122 @@
+# Personal Portfolio Content & Update Workflows
+
+## Core Content Management Workflows
+
+### How does someone update portfolio content?
+1. Access TinaCMS admin interface at `/admin`
+2. Navigate to the relevant collection (Portfolio, Blog, Skills, etc.)
+3. Edit existing content or create new entries
+4. Preview changes in real-time
+5. Save changes to automatically update the live site
+
+### How does the portfolio showcase work?
+**Comprehensive project display system:**
+
+**Location**: `app/portfolio/page.tsx` with `Portfolio` component
+
+**Features**:
+- **Filterable grid**: Dynamic filtering by technology/category
+- **Modal previews**: Detailed project view with images and descriptions
+- **Responsive design**: Optimized for all device sizes
+- **Live links**: Direct links to live demos and source code
+- **Technology tags**: Skill-based categorization and filtering
+
+**Content Flow**:
+1. Add portfolio item through TinaCMS admin
+2. Include project details, images, and technology tags
+3. Content automatically appears in portfolio grid
+4. Filtering and modal functionality work automatically
+
+### How does the blog system work?
+**Content-driven blog with TinaCMS management:**
+
+**Blog Management**:
+- **Content creation**: Write posts in Markdown through TinaCMS admin
+- **Image management**: Upload and manage blog images through TinaCMS
+- **SEO optimization**: Meta descriptions, titles, and structured content
+- **Responsive display**: Mobile-optimized blog layout
+- **Easy navigation**: Blog listing with search and filtering capabilities
+
+**Publishing Workflow**:
+1. Create new blog post in TinaCMS admin
+2. Add frontmatter (title, date, excerpt, featured image)
+3. Write content in Markdown format
+4. Preview and edit with live updates
+5. Publish to make immediately available
+
+### How does skill and experience display work?
+**Dynamic skill showcase with progress visualization:**
+
+**Skill Display**:
+- **SkillCard components**: Individual skill cards with descriptions and icons
+- **Progress bars**: Visual skill level indicators
+- **Category organization**: Skills grouped by type (Frontend, Backend, Tools, etc.)
+- **Responsive grid**: Adapts to different screen sizes
+
+**Experience Timeline**:
+- **Work experience**: Professional background with company details
+- **Education**: Academic achievements and certifications
+- **Achievement highlights**: Key accomplishments and projects
+
+### How does the contact system work?
+**Integrated contact form with email delivery:**
+
+**Contact Workflow**:
+1. Visitor fills out contact form with name, email, and message
+2. Form validation ensures required fields are completed
+3. React Email template formats the message
+4. Resend service delivers email notification
+5. Confirmation message shows to user
+
+**Features**:
+- **Form validation**: Client-side validation for user experience
+- **Email templates**: Professional email formatting with React Email
+- **Spam protection**: Basic form protection and validation
+- **Responsive design**: Works seamlessly on all devices
+
+### How does navigation and routing work?
+**Next.js App Router with dynamic navigation:**
+
+**Navigation System**:
+- **Header component**: Main navigation with responsive behavior
+- **Sidebar**: Mobile navigation with profile summary
+- **Dynamic menu**: Menu items managed through TinaCMS
+- **Route management**: App Router handles all page routing
+
+**URL Structure**:
+- `/` - Homepage with about section and skill showcase
+- `/portfolio` - Portfolio project grid with filtering
+- `/contact` - Contact form and information
+- `/blog` - Blog post listing (if blog feature is added)
+
+### How does the responsive design work?
+**Mobile-first responsive design system:**
+
+**Breakpoint Strategy**:
+- **Mobile**: Base styles, single column layouts
+- **Tablet**: Two-column grids, expanded navigation
+- **Desktop**: Multi-column layouts, sidebar navigation
+- **Large screens**: Optimized spacing and typography
+
+**Component Responsiveness**:
+- **Grid systems**: Responsive portfolio and skills grids
+- **Navigation**: Mobile hamburger menu, desktop horizontal nav
+- **Typography**: Responsive font sizing and line heights
+- **Images**: Responsive images with proper aspect ratios
+
+### How does the dark mode system work?
+**System preference-based theme switching:**
+
+**Theme Management**:
+- **System detection**: Automatically detects user's system preference
+- **Manual toggle**: Option to override system preference
+- **Consistent styling**: All components support both light and dark themes
+- **Smooth transitions**: Animated theme transitions for better UX
+
+**Implementation**:
+- **TailwindCSS dark mode**: Using system preference detection
+- **Component theming**: All components designed with both themes
+- **Icon management**: Theme-appropriate icons and graphics
+
+- **Conflict Detection**: Prevents double-booking across internal and external calendars
+- **Calendar Events for Pending Orders**: Feature flag to create calendar events before customer payment

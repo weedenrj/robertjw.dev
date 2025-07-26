@@ -1,5 +1,5 @@
 import React from "react"
-import { getClients, getPersonalInfo, getSkills } from "api/collections"
+import { getClients, getPersonalInfo, getSkills } from "lib/collections"
 import Sidebar from "components/Sidebar"
 import SkillCard from "components/SkillCard"
 import { TinaMarkdown } from "tinacms/dist/rich-text";

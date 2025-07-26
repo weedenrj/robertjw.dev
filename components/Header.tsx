@@ -10,6 +10,7 @@ import { MenuQuery } from "tina/__generated__/types";
 import { TinaResponse } from "constants/types";
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { AuthButton } from './AuthButton'
 
 const themeAtom = atomWithStorage('theme', "dark")
 
@@ -51,12 +52,12 @@ export function Header({
               &lt;RJW</span>.dev/&gt;
           </p>
         </a>
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <button
             id="theme-toggle"
             aria-label="Theme toggler"
             type="button"
-            className="flex h-[40px] w-[40px] lg:w-[50px] lg:h-[50px] cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
+            className="flex size-[40px] lg:size-[50px] cursor-pointer items-center justify-center rounded-full bg-opacity-100 text-opacity-100 text-black transition-all duration-300 ease-in-out hover:bg-modal-text hover:text-white bg-white dark:hover:bg-modal-text dark:bg-dark-bg-three dark:text-white"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
             <span id="theme-toggle-light-icon" className="pointer-events-none dark:hidden">
@@ -68,10 +69,12 @@ export function Header({
             </span>
           </button>
 
+          <AuthButton className="hidden lg:block" />
+
           <button
             id="menu-toggle"
             type="button"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[white] text-[black] hover:bg-modal-text hover:text-white hover:dark:text-white transition-all duration-300 ease-in-out ml-3 rounded-full dark:text-black lg:hidden"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[white] text-[black] hover:bg-modal-text hover:text-white hover:dark:text-white transition-all duration-300 ease-in-out rounded-full dark:text-black lg:hidden"
             onClick={mobileMenuToggle}
             aria-label="Mobile Menu Togglers"
           >
@@ -87,6 +90,13 @@ export function Header({
       {/* Mobile Menu */}
       <nav className={clsx(!showMenu ? "hidden" : "lg:hidden")}>
         <ul className="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-30 max-w-[1052px] w-full bg-white dark:bg-dark-mobile-primary">
+          {/* Mobile Auth Button */}
+          <li className="border-b border-gray-200 dark:border-gray-700">
+            <div className="p-4">
+              <AuthButton />
+            </div>
+          </li>
+
           {menuItems.filter(item => item.enabled).map((item, index) => {
             const ReactIcon = Icon[item.icon];
             return (

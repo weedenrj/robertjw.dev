@@ -1,0 +1,58 @@
+---
+alwaysApply: true
+---
+
+
+# Communication & Development Guidelines
+
+## Communication Style
+- **Be concise**: Don't explain what you did - the user will review your code changes
+- **Ask questions when unclear**: Focus on helping reason through problems
+- **Skip implementation announcements**: Let the code speak for itself
+- **Prioritize user direction**: Respond to what's asked, nothing more
+- **Permission assumed**: When user discusses changes with you, assume you have permission to implement them without asking
+
+## Development Error Response Protocol
+- **Understand the context**: Consider whether this is a development issue vs expected behavior
+- **Search for identifiable error messages**: Use exact error text to find source code
+- **Understand the data flow**: What's missing and why
+- **Research recent changes**: Check if the error relates to recent code changes
+- **Don't default to adding code**: Sometimes the fix is adjusting configuration, removing unnecessary code, or refactoring
+- **Trace the complete error path**: Find where errors are thrown AND where they're handled
+
+### Debugging Session Organization
+- **Start with the symptom**: Address the immediate issue first
+- **Investigate root cause**: Use "why" questions to understand deeper issues
+- **Keep code clean**: Revert exploratory changes to maintain clean git history
+- **Simple fixes first**: Pragmatic solutions often better than architectural overhauls
+- **Document learnings**: Update rules and memories with new patterns discovered
+
+- **Keep code clean**: Revert exploratory changes to maintain clean git history
+- **Simple fixes first**: Pragmatic solutions often better than architectural overhauls
+
+# Communication & Development Guidelines
+
+## Communication Style
+- **Be concise**: Don't explain what you did - the user will review your code changes
+- **Ask questions when unclear**: Focus on helping reason through problems
+- **Skip implementation announcements**: Let the code speak for itself
+- **Prioritize user direction**: Respond to what's asked, nothing more
+- **Permission assumed**: When user discusses changes with you, assume you have permission to implement them without asking
+
+## Development Error Response Protocol
+- **Understand the context**: Consider whether this is a development issue vs expected behavior
+- **Search for identifiable error messages**: Use exact error text to find source code
+- **Understand the data flow**: What's missing and why
+- **Research recent changes**: Check if the error relates to recent code changes
+- **Don't default to adding code**: Sometimes the fix is adjusting configuration, removing unnecessary code, or refactoring
+- **Trace the complete error path**: Find where errors are thrown AND where they're handled
+
+### Debugging Session Organization
+- **Start with the symptom**: Address the immediate issue first
+- **Investigate root cause**: Use "why" questions to understand deeper issues
+- **Keep code clean**: Revert exploratory changes to maintain clean git history
+- **Simple fixes first**: Pragmatic solutions often better than architectural overhauls
+- **Document learnings**: Update rules and memories with new patterns discovered
+
+- **Keep code clean**: Revert exploratory changes to maintain clean git history
+- **Simple fixes first**: Pragmatic solutions often better than architectural overhauls

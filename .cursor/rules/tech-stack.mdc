@@ -1,0 +1,135 @@
+npm run de
+
+# Personal Portfolio Tech Stack & Architecture Guide
+
+## Project Structure
+- **Single Application**: Next.js 14 app with App Router
+- **Content Management**: TinaCMS for blog posts, portfolio items, and site content
+- **File Organization**: 
+  - `app/` - Next.js pages and layouts
+  - `components/` - Reusable React components
+  - `content/` - TinaCMS content collections
+  - `utils/` - Utility functions and helpers
+
+## Tech Stack Overview
+- **Frontend**: Next.js 14, React 18, TypeScript, TailwindCSS
+- **State**: Jotai for global state management
+- **Content**: TinaCMS for content management and editing
+- **Email**: React Email with Resend integration
+- **Icons**: FontAwesome icons
+- **Styling**: TailwindCSS with custom design system
+
+## Content Management System
+
+### TinaCMS Collections
+- **Personal Info**: Basic information, contact details, social links
+- **Skills**: Technical skills with descriptions and icons
+- **Portfolio**: Project showcases with images, descriptions, and links
+- **Blog Posts**: Technical writing and articles
+- **Experience**: Work history and professional background
+- **Education**: Academic background and certifications
+- **Menu**: Navigation structure and links
+
+### Content Structure
+All content is stored as Markdown files with frontmatter in the `content/` directory:
+- `content/personalInfo/` - About section content
+- `content/skills/` - Technical skills and capabilities
+- `content/portfolio/` - Project portfolio items
+- `content/blogs/` - Blog posts and articles
+- `content/experience/` - Work experience entries
+- `content/education/` - Educational background
+
+## Key Systems & Components
+
+### What is the Header component?
+`components/Header.tsx` - Main navigation component with responsive design, dark mode toggle, and menu management.
+
+### What is the Portfolio component?
+`components/Portfolio.tsx` and `components/PortfolioCard.tsx` - Display portfolio projects with filtering, modal views, and responsive grid layout.
+
+### How does the blog system work?
+- **Blog listing**: `components/BlogList.tsx` displays all blog posts
+- **Blog cards**: `components/BlogCard.tsx` shows individual post previews
+- **Content**: Stored in `content/blogs/` as Markdown files
+- **Routing**: Next.js App Router handles blog post pages
+
+### How does the contact system work?
+- **Contact form**: `components/ContactForm.tsx` handles user inquiries
+- **Email integration**: React Email templates for form submissions
+- **Resend**: Email delivery service for contact form processing
+
+### How does the carousel work?
+`components/MainCarousel.tsx` - Displays portfolio highlights and client work using React Slick for smooth transitions and responsive behavior.
+
+### How does TinaCMS editing work?
+- **Admin interface**: Accessible at `/admin` for content editing
+- **Live preview**: Real-time content updates during editing
+- **Collections**: Defined in `tina/config.js` for different content types
+- **Media management**: File uploads and asset management through TinaCMS
+
+## Component Architecture
+
+### Shared Components
+- **Modal**: `components/Modal.tsx` - Reusable modal component for portfolio and content display
+- **Card**: `components/Card.tsx` - Base card component for consistent styling
+- **Tag**: `components/Tag.tsx` - Skill and category tags
+- **ProgressBar**: `components/ProgressBar.tsx` - Skill level visualization
+- **Icon**: `components/icon/Icon.tsx` - FontAwesome icon wrapper
+
+### Layout Components
+- **Sidebar**: `components/Sidebar.tsx` - Mobile navigation and profile summary
+- **Navbar**: `components/Navbar.tsx` - Desktop navigation
+- **Header**: `components/Header.tsx` - Main site header with navigation
+
+### Content Components
+- **SkillCard**: `components/SkillCard.tsx` - Individual skill display
+- **PortfolioCard**: `components/PortfolioCard.tsx` - Portfolio project preview
+- **BlogCard**: `components/BlogCard.tsx` - Blog post preview
+
+## Styling & Design System
+
+### TailwindCSS Configuration
+- **Custom colors**: Defined in `tailwind.config.js` for consistent branding
+- **Responsive design**: Mobile-first approach with breakpoint consistency
+- **Dark mode**: System-based dark/light theme switching
+- **Typography**: Custom font configurations and text shadow utilities
+
+### Design Patterns
+- **Grid layouts**: Responsive grid systems for portfolio and skills
+- **Card-based design**: Consistent card components throughout the site
+- **Animation**: Subtle transitions and hover effects
+- **Accessibility**: Focus states and semantic HTML structure
+
+## Content Workflow
+
+### Adding New Portfolio Items
+1. Access TinaCMS admin at `/admin`
+2. Navigate to Portfolio collection
+3. Create new portfolio item with:
+   - Title and description
+   - Technology tags
+   - Project images
+   - Live demo and repository links
+4. Content automatically appears on portfolio page
+
+### Publishing Blog Posts
+1. Create new blog post in TinaCMS admin
+2. Add frontmatter with title, date, excerpt
+3. Write content in Markdown format
+4. Add featured image and tags
+5. Publish to make live on blog section
+
+### Updating Personal Information
+1. Edit Personal Info collection in TinaCMS
+2. Update contact details, bio, social links
+3. Changes reflect immediately on About section
+
+## Development Essentials
+- **Package Manager**: NPM
+- **Lint Only**: Use `npm run lint`, never run the dev server during assistance
+- **State Management**: Immutable updates with spread operators
+- **Styling**: TailwindCSS utilities, custom design system  
+- **Testing**: Chat-based reasoning, no unit test execution
+
+- **Styling**: TailwindCSS utilities, custom UI components  
+- **Testing**: Chat-based reasoning, no unit test execution

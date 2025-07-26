@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
 import type { Metadata } from "next"
-import { getPortfolio, getPortfolioFilters } from "api/collections"
+import { getPortfolio, getPortfolioFilters } from "lib/collections"
 import PortfolioContent from "components/Portfolio"
 
 export const metadata: Metadata = {

@@ -82,7 +82,7 @@ module.exports = {
         "close-dark": "url('/close-dark.png')",
 
         "bg-gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
-        
+
         'gradient-fade-black-right': 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
         'gradient-fade-black-left': 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #111111 100%)',
         'gradient-fade-white-right': 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #FFFFFF 100%)',
@@ -156,7 +156,7 @@ module.exports = {
           "@apply peer-focus:font-medium absolute text-sm text-gray-500 dark:text-main-text duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-focus-border-two peer-focus:dark:text-dark-focus-border peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8": {}
         },
         '.card': {
-          '@apply bg-card-bg rounded-3xl border border-card-border': {}
+          '@apply bg-light-bg dark:bg-dark-bg-two rounded-3xl border border-light-border dark:border-dark-border': {}
         },
         '.form-label': {
           '@apply font-semibold select-none': {}

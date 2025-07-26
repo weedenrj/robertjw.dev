@@ -1,0 +1,77 @@
+---
+description: when you need a reference of how ai systems have been built by us before
+alwaysApply: false
+---
+AI Features in Vally Support Site
+Overview
+The Vally support site implements a sophisticated Business Discovery Agent Network - a multi-agent AI system designed to find, research, and qualify fishing guide and charter businesses. The system uses Mastra vNext Agent Networks with cloud-hosted infrastructure to provide comprehensive business intelligence for lead generation and partnership opportunities.
+Architecture
+Core Technology Stack
+Mastra Agent Framework: Uses @mastra/client-js to connect to cloud-hosted Mastra agent networks
+Streaming AI Interface: Real-time streaming responses using AI SDK's createUIMessageStream
+TypeScript + Zod: Fully typed schemas for all AI data structures and responses
+Next.js API Routes: RESTful endpoints for chat management and message persistence
+Memory Persistence: Thread-based conversation memory with cross-session continuity
+Agent Network: "sonar-discovery-network"
+The system implements a 4-agent coordinated network:
+🔍 Business Search Agent: Multi-platform discovery across government registries, industry directories (FishingBooker, Viator), social media, and review platforms
+📞 Contact Research Agent: Deep website analysis, contact extraction, and verification
+✅ Quality Assurance Agent: Business legitimacy validation with 0-100 scoring system
+🗺️ Geographic Specialist: Location-specific research and market coverage analysis
+Implementation Details
+API Architecture (apps/support/app/api/chat/route.ts)
+Apply to OrderLineVar...
+)
+Data Structures
+Lead Data Schema - Comprehensive business information structure:
+Apply to OrderLineVar...
+}
+UI Components
+ChatView Component - Main chat interface with:
+Real-time streaming responses
+Thread-based conversation history
+Structured prompt suggestions
+Auto-animated message rendering
+Session persistence and management
+Message Parts System - Modular rendering for different response types:
+TextPart: Standard text responses
+LeadDataPart: Structured business data display
+RoutingStepPart: Agent routing decisions
+InitialLeadDataPart: Discovery results
+SourceUrlPart: Reference links and citations
+Memory & Persistence
+Thread Management: Automatic thread creation and retrieval per user
+Cross-Session Memory: Agents remember context across conversations
+Message History: Full conversation persistence with metadata
+Token Management: Smart memory compression when approaching limits
+Key Features
+✅ Implemented Features
+Multi-Agent Coordination: Specialized agents working in concert
+Real-Time Streaming: Live response updates as agents work
+Structured Data Output: Standardized business information format
+Quality Scoring: Automated lead qualification (0-100 scale)
+Memory Persistence: Cross-session learning and context retention
+Source Attribution: Complete citation of discovery sources
+🚧 Framework Ready (Tools in Development)
+Multi-Platform Search: Government registries, industry directories, social platforms
+Contact Verification: Cross-source validation and scoring
+Geographic Intelligence: Market analysis and coverage optimization
+Quality Feedback Loop: Iterative refinement based on results
+Configuration
+Environment Setup:
+Apply to OrderLineVar...
+"
+Agent Network Configuration - Currently cloud-hosted at vally.mastra.cloud with production-ready infrastructure.
+For Your Implementation
+Key Differences for Local Mastra Setup:
+No Cloud Client: Replace MastraClient with local Mastra agent network initialization
+Local Agent Definitions: Define agent tools and workflows directly in your Next.js project
+Local Memory: Implement local memory persistence (file system, database, or Redis)
+Direct Streaming: Stream directly from local agent execution rather than cloud API
+Architecture to Replicate:
+Multi-step streaming responses with typed schemas
+Modular UI components for different response types
+Thread-based conversation memory
+Step-by-step agent coordination with routing logic
+Real-time progress updates during agent execution
+The system demonstrates sophisticated AI orchestration with excellent UX - users see live progress as agents research, discover, and validate business information in real-time.
