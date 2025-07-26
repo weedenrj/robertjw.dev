@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:nextjs\" \"npm run dev:mastra\"",
     "dev:nextjs": "tinacms dev --datalayer-port 8081 -c 'next dev --turbopack'",
-    "build": "tinacms build --skip-search-indexing && next build",
+    "build": "tinacms build --skip-search-index && next build",
     "dev:mastra": "mastra dev --dir mastra",
     "build:mastra": "mastra build --dir mastra",
-    "start": "tinacms build --skip-search-indexing && next start",
+    "start": "tinacms build --skip-search-index && next start",
     "lint": "next lint",
     "check-types": "tsc --noEmit"
   },
