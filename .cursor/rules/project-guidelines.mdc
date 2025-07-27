@@ -1,47 +1,110 @@
 
 
-# Project Development Guidelines
+# Project Guidelines
 
-You are a helpful AI coding assistant working on Robert Weeden's personal portfolio website. You follow high coding standards and understand modern web development practices. Your role is to help implement features, fix bugs, and maintain the codebase according to established patterns.
+## Project Overview
+PersonalSiteV4 is a professional portfolio website built with Next.js 15, featuring modern authentication, responsive design, and constant-based content management.
 
-## About This Project
-This is a personal portfolio website built with Next.js 14, showcasing Robert's work as a software engineer. The site features content management through TinaCMS, responsive design, and modern web development practices.
+## Key Features
+- **Modern Tech Stack**: Next.js 15 with App Router, TypeScript, TailwindCSS
+- **Authentication**: NextAuth v5 with Google OAuth and calendar integration
+- **Content Management**: TypeScript constants for maintainable static content
+- **Responsive Design**: Mobile-first approach with dark/light themes
+- **Performance**: Optimized images, lazy loading, and efficient bundling
 
-## Tech Stack
-- **Frontend**: Next.js 14 with App Router, React 18, TypeScript
-- **Styling**: TailwindCSS for responsive design
-- **Content Management**: TinaCMS for blog posts, portfolio items, and site content
-- **Email**: React Email with Resend integration
-- **State Management**: Jotai for global state
-- **Icons**: FontAwesome for consistent iconography
+## Development Principles
 
-## Rule File Organization
+### Code Quality
+- **TypeScript First**: All code written in TypeScript with strict types
+- **Component-Based**: Reusable, composable React components
+- **Consistent Styling**: TailwindCSS with custom design system
+- **Performance Optimized**: Image optimization, lazy loading, efficient bundles
 
-This file serves as the master coordination file for development practices. The detailed guidelines are split across specialized documents:
+### Content Management
+- **Static Constants**: All content defined in TypeScript files
+- **Type Safety**: Interfaces ensure data consistency
+- **Version Controlled**: Content changes tracked in git
+- **Easy Updates**: Direct code editing with IDE support
 
-- **communication.mdc**: Communication style and development interaction guidelines
-- **project-workflows.mdc**: Content management and site update workflows
-- **tech-stack.mdc**: Technical architecture and system documentation  
-- **development-practices.mdc**: Code standards, development practices, and technical implementation guidelines
+### Authentication & Security
+- **OAuth Integration**: Google OAuth for secure authentication
+- **Protected Routes**: Automatic auth checks for sensitive areas
+- **Calendar Access**: Google Calendar API integration for scheduling
+- **Environment Security**: Sensitive data in environment variables
 
-## General Development Principles
+### User Experience
+- **Responsive Design**: Works seamlessly on all device sizes
+- **Dark/Light Themes**: User preference with system detection
+- **Fast Loading**: Optimized performance and lazy loading
+- **Accessible**: Following WCAG guidelines for accessibility
 
-### Quality-First Thinking
-- Understand the purpose and context before implementing features
-- Consider impact on site performance, SEO, and user experience
-- Prioritize clean, maintainable code over clever solutions
-- Design with responsive design and accessibility in mind
+## Project Structure
 
-### Modern Web Development Mindset
-- Leverage existing patterns and components rather than creating new ones
-- Understand how changes affect the complete user experience
-- Consider implications across the entire site ecosystem
-- Maintain consistency with established design and coding patterns
+```
+PersonalSiteV4/
+├── app/                 # Next.js App Router pages
+├── components/          # Reusable React components
+├── constants/           # Static data and configuration
+│   └── data/           # Content constants
+├── lib/                # Utility functions
+├── hooks/              # Custom React hooks
+├── types/              # TypeScript definitions
+├── public/             # Static assets
+└── mastra/             # Mastra AI integration
+```
 
-### Excellence Standards
-- Follow established patterns documented in the specialized rule files
-- Prioritize simplicity and maintainability over complex solutions
-- Ensure changes work seamlessly within the existing site architecture
-- Test changes within the context of real user interactions
+## Development Standards
 
-Refer to the specialized files for detailed guidance in each area.
+### File Organization
+- **Components**: One component per file, named exports
+- **Constants**: Organized by content type in `constants/data/`
+- **Utilities**: Pure functions in `lib/` directory
+- **Types**: Shared types in dedicated files
+
+### Naming Conventions
+- **Files**: PascalCase for components, camelCase for utilities
+- **Components**: PascalCase with descriptive names
+- **Constants**: camelCase with clear descriptive names
+- **Types**: PascalCase interfaces, descriptive property names
+
+### Content Structure
+- **Modular**: Each content type in separate files
+- **Typed**: All data validated by TypeScript interfaces
+- **Consistent**: Follow established patterns for new content
+- **Documented**: Clear property names and structure
+
+## Testing & Quality Assurance
+
+### Type Safety
+- **Strict TypeScript**: Enabled strict mode for type checking
+- **Interface Compliance**: All data must match defined interfaces
+- **IDE Support**: Full autocomplete and error detection
+
+### Performance
+- **Image Optimization**: All images optimized and properly sized
+- **Bundle Analysis**: Regular check of bundle sizes
+- **Lazy Loading**: Components and images loaded as needed
+
+### Browser Compatibility
+- **Modern Browsers**: Support for latest 2 versions
+- **Progressive Enhancement**: Core functionality works without JS
+- **Responsive Testing**: Tested on various screen sizes
+
+## Maintenance Guidelines
+
+### Content Updates
+1. Identify correct constant file in `constants/data/`
+2. Update TypeScript constants directly
+3. Verify types and build successfully
+4. Test changes across affected components
+
+### Adding New Features
+1. Create TypeScript interfaces for new data structures
+2. Add constants following established patterns
+3. Build components with proper error handling
+4. Update documentation and type exports
+
+### Performance Monitoring
+- **Core Web Vitals**: Monitor loading performance
+- **Bundle Size**: Keep JavaScript bundles optimized
+- **Image Performance**: Ensure images are properly optimized

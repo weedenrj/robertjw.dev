@@ -1,10 +1,9 @@
 import clsx from "clsx";
-import { TinaResponse } from "constants/types";
 import Image from "next/image";
-import { SkillsQuery } from "tina/__generated__/types";
+import { Skill } from "constants/types";
 
 export type SkillCardProps = {
-  skill: TinaResponse<SkillsQuery>["data"]["skills"]
+  skill: Skill
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function SkillCard({

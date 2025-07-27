@@ -1,28 +1,14 @@
 'use client'
 
+import React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Icon, IconProps } from "./icon/Icon"
+import { MenuItem } from "constants/types";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
-import { Icon, IconProps } from "./icon/Icon";
-import { Menu } from "tina/__generated__/types";
 
 export type NavbarProps = {
-  menuItems: {
-    __typename: "Menu";
-    id: string;
-    name: string;
-    link: string;
-    icon: string;
-    enabled?: boolean;
-    _sys: {
-      __typename?: "SystemInfo";
-      filename: string;
-      basename: string;
-      breadcrumbs: string[];
-      path: string;
-      relativePath: string;
-      extension: string;
-    };
-  }[]
+  menuItems: MenuItem[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Navbar({
@@ -49,12 +35,13 @@ export function Navbar({
               'FaWrench': 'Wrench',
               'FaBlogger': 'PenToSquare', // Using PenToSquare for blog
               'FaFileAlt': 'DownloadFile', // Using DownloadFile for file
+              'FaAddressBook': 'AddressCard', // Using AddressCard for contact
             }
 
             const iconName = iconMapping[item.icon] || 'Home' // Default fallback
 
             return (
-              <li key={index}>
+              <li key={item.id}>
                 <a
                   className={clsx("flex h-20 w-20 cursor-pointer flex-col items-center",
                     "justify-center bg-codeBlue bg-opacity-10 text-[0.8125rem] font-medium",

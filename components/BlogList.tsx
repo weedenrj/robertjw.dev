@@ -1,9 +1,9 @@
-import { Blogs } from "tina/__generated__/types";
+import { Blog } from "constants/types";
 import BlogCard from "./BlogCard";
 import clsx from "clsx";
 
 export type BlogListProps = {
-  availableBlogs: Blogs[]
+  availableBlogs: Blog[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function BlogList({
@@ -13,16 +13,14 @@ export function BlogList({
   ...rest
 }: BlogListProps) {
   return (
-    <div className={clsx(className, "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 mt-[30px]",
-      "grid gap-x-10 gap-y-7 mb-6"
-    )}
-      {...rest}
-    >
-      {availableBlogs.filter(Boolean).map((item, index) => (
-        <BlogCard key={index} blog={item} />
+    <div className={clsx("grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-[30px]", className)} {...rest}>
+      {availableBlogs.map((item) => (
+        <div key={item.id} className="">
+          <BlogCard details={item} />
+        </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default BlogList;
+export default BlogList

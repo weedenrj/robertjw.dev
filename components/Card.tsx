@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Education, Experience } from "tina/__generated__/types";
+import { Education, Experience } from "constants/types";
 
 export type CardProps = {
   details: Experience | Education

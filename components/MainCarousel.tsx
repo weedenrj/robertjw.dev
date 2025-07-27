@@ -1,17 +1,16 @@
 'use client'
 
 import Slider from "react-slick";
-import { Clients, ClientsQuery } from "tina/__generated__/types";
+import { Clients, ClientsQuery } from "constants/types";
 import clsx from "clsx";
 import Image from "next/image";
-import { TinaResponse } from "constants/types";
 import useInterval from "hooks/UseInterval";
 import ms from "ms";
 import { useState } from "react";
 import { getCircularIndex } from "utils/collection";
 
 export type MainCarouselProps = {
-  clients: TinaResponse<ClientsQuery>["data"]["clients"]["clientImg"]
+  clients: ClientsQuery["clientImg"]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function MainCarousel({

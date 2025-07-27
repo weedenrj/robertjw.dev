@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  serverExternalPackages: ["@mastra/*"],
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.tina.io"
+        hostname: "assets.example.com"
       },
       {
         protocol: "https",
@@ -14,6 +12,14 @@ const nextConfig = {
       }
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: "/resume",
+        destination: "/Robert Weeden Resume July 2024.pdf"
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig

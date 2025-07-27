@@ -1,88 +1,57 @@
-import { Portfolio } from './../tina/__generated__/types.d';
-import client from "tina/__generated__/client";
+import {
+  progressBar,
+  knowledges,
+  experience,
+  education,
+  menuItems,
+  personalInfo,
+  clients,
+  skills,
+  portfolio,
+  portfolioFilters,
+  blogs
+} from "constants/data"
 
 export async function getProgressBars() {
-  const progressBarConnection = await client.queries.progressBarConnection();
-  const progressBars = progressBarConnection.data.progressBarConnection.edges
-    ?.map(progress => progress.node).filter(Boolean) || []
-
-  return progressBars
+  return progressBar
 }
 
 export async function getKnowledges() {
-  const knowledgesConnection = await client.queries.knowledgesConnection();
-  const knowledges = knowledgesConnection.data.knowledgesConnection.edges
-    ?.map(know => know.node).filter(Boolean) || []
-
-  return knowledges
+  return [knowledges]
 }
 
 export async function getExperiences() {
-  const experienceConnection = await client.queries.experienceConnection();
-  const knowledges = experienceConnection.data.experienceConnection.edges
-    ?.map(experience => experience.node).filter(Boolean) || []
-
-  return knowledges
+  return experience
 }
 
 export async function getEducations() {
-  const educationConnection = await client.queries.educationConnection();
-  const knowledges = educationConnection.data.educationConnection.edges
-    ?.map(education => education.node).filter(Boolean) || []
-
-  return knowledges
+  return education
 }
 
 export async function getMenu() {
-  const menuConnection = await client.queries.menuConnection();
-  const menu = menuConnection.data.menuConnection.edges
-    ?.map(menu => menu.node).filter(Boolean) || []
-
-  return menu
+  return menuItems
 }
 
 export async function getPersonalInfo() {
-  const personalInfoQuery = await client.queries.personalInfo({ relativePath: "/info.md" });
-  const personalInfo = personalInfoQuery.data.personalInfo
-
   return personalInfo
 }
 
 export async function getClients() {
-  const clientsConnection = await client.queries.clients({ relativePath: "index.md" });
-  const clients = clientsConnection.data.clients
-
   return clients
 }
 
 export async function getSkills() {
-  const skillsConnection = await client.queries.skillsConnection();
-  const skills = skillsConnection.data.skillsConnection.edges
-    ?.map(skill => skill.node).filter(Boolean) || []
-
   return skills
 }
 
 export async function getPortfolio() {
-  const portfolioConnection = await client.queries.portfolioConnection();
-  const portfolio = portfolioConnection.data.portfolioConnection.edges
-    ?.map(work => work.node).filter(Boolean) || []
-
   return portfolio
 }
 
 export async function getPortfolioFilters() {
-  const portfolioFiltersConnection = await client.queries.portfolioFiltersConnection();
-  const filters = portfolioFiltersConnection.data.portfolioFiltersConnection.edges
-    ?.map(filter => filter.node).filter(Boolean) || []
-
-  return filters
+  return portfolioFilters
 }
 
 export async function getBlogs() {
-  const blogsConnection = await client.queries.blogsConnection();
-  const blogs = blogsConnection.data.blogsConnection.edges
-    ?.map(blog => blog.node).filter(Boolean) || []
-
   return blogs
 }

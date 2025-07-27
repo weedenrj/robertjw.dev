@@ -1,11 +1,11 @@
+import React from "react"
+import { PersonalInfoQuery } from "constants/types";
 import { Icon } from "./icon/Icon";
-import { PersonalInfoQuery } from "tina/__generated__/types";
 import clsx from "clsx";
-import { TinaResponse } from "constants/types";
 import Image from "next/image";
 
 export type SidebarProps = {
-  personalInfo: TinaResponse<PersonalInfoQuery>["data"]["personalInfo"]
+  personalInfo: PersonalInfoQuery
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Sidebar({

@@ -1,135 +1,111 @@
 npm run de
 
-# Personal Portfolio Tech Stack & Architecture Guide
+# Tech Stack Overview
+
+## Core Technologies
+- **Framework**: Next.js 15.4.4 with App Router
+- **Authentication**: NextAuth v5 with Google OAuth
+- **Styling**: TailwindCSS with custom design system
+- **Content Management**: TypeScript constants for static content
+- **State Management**: Jotai for client state
 
 ## Project Structure
-- **Single Application**: Next.js 14 app with App Router
-- **Content Management**: TinaCMS for blog posts, portfolio items, and site content
-- **File Organization**: 
-  - `app/` - Next.js pages and layouts
-  - `components/` - Reusable React components
-  - `content/` - TinaCMS content collections
-  - `utils/` - Utility functions and helpers
+- `app/` - Next.js app router pages and layouts
+- `components/` - Reusable React components  
+- `constants/` - Static data and configuration
+- `lib/` - Utility functions and API integrations
+- `hooks/` - Custom React hooks
+- `types/` - TypeScript type definitions
 
-## Tech Stack Overview
-- **Frontend**: Next.js 14, React 18, TypeScript, TailwindCSS
-- **State**: Jotai for global state management
-- **Content**: TinaCMS for content management and editing
-- **Email**: React Email with Resend integration
-- **Icons**: FontAwesome icons
-- **Styling**: TailwindCSS with custom design system
+## Key Features
+- **Content**: Static TypeScript constants for all site content
+- **Authentication**: Google OAuth with calendar permissions
+- **Responsive**: Mobile-first responsive design
+- **Performance**: Optimized images and lazy loading
 
-## Content Management System
+### Content Management
 
-### TinaCMS Collections
-- **Personal Info**: Basic information, contact details, social links
-- **Skills**: Technical skills with descriptions and icons
-- **Portfolio**: Project showcases with images, descriptions, and links
-- **Blog Posts**: Technical writing and articles
-- **Experience**: Work history and professional background
-- **Education**: Academic background and certifications
-- **Menu**: Navigation structure and links
+All site content is managed through TypeScript constants in the `constants/data/` directory:
 
-### Content Structure
-All content is stored as Markdown files with frontmatter in the `content/` directory:
-- `content/personalInfo/` - About section content
-- `content/skills/` - Technical skills and capabilities
-- `content/portfolio/` - Project portfolio items
-- `content/blogs/` - Blog posts and articles
-- `content/experience/` - Work experience entries
-- `content/education/` - Educational background
+- `menu.ts` - Navigation menu items
+- `personalInfo.ts` - About section and contact info  
+- `skills.ts` - Services and skills offered
+- `portfolio.ts` - Portfolio projects with details
+- `experience.ts` - Work experience timeline
+- `education.ts` - Education history
+- `progressBar.ts` - Skill progress indicators
+- `portfolioFilters.ts` - Portfolio filtering categories
+- `knowledges.ts` - Additional skills and knowledge areas
+- `blogs.ts` - Blog posts (if used)
+- `clients.ts` - Client logos and project images
 
-## Key Systems & Components
+### Data Structure
 
-### What is the Header component?
-`components/Header.tsx` - Main navigation component with responsive design, dark mode toggle, and menu management.
+Each data file exports:
+1. **TypeScript interfaces** - Define the shape of the data
+2. **Constant arrays/objects** - The actual content data
+3. **Type exports** - For use throughout the application
 
-### What is the Portfolio component?
-`components/Portfolio.tsx` and `components/PortfolioCard.tsx` - Display portfolio projects with filtering, modal views, and responsive grid layout.
+Example structure:
+```typescript
+export interface Skill {
+  id: string
+  skill: string
+  about: string
+  img: string
+  bgColor: string
+}
 
-### How does the blog system work?
-- **Blog listing**: `components/BlogList.tsx` displays all blog posts
-- **Blog cards**: `components/BlogCard.tsx` shows individual post previews
-- **Content**: Stored in `content/blogs/` as Markdown files
-- **Routing**: Next.js App Router handles blog post pages
+export const skills: Skill[] = [
+  // ... skill data
+]
+```
 
-### How does the contact system work?
-- **Contact form**: `components/ContactForm.tsx` handles user inquiries
-- **Email integration**: React Email templates for form submissions
-- **Resend**: Email delivery service for contact form processing
+### Content Updates
 
-### How does the carousel work?
-`components/MainCarousel.tsx` - Displays portfolio highlights and client work using React Slick for smooth transitions and responsive behavior.
+To update site content:
+1. Navigate to the appropriate file in `constants/data/`
+2. Modify the constant data directly
+3. TypeScript will validate the changes
+4. Rebuild the site to see updates
 
-### How does TinaCMS editing work?
-- **Admin interface**: Accessible at `/admin` for content editing
-- **Live preview**: Real-time content updates during editing
-- **Collections**: Defined in `tina/config.js` for different content types
-- **Media management**: File uploads and asset management through TinaCMS
+### Common Content Tasks
 
-## Component Architecture
+**Adding a new portfolio item:**
+1. Edit `constants/data/portfolio.ts`
+2. Add new object to the `portfolio` array
+3. Include all required fields (title, category, tags, etc.)
 
-### Shared Components
-- **Modal**: `components/Modal.tsx` - Reusable modal component for portfolio and content display
-- **Card**: `components/Card.tsx` - Base card component for consistent styling
-- **Tag**: `components/Tag.tsx` - Skill and category tags
-- **ProgressBar**: `components/ProgressBar.tsx` - Skill level visualization
-- **Icon**: `components/icon/Icon.tsx` - FontAwesome icon wrapper
+**Updating personal information:**
+1. Edit `constants/data/personalInfo.ts`
+2. Modify the `personalInfo` object
+3. Update bio text in the `body` field
 
-### Layout Components
-- **Sidebar**: `components/Sidebar.tsx` - Mobile navigation and profile summary
-- **Navbar**: `components/Navbar.tsx` - Desktop navigation
-- **Header**: `components/Header.tsx` - Main site header with navigation
+**Adding menu items:**
+1. Edit `constants/data/menu.ts`
+2. Add new item to `menuItems` array
+3. Set `enabled: true` to show in navigation
 
-### Content Components
-- **SkillCard**: `components/SkillCard.tsx` - Individual skill display
-- **PortfolioCard**: `components/PortfolioCard.tsx` - Portfolio project preview
-- **BlogCard**: `components/BlogCard.tsx` - Blog post preview
+### Benefits of Constant-Based Content
 
-## Styling & Design System
+- **Type Safety**: TypeScript ensures data integrity
+- **Version Control**: All content changes tracked in git
+- **Performance**: No external dependencies or API calls
+- **Simplicity**: Direct code editing with IDE support
+- **Offline**: No external dependencies for content
 
-### TailwindCSS Configuration
-- **Custom colors**: Defined in `tailwind.config.js` for consistent branding
-- **Responsive design**: Mobile-first approach with breakpoint consistency
-- **Dark mode**: System-based dark/light theme switching
-- **Typography**: Custom font configurations and text shadow utilities
+## Authentication System
 
-### Design Patterns
-- **Grid layouts**: Responsive grid systems for portfolio and skills
-- **Card-based design**: Consistent card components throughout the site
-- **Animation**: Subtle transitions and hover effects
-- **Accessibility**: Focus states and semantic HTML structure
+- **Provider**: Google OAuth 2.0
+- **Permissions**: Email, profile, calendar access
+- **Session Management**: NextAuth v5 handles tokens
+- **Protected Routes**: Automatic redirect to login
 
-## Content Workflow
+## Development Workflow
 
-### Adding New Portfolio Items
-1. Access TinaCMS admin at `/admin`
-2. Navigate to Portfolio collection
-3. Create new portfolio item with:
-   - Title and description
-   - Technology tags
-   - Project images
-   - Live demo and repository links
-4. Content automatically appears on portfolio page
+1. **Local Development**: `npm run dev`
+2. **Type Checking**: `npm run check-types`
+3. **Linting**: `turbo lint`
+4. **Building**: `npm run build`
 
-### Publishing Blog Posts
-1. Create new blog post in TinaCMS admin
-2. Add frontmatter with title, date, excerpt
-3. Write content in Markdown format
-4. Add featured image and tags
-5. Publish to make live on blog section
-
-### Updating Personal Information
-1. Edit Personal Info collection in TinaCMS
-2. Update contact details, bio, social links
-3. Changes reflect immediately on About section
-
-## Development Essentials
-- **Package Manager**: NPM
-- **Lint Only**: Use `npm run lint`, never run the dev server during assistance
-- **State Management**: Immutable updates with spread operators
-- **Styling**: TailwindCSS utilities, custom design system  
-- **Testing**: Chat-based reasoning, no unit test execution
-
-- **Styling**: TailwindCSS utilities, custom UI components  
-- **Testing**: Chat-based reasoning, no unit test execution
+All content is statically defined, so no external setup required.

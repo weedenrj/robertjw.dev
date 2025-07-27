@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Modal from "./Modal";
-import { PortfolioQuery } from "tina/__generated__/types";
 import clsx from "clsx";
-import { TinaResponse } from "constants/types";
+import { Portfolio } from "constants/types";
 import Image from "next/image";
 import { Icon } from "./icon/Icon";
 
 export type PortfolioCardProps = {
-  details: TinaResponse<PortfolioQuery>["data"]["portfolio"]
+  details: Portfolio
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function PortfolioCard({

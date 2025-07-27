@@ -1,19 +1,22 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import React from "react"
 import { Icon } from "./icon/Icon";
-import clsx from "clsx";
-import { usePathname } from "next/navigation";
-import { MenuQuery } from "tina/__generated__/types";
-import { TinaResponse } from "constants/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { PersonalInfoQuery } from "constants/types";
+import { MenuQuery } from "constants/types";
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { AuthButton } from './AuthButton'
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import clsx from "clsx";
 
 const themeAtom = atomWithStorage('theme', "dark")
 
 export type HeaderProps = {
-  menuItems: TinaResponse<MenuQuery>["data"]["menu"][]
+  menuItems: MenuQuery
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Header({
@@ -96,6 +99,18 @@ export function Header({
           </li>
 
           {menuItems.filter(item => item.enabled).map((item, index) => {
+            // Map react-icons names to FontAwesome icon names
+            const iconMapping: Record<string, keyof typeof import("./icon/Icon.fontawesome").AppFontAwesomeIcons> = {
+              'FaUser': 'User',
+              'FaBriefcase': 'Building',
+              'FaWrench': 'Wrench',
+              'FaBlogger': 'PenToSquare',
+              'FaFileAlt': 'DownloadFile',
+              'FaAddressBook': 'AddressCard',
+            }
+
+            const iconName = iconMapping[item.icon] || 'Home' // Default fallback
+
             return (
               <li key={index}>
                 <a
@@ -108,7 +123,7 @@ export function Header({
                   href={item.link}
                 >
                   <span className="mr-2 text-xl">
-                    <Icon name={item.icon as keyof typeof import("./icon/Icon.fontawesome").AppFontAwesomeIcons} />
+                    <Icon name={iconName} />
                   </span>
                   {item.name}
                 </a>

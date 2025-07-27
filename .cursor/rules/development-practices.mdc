@@ -1,125 +1,128 @@
-# Development Practices & Code Standards
+# Development Practices
 
-## ALWAYS FOLLOW THESE RULES
-– Never, under any circumstance, read or write to .env files. If you feel a change is needed, recommend it in the chat.
-– Always prefer simple solutions
-- Keep it simple is more important than Don't Repeat Yourself
-– You are careful to only make changes that are requested or you are confident are well understood and related to the change being requested  
-– Keep the codebase very clean and organized  
-- This project favors clean, self documenting code
-- Write immutable code
-- Don't add semicolons to the end of lines
-- If you ever come across data that appears to be personal, immediately report it in the chat and delete it from your context.
-- Never access, scrape, or otherwise collect data from links that appear to belong to businesses or individuals
-- Never change configuration files without first getting approval in the chat.
-- Never write UseMemo or UseCallback, avoid useEffect unless absolutely needed
-- **NEVER write IIFEs (Immediately Invoked Function Expressions)**: They reduce code readability and violate the simplicity principle. Instead, declare variables above and use proper ternary or switch statements
+## Code Organization
 
-## Development Workflows
+### File Structure Best Practices
+1. **Components**: One component per file, clear naming, proper exports
+2. **Constants**: Organize data by type in `constants/data/` with TypeScript interfaces
+3. **Utilities**: Pure functions in `lib/` directory with clear responsibilities
+4. **Types**: Shared TypeScript definitions in dedicated files
 
-### Tool Usage Hierarchy & Workflow
-- **Smart tool usage**: Use semantic search only when encountering unfamiliar patterns or building new features in unexplored areas
-- **Leverage existing knowledge**: Check existing components and patterns first before searching for new solutions
-- **Efficient information gathering**: Batch tool calls only when genuinely needed - avoid searching for well-documented patterns
-- **Separate analysis from implementation**: Complete information gathering before code changes, but skip analysis for familiar patterns
-- **Only validation command**: Follow edits with `npm run lint` only, never attempt to run the project
+### Component Guidelines
+- **Single Responsibility**: Each component should have one clear purpose
+- **Props Interface**: Always define TypeScript interfaces for props
+- **Default Exports**: Use default exports for main components
+- **Named Exports**: Use named exports for utilities and types
 
-### When to Use Discovery Tools
-**USE codebase_search for:**
-- Building features in completely new areas not covered in existing components
-- Understanding complex integrations between unfamiliar systems
-- Finding patterns for advanced functionality not yet implemented
+### State Management
+- **Local State**: Use `useState` for component-specific state
+- **Global State**: Use Jotai atoms for shared state across components
+- **Server State**: Use Next.js server components for data fetching
+- **Form State**: Handle form state with controlled components
 
-**SKIP discovery tools for:**
-- Well-established patterns (components, pages, content management)
-- Simple component updates following existing patterns
-- UI components following established design patterns
-- Bug fixes in familiar code areas
+## TypeScript Best Practices
 
-### Pattern Discovery Protocol
-- **Check existing components first**: Look at similar components before creating new patterns
-- **Search only for unknowns**: Use semantic search for genuinely unfamiliar functionality
-- **Find reference implementations when needed**: Look for 2-3 examples when building in new domains
-- **Follow established architecture**: Use patterns from existing components and pages
-- **Document new patterns**: Note rationale only when creating genuinely new patterns
+### Type Definitions
+- **Interface First**: Define interfaces before implementing components
+- **Strict Types**: Avoid `any` types, use proper TypeScript typing
+- **Export Types**: Export interfaces from constant files for reuse
+- **Consistent Naming**: Use PascalCase for interfaces, descriptive names
 
-### Todo Creation Criteria
-**REQUIRED for:**
-- Any task with 3+ distinct implementation steps
-- Features that span multiple files or components  
-- When analysis reveals complex integration requirements
-- Multi-phase work where later phases depend on earlier completion
-- When you find multiple reference patterns and need to choose/adapt
-- Features that interact with existing systems (content management, routing, etc.)
+### Data Validation
+- **Compile-Time**: TypeScript interfaces catch errors at build time
+- **Runtime Safety**: Handle potential undefined/null values properly
+- **Type Guards**: Use type guards for runtime type checking when needed
 
-**NOT needed for:**
-- Single file edits with clear implementation path
-- Obvious bug fixes with known solutions
-- Simple refactoring tasks following existing patterns
-- Direct user questions without implementation needs
+## Content Management Practices
 
-## Code Style & Communication
-- **Variable naming**: Use descriptive names that explain the data (e.g., `isMenuOpen`, `portfolioProjects`, `skillCategories`, `blogPosts`)
-- **Comments**: Write comments very scarcely and only when absolutely necessary to describe a decision or provide 3rd party context
-- **Comment tone**: Match the existing conversational, direct tone found throughout the codebase - brief explanations of "why" rather than "what"
-- **Comment examples**: "// This helps avoid X issue", "// TODO: Refactor this when we add more portfolio categories", "// TinaCMS requires this format"
-- **Self-documenting code**: Variable and function names should be so clear that comments are rarely needed
+### Constant-Based Content
+1. **Data Structure**: Follow established patterns in `constants/data/`
+2. **Type Safety**: All content must conform to defined interfaces
+3. **Immutable Updates**: Treat constants as immutable, create new objects for changes
+4. **Validation**: TypeScript ensures data integrity at compile time
 
-## Pattern Analysis and Reuse
-- **Consistency over optimization**: Replicate existing patterns even if they seem suboptimal - consistency is more valuable than perfect efficiency
-- **Preserve existing behavior**: When adding new features, ensure they don't break or change existing functionality
+### Adding New Content Types
+1. **Define Interface**: Create TypeScript interface in the data file
+2. **Create Constants**: Export constant arrays/objects with proper typing
+3. **Update Collections**: Add getters to `lib/collections.ts` if needed
+4. **Test Components**: Ensure components handle the new data correctly
 
-## File Placement Decision Process
-1. **Follow existing patterns**: If `components/Header.tsx` exists, put navigation components nearby
-2. **Follow Next.js conventions**: Pages in `app/`, components in `components/`, utilities in `utils/`
-3. **Respect separation of concerns**: UI components vs utilities vs content vs API routes
-4. **TinaCMS structure**: Content files follow TinaCMS collection structure in `content/`
-5. **Search only when genuinely unclear**: Use semantic search only for truly ambiguous placement decisions
-
-## State Management Principles
-- **Understand reactive dependencies**: Know which computed values depend on state changes and will recalculate automatically
-- **Use immutable updates**: Always use spread operators (`{ ...state, ...update }`) for state modifications
-- **Understand existing state management**: Understand how and why existing state management works and decide if it can and should be reused
-- **Separate UI state from content**: Understand the difference between component state and TinaCMS content
-- **Map state transitions clearly**: Know exactly how UI state changes affect the user experience
-- **Plan immutable updates**: Design state shape for easy spreading and updating
-- **Consider cross-component effects**: How does this state affect other components or pages?
-
-## Error Recovery and Iteration
-When implementation doesn't match expectations:
-1. **Re-analyze before changing approach**: Search for more examples or different patterns
-2. **Check for missing context**: Read more of the surrounding code using parallel tool calls
-3. **Validate against reference implementations**: Compare your approach to working examples
-4. **Simplify rather than complicate**: Remove complexity before adding new patterns - keep it simple
-5. **Exhaust existing patterns**: Don't introduce new technology without fully exploring existing solutions
-
-## Debugging Methodology
-**Always Ask "Why" - Root Cause Analysis Protocol:**
-
-1. **Question Every Assumption**: When you see code that assumes something exists, ask "Why did they assume this?" 
-2. **Don't Jump to Conclusions**: Phrases like "I found the root cause" are premature. Root causes are often broader logical flaws, not just direct code insights
-3. **Ask Clarifying Questions**: If assumptions in existing code don't make sense, ask for clarification rather than assuming they're wrong
-4. **Distinguish Symptoms from Causes**: Null pointer errors are symptoms - the real question is why expected data is missing
-5. **Learn from What You Read**: When analyzing code, extract broader patterns and principles, not just the immediate technical details
-6. **Pragmatic Solutions**: Sometimes simple fixes (null checks) are better than complex refactoring for known edge cases. Not every issue needs architectural solutions.
+### Content Update Workflow
+1. **Identify File**: Find correct constant file in `constants/data/`
+2. **Edit Directly**: Modify TypeScript constants with IDE support
+3. **Type Check**: Run `npm run check-types` to validate changes
+4. **Test Locally**: Verify changes render correctly in browser
 
 ## Code Quality Standards
-**Functional Programming Requirements:**
-- **Use `const` exclusively**: Never use `let` or `var` - use map/reduce/filter transformations instead of loops
-- **Avoid imperative patterns**: No for loops, while loops, or manual iteration
-- **Immutable transformations**: Transform data through pure functions, never mutate existing objects
-- **Minimal comments**: Write self-documenting code with descriptive names instead of comments
-- **Avoid React hooks**: Never write useEffect, useCallback, or useMemo unless absolutely necessary - handle reactive updates in callbacks instead
 
-## Incremental Development
-- **Validate each phase**: Complete and test each phase before moving to the next
-- **Lint early and often**: Run `npm run lint` after significant changes to catch issues immediately
+### Comments and Documentation
+- **When to Comment**: Complex business logic, non-obvious code, external dependencies
+- **Comment Style**: Clear, concise explanations of "why" not "what"
+- **Component Documentation**: Brief JSDoc for complex components
+- **Comment examples**: "// This helps avoid X issue", "// TODO: Refactor this when we add more portfolio categories", "// Constants require this format"
 
-## Testing & Validation Approach
-- **Chat-based testing**: Reason through code behavior, edge cases, and integration points in conversation
-- **Code reasoning over execution**: Use code analysis and logical reasoning instead of running servers or unit tests
-- **Only `npm run lint`**: The only command to run is linting from the project root
-- **Never attempt to run the project**: No localhost servers, no unit test execution, no build commands
+### Error Handling
+- **Graceful Degradation**: Components should handle missing data gracefully
+- **Loading States**: Show appropriate loading/error states for async operations
+- **User Feedback**: Provide clear feedback for user actions and errors
 
-- **Only `turbo lint`**: The only command to run is occasional linting from the turborepo root
-- **Never attempt to run the project**: No localhost servers, no unit test execution, no build commands
+### Performance Considerations
+1. **Image Optimization**: Use Next.js Image component with proper sizing
+2. **Lazy Loading**: Implement lazy loading for below-fold content
+3. **Bundle Size**: Monitor and optimize JavaScript bundle sizes
+4. **Caching**: Leverage Next.js caching for static content
+
+## Component Patterns
+
+### Data Flow
+- **Props Down**: Pass data down through props, avoid prop drilling
+- **Events Up**: Handle events at appropriate component level
+- **Server Components**: Use server components for static content rendering
+- **Separate UI state from content**: Understand the difference between component state and static content
+
+### Reusability
+- **Generic Components**: Create reusable components with flexible props
+- **Composition**: Favor composition over inheritance for component reuse
+- **Consistent APIs**: Follow established patterns for similar components
+
+### Styling Patterns
+- **TailwindCSS**: Use utility classes for consistent styling
+- **Component Variants**: Use clsx for conditional styling
+- **Design System**: Follow established color, spacing, and typography patterns
+- **Responsive Design**: Mobile-first approach with responsive utilities
+
+## Testing Strategy
+
+### Type Safety Testing
+- **Compile-Time**: TypeScript catches type errors during development
+- **Build Testing**: Run `npm run build` to catch build-time issues
+- **Type Checking**: Regular `npm run check-types` validation
+
+### Manual Testing
+- **Cross-Browser**: Test in Chrome, Firefox, Safari
+- **Responsive**: Test on various screen sizes and orientations
+- **Performance**: Monitor Core Web Vitals and loading performance
+- **Accessibility**: Test with screen readers and keyboard navigation
+
+### Content Validation
+- **Data Integrity**: Ensure all required fields are populated
+- **Link Verification**: Test all external links work correctly
+- **Image Loading**: Verify all images load and display properly
+
+## Deployment Practices
+
+### Pre-Deployment Checklist
+1. **Type Check**: `npm run check-types` passes
+2. **Build Test**: `npm run build` completes successfully
+3. **Content Review**: All content is current and accurate
+4. **Performance**: Check Core Web Vitals and loading speed
+
+### Environment Management
+- **Environment Variables**: Keep sensitive data in `.env.local`
+- **Configuration**: Use environment-specific configurations
+- **Asset Optimization**: Ensure all images are optimized for web
+
+### Version Control
+- **Commit Messages**: Clear, descriptive commit messages
+- **Branch Strategy**: Feature branches for significant changes
+- **Content Tracking**: All content changes tracked in version control

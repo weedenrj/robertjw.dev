@@ -1,15 +1,15 @@
 'use client'
 
+import React, { useState } from "react";
 import PortfolioCard from "./PortfolioCard";
-import { useEffect, useRef, useState } from "react";
-import { PortfolioFiltersQuery, PortfolioQuery } from "tina/__generated__/types";
+import { useEffect, useRef } from "react";
+import { PortfolioFiltersQuery, PortfolioQuery } from "constants/types";
 import clsx from "clsx";
-import { TinaResponse } from "constants/types";
 import autoAnimate from "@formkit/auto-animate";
 
 export type PortfolioContentProps = {
-  portfolio: TinaResponse<PortfolioQuery>["data"]["portfolio"][]
-  filters: TinaResponse<PortfolioFiltersQuery>["data"]["portfolioFilters"][]
+  portfolio: PortfolioQuery
+  filters: PortfolioFiltersQuery
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function PortfolioContent({

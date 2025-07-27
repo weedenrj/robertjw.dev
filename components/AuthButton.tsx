@@ -37,6 +37,7 @@ export function AuthButton({ className }: AuthButtonProps) {
               className="w-full h-full object-cover"
               width={50}
               height={50}
+              unoptimized={session.user.image.includes('googleusercontent.com')}
             />
           ) : (
             <span id="theme-toggle-dark-icon" className="pointer-events-none dark:block">

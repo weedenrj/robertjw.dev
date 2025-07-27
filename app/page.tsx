@@ -2,7 +2,6 @@ import React from "react"
 import { getClients, getPersonalInfo, getSkills } from "lib/collections"
 import Sidebar from "components/Sidebar"
 import SkillCard from "components/SkillCard"
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import MainCarousel from "components/MainCarousel"
 import type { Metadata } from "next";
 
@@ -35,7 +34,7 @@ export default async function Home() {
         >
           <div className="col-span-12 space-y-2.5">
             <div className="leading-7 lg:mr-16 text-text-primary dark:text-main-text">
-              <TinaMarkdown content={personalInfo?.body} />
+              <p>{personalInfo?.body}</p>
             </div>
             <div></div>
           </div>
