@@ -5,7 +5,7 @@ import clsx from "clsx"
 
 interface FileUploadProps {
   onFileSelect: (file: File) => void
-  onFileUpload: (base64: string) => void
+  onFileUpload?: (dataUrl: string) => void // Keep for backward compatibility but make optional
   isLoading?: boolean
   accept?: string
   className?: string
@@ -31,14 +31,15 @@ export function FileUpload({
     setSelectedFile(file)
     onFileSelect(file)
 
-    // Convert to base64
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const base64 = e.target?.result as string
-      const base64Data = base64.split(',')[1] // Remove data:image/jpeg;base64, prefix
-      onFileUpload(base64Data)
+    // Keep backward compatibility with data URL callback if provided
+    if (onFileUpload) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const dataUrl = e.target?.result as string
+        onFileUpload(dataUrl)
+      }
+      reader.readAsDataURL(file)
     }
-    reader.readAsDataURL(file)
   }
 
   const handleDrag = (e: React.DragEvent) => {
@@ -71,7 +72,7 @@ export function FileUpload({
   return (
     <div className={clsx(className)}>
       <div
-        className={clsx("relative border-2 border-dashed rounded-xl p-8 text-center transition-colors",
+        className={clsx("relative border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer",
           dragActive ? "border-btn-primary bg-light-bg-three dark:bg-dark-bg-two" : "border-light-border dark:border-dark-border",
           "hover:border-btn-primary hover:bg-light-bg-three dark:hover:bg-dark-bg-two",
           isLoading && "opacity-50 pointer-events-none"
@@ -80,6 +81,7 @@ export function FileUpload({
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
+        onClick={() => !isLoading && inputRef.current?.click()}
       >
         <input
           ref={inputRef}
@@ -99,7 +101,7 @@ export function FileUpload({
                 {selectedFile.name}
               </div>
               <div className="text-xs text-gray-500 dark:text-main-text">
-                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB • {selectedFile.type}
               </div>
             </div>
           ) : (

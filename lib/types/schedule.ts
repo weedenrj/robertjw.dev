@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { UIMessage } from "ai"
 
 // Google Calendar Event Schema (based on googleapis)
 export const GoogleCalendarEventSchema = z.object({
@@ -43,11 +44,18 @@ export const ScheduleParsingResponseSchema = z.object({
   parsingNotes: z.string().optional() // Any notes from the agent about parsing
 })
 
+// useObject hook input schema for schedule parsing
+export const ScheduleParsingInputSchema = z.object({
+  imageData: z.string(), // Base64 string (without data URL prefix)
+  mimeType: z.string() // MIME type like "image/jpeg", "image/png"
+})
+
 // Type exports
 export type GoogleCalendarEvent = z.infer<typeof GoogleCalendarEventSchema>
 export type ScheduleEvent = z.infer<typeof ScheduleEventSchema>
 export type EventCardState = z.infer<typeof EventCardStateSchema>
 export type ScheduleParsingResponse = z.infer<typeof ScheduleParsingResponseSchema>
+export type ScheduleParsingInput = z.infer<typeof ScheduleParsingInputSchema>
 
 // Utility function to convert ScheduleEvent to GoogleCalendarEvent
 export function scheduleEventToGoogleEvent(
@@ -70,4 +78,46 @@ export function scheduleEventToGoogleEvent(
     },
     location: scheduleEvent.location
   }
-} 
+}
+
+// Utility function to extract base64 from data URL
+export function extractBase64FromDataUrl(dataUrl: string): string {
+  const base64Index = dataUrl.indexOf(',')
+  return base64Index !== -1 ? dataUrl.substring(base64Index + 1) : dataUrl
+}
+
+// AI SDK UI Message types for schedule parsing
+export type ScheduleParsingDataTypes = {
+  scheduleResponse: ScheduleParsingResponse
+  scheduleEvent: ScheduleEvent
+}
+
+export type ScheduleParsingMetadata = {
+  imageProcessed?: boolean
+  parsingAttempts?: number
+}
+
+// Custom UI Message type for streaming schedule parsing
+export type ScheduleUIMessage = UIMessage<
+  ScheduleParsingMetadata,
+  {
+    'event-card': {
+      event: ScheduleEvent
+      progress: number
+      status: 'parsing' | 'complete' | 'error'
+    }
+    'parsing-progress': {
+      totalFound: number
+      currentEvent: number
+      stage: 'analyzing' | 'extracting' | 'validating' | 'complete'
+      notes?: string
+    }
+    'parsing-complete': {
+      summary: ScheduleParsingResponse
+      finalStatus: 'success' | 'partial' | 'failed'
+    }
+  }
+>
+
+// Re-export UIMessage for the import
+export { type UIMessage } from 'ai' 

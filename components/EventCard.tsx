@@ -6,34 +6,38 @@ import { ScheduleEvent } from "../lib/types/schedule"
 
 interface EventCardProps {
   event: ScheduleEvent
-  onAccept: (event: ScheduleEvent) => Promise<void>
-  onReject: (eventId: string) => void
-  onRegenerate: (event: ScheduleEvent) => void
+  onAction: (action: 'accept' | 'reject' | 'regenerate' | 'add-to-calendar') => Promise<void>
   status: 'pending' | 'accepted' | 'rejected' | 'regenerating' | 'adding'
   className?: string
 }
 
 export function EventCard({
   event,
-  onAccept,
-  onReject,
-  onRegenerate,
+  onAction,
   status,
   className
 }: EventCardProps) {
   const [isProcessing, setIsProcessing] = useState(false)
 
-  const handleAccept = async () => {
+  const handleAction = async (action: 'accept' | 'reject' | 'regenerate' | 'add-to-calendar') => {
     setIsProcessing(true)
     try {
-      await onAccept(event)
+      await onAction(action)
     } finally {
       setIsProcessing(false)
     }
   }
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | undefined) => {
+    if (!dateString) {
+      return 'Loading...'
+    }
+
     const date = new Date(dateString)
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date'
+    }
+
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
@@ -41,9 +45,21 @@ export function EventCard({
     })
   }
 
-  const formatTime = (time: string) => {
+  const formatTime = (time: string | undefined) => {
+    if (!time || !time.includes(':')) {
+      return 'Loading...'
+    }
+
     const [hours, minutes] = time.split(':')
+    if (!hours || !minutes) {
+      return 'Loading...'
+    }
+
     const hour24 = parseInt(hours)
+    if (isNaN(hour24)) {
+      return 'Loading...'
+    }
+
     const ampm = hour24 >= 12 ? 'PM' : 'AM'
     const hour12 = hour24 % 12 || 12
     return `${hour12}:${minutes} ${ampm}`
@@ -75,7 +91,7 @@ export function EventCard({
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
           <h3 className="font-semibold text-lg text-text-primary dark:text-white">
-            {event.title}
+            {event.title || 'Loading event...'}
           </h3>
           <div className="flex items-center gap-2 mt-1">
             <span className="text-sm text-gray-600 dark:text-main-text">
@@ -90,7 +106,7 @@ export function EventCard({
 
         <div className="flex items-center gap-2">
           <span className={clsx("text-xs font-medium", getConfidenceColor())}>
-            {Math.round(event.confidence * 100)}%
+            {event.confidence ? Math.round(event.confidence * 100) : 0}%
           </span>
           {status === 'accepted' && (
             <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
@@ -127,7 +143,7 @@ export function EventCard({
         {status === 'pending' && (
           <>
             <button
-              onClick={handleAccept}
+              onClick={() => handleAction('add-to-calendar')}
               disabled={isProcessing}
               className={clsx("button-red-gradient px-4 py-2 text-sm flex-1",
                 isProcessing && "opacity-50 cursor-not-allowed"
@@ -139,11 +155,11 @@ export function EventCard({
                   Adding...
                 </div>
               ) : (
-                "Accept & Add to Calendar"
+                "Add to Calendar"
               )}
             </button>
             <button
-              onClick={() => onRegenerate(event)}
+              onClick={() => handleAction('regenerate')}
               disabled={isProcessing}
               className={clsx("px-4 py-2 rounded-lg border-[2px] border-yellow-500",
                 "text-sm font-medium text-yellow-700 dark:text-yellow-300",
@@ -155,7 +171,7 @@ export function EventCard({
               Regenerate
             </button>
             <button
-              onClick={() => onReject(event.id)}
+              onClick={() => handleAction('reject')}
               disabled={isProcessing}
               className={clsx("px-4 py-2 rounded-lg border-[2px] border-red-500",
                 "text-sm font-medium text-red-700 dark:text-red-300",
@@ -164,7 +180,7 @@ export function EventCard({
                 isProcessing && "opacity-50 cursor-not-allowed"
               )}
             >
-              Reject
+              Delete
             </button>
           </>
         )}
@@ -184,7 +200,7 @@ export function EventCard({
 
         {status === 'rejected' && (
           <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 py-2">
-            <span className="text-sm font-medium">× Rejected</span>
+            <span className="text-sm font-medium">× Deleted</span>
           </div>
         )}
 

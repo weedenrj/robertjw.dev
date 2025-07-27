@@ -4,11 +4,9 @@ import { useState, useEffect, Suspense } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import clsx from "clsx"
-import { AuthButton } from "../../components/AuthButton"
 import Link from "next/link"
 
-
-type ToolTab = "schedule-parser" 
+type ToolTab = "schedule-parser"
 
 const tools = [
   {
@@ -56,7 +54,7 @@ function ToolsContent() {
   // Show loading if session is still loading
   if (status === "loading") {
     return (
-      <div className="mx-4 md:mx-[60px] p-4 md:p-16 flex items-center justify-center min-h-[400px]">
+      <div className="px-4 sm:px-5 md:px-10 lg:px-[60px] py-12 flex items-center justify-center min-h-[400px]">
         <div className="flex items-center space-x-2">
           <div className="w-6 h-6 border-2 border-btn-primary border-t-transparent rounded-full animate-spin"></div>
           <span className="text-text-primary dark:text-main-text">Loading...</span>
@@ -71,50 +69,45 @@ function ToolsContent() {
   }
 
   return (
-    <div className="mx-4 md:mx-[60px] p-4 md:p-16">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex flex-col justify-center mb-4">
-          <div className="mb-6">
-            <nav className="text-sm text-text-primary dark:text-main-text">
-              <Link href="/tools" className="hover:text-btn-primary transition-colors">
-                Tools
-              </Link>
-            </nav>
-          </div>
-          <h1 className="text-[1.5625rem] font-semibold dark:text-white">
-            🤖 AI Tools
-          </h1>
-          <p className="text-text-primary dark:text-main-text mt-1">
-            Powerful AI-driven tools to enhance your productivity
-          </p>
-        </div>
-      </div>
+    <div className="">
+      <div className="px-4 sm:px-5 md:px-10 lg:px-[60px] py-12">
+        <h2 className={clsx("relative inline-block text-[2.5rem]",
+          "dark:text-white font-bold transform after:absolute after:md:w-[12rem]",
+          "after:left-[14rem] after:h-0.5 after:bg-gradient-to-r after:from-btn-secondary",
+          "after:to-btn-secondary after:content-[''] after:rounded-md after:transform",
+          "after:top-2/4 mb-12 md:mb-[30px]"
+        )}>
+          🤖 AI Tools
+        </h2>
+        <p className="text-text-primary dark:text-main-text mb-8">
+          Powerful AI-driven tools to enhance your productivity
+        </p>
 
-      {/* Quick Access Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {tools.map((tool) => (
-          <div
-            key={tool.id}
-            onClick={() => handleLaunchTool(tool.id)}
-            className={clsx("bg-white dark:bg-dark-primary rounded-xl p-6 cursor-pointer",
-              "dark:border-dark-border dark:border-2 transition-all duration-300",
-              "hover:shadow-lg hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-gray-50",
-              "dark:hover:from-dark-primary dark:hover:to-dark-bg-two"
-            )}
-          >
-            <div className="flex items-center mb-4">
-              <span className="text-3xl mr-4">{tool.icon}</span>
-              <h3 className="text-lg font-semibold dark:text-white">{tool.name}</h3>
+        {/* Quick Access Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {tools.map((tool) => (
+            <div
+              key={tool.id}
+              onClick={() => handleLaunchTool(tool.id)}
+              className={clsx("bg-white dark:bg-dark-primary rounded-xl p-6 cursor-pointer",
+                "dark:border-dark-border dark:border-2 transition-all duration-300",
+                "hover:shadow-lg hover:scale-105 hover:bg-gradient-to-br hover:from-white hover:to-gray-50",
+                "dark:hover:from-dark-primary dark:hover:to-dark-bg-two"
+              )}
+            >
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-4">{tool.icon}</span>
+                <h3 className="text-lg font-semibold dark:text-white">{tool.name}</h3>
+              </div>
+              <p className="text-text-primary dark:text-main-text text-sm mb-4">
+                {tool.description}
+              </p>
+              <div className="flex justify-end">
+                <span className="text-btn-primary text-sm font-medium">Launch →</span>
+              </div>
             </div>
-            <p className="text-text-primary dark:text-main-text text-sm mb-4">
-              {tool.description}
-            </p>
-            <div className="flex justify-end">
-              <span className="text-btn-primary text-sm font-medium">Launch →</span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -123,7 +116,7 @@ function ToolsContent() {
 export default function ToolsPage() {
   return (
     <Suspense fallback={
-      <div className="mx-4 md:mx-[60px] p-4 md:p-16 flex items-center justify-center min-h-[400px]">
+      <div className="px-4 sm:px-5 md:px-10 lg:px-[60px] py-12 flex items-center justify-center min-h-[400px]">
         <div className="flex items-center space-x-2">
           <div className="w-6 h-6 border-2 border-btn-primary border-t-transparent rounded-full animate-spin"></div>
           <span className="text-text-primary dark:text-main-text">Loading...</span>
