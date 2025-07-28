@@ -74,10 +74,8 @@ Use the helper functions in `lib/google-calendar.ts`:
 ```typescript
 import { listCalendarEvents, createCalendarEvent } from '@/lib/google-calendar'
 
-// List events
 const events = await listCalendarEvents(session.accessToken)
 
-// Create event
 await createCalendarEvent(session.accessToken, {
   summary: "Meeting",
   start: { dateTime: "2024-01-15T10:00:00-05:00" },

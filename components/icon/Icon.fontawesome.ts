@@ -24,9 +24,6 @@ import {
 import { config, library } from "@fortawesome/fontawesome-svg-core";
 import { faGoogle, faGithub, faLinkedin, faGitlab } from '@fortawesome/free-brands-svg-icons';
 
-/**
- * @see https://fontawesome.com/search?o=r&m=free
- */
 export const AppFontAwesomeIcons = {
   AddressCard: faAddressCard,
   Anchor: faAnchor,
@@ -44,7 +41,7 @@ export const AppFontAwesomeIcons = {
   BellSolid: faBellSolid,
   Building: faBuilding,
   BuildingSolid: solidBuilding,
-  BullHorn: faBullhorn, // Cool alert icon?
+  BullHorn: faBullhorn,
   Calendar: faCalendar,
   CalendarSolid: solidCalendar,
   CalendarCheck: faCalendarCheck,
@@ -121,7 +118,7 @@ export const AppFontAwesomeIcons = {
   RightLeft: faRightLeft,
   Ship: faShip,
   Shrimp: faShrimp,
-  Spinner: faCircleNotch, // faSpinner
+  Spinner: faCircleNotch,
   SquarePlus: faSquarePlus,
   Star: faStar,
   Tag: faTag,

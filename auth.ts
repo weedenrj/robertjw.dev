@@ -16,35 +16,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     })
   ],
   pages: {
-    signIn: '/auth/signin', // Custom sign-in page
-    error: '/auth/error',   // Custom error page
+    signIn: '/auth/signin',
+    error: '/auth/error',
   },
   callbacks: {
     async signIn({ user, account }) {
-      // Optional: Restrict access to specific email addresses
       const allowedEmails = process.env.ALLOWED_EMAILS?.split(',') || []
 
       if (allowedEmails.length > 0 && user.email) {
         return allowedEmails.includes(user.email)
       }
 
-      // If no allowed emails configured, allow all Google users
       return true
     },
     async jwt({ token, account }) {
-      // Persist the OAuth access_token for Google Calendar API
       if (account) {
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
         token.expiresAt = account.expires_at
       }
 
-      // Return previous token if the access token has not expired yet
       if (Date.now() < (token.expiresAt as number) * 1000) {
         return token
       }
 
-      // Access token has expired, try to refresh it
       if (token.refreshToken) {
         try {
           const response = await fetch("https://oauth2.googleapis.com/token", {
@@ -70,7 +65,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           }
         } catch (error) {
           console.error("Error refreshing access token", error)
-          // Return token with error flag so we can handle it in the session callback
           return { ...token, error: "RefreshAccessTokenError" }
         }
       }
@@ -78,7 +72,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token
     },
     async session({ session, token }) {
-      // Send properties to the client for Calendar API usage
       session.accessToken = token.accessToken as string
       session.refreshToken = token.refreshToken as string
       session.expiresAt = token.expiresAt as number

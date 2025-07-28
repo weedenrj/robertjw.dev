@@ -31,5 +31,4 @@ export const blogs: Blog[] = [
       blogImg: "/assets/blog-images/1.jpg"
     }
   }
-  // Note: Other blog entries would be added here if needed
 ] 

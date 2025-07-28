@@ -11,7 +11,6 @@ function SignInContent() {
   const error = searchParams.get('error')
   const callbackUrl = searchParams.get('callbackUrl') || '/'
 
-  // If there's an error, redirect to our custom error page
   useEffect(() => {
     if (error) {
       router.push(`/auth/error?error=${error}`)
@@ -25,7 +24,6 @@ function SignInContent() {
     })
   }
 
-  // Don't render the sign-in form if there's an error (we're redirecting)
   if (error) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">

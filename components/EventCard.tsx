@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import clsx from "clsx"
-import { ScheduleEvent } from "../lib/types/schedule"
+import { ScheduleEvent } from "../schemas/schedule-event"
 
 interface EventCardProps {
   event: ScheduleEvent
@@ -87,7 +87,6 @@ export function EventCard({
       getStatusColor(),
       className
     )}>
-      {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
           <h3 className="font-semibold text-lg text-text-primary dark:text-white">
@@ -121,7 +120,6 @@ export function EventCard({
         </div>
       </div>
 
-      {/* Details */}
       {(event.description || event.location) && (
         <div className="space-y-1 mb-4">
           {event.description && (
@@ -138,7 +136,6 @@ export function EventCard({
         </div>
       )}
 
-      {/* Actions */}
       <div className="flex gap-2 pt-3 border-t border-light-border dark:border-dark-border">
         {status === 'pending' && (
           <>

@@ -1,12 +1,8 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 
-/**
- * @see [Hook Docs](https://usehooks-ts.com/react-hook/use-interval)
- */
 function useInterval(callback: () => void, delay: number | undefined, deps = []) {
   const savedCallback = useRef(callback)
 
-  // Remember the latest callback if it changes.
   useLayoutEffect(() => {
     savedCallback.current = callback
   }, [callback])

@@ -1,51 +1,14 @@
-import { z } from "zod"
 import { UIMessage } from "ai"
 import { calendar_v3 } from 'googleapis'
+import { ScheduleEventSchema, type ScheduleEvent } from '../../schemas/schedule-event'
+import { EventCardStateSchema, type EventCardState } from '../../schemas/event-card-state'
+import { ScheduleParsingResponseSchema, type ScheduleParsingResponse } from '../../schemas/schedule-parsing-response'
+import { ScheduleParsingInputSchema, type ScheduleParsingInput } from '../../schemas/schedule-parsing-input'
 
-// Re-export the proper Google Calendar Event type from googleapis
 export type GoogleCalendarEvent = calendar_v3.Schema$Event
+export { ScheduleEventSchema, EventCardStateSchema, ScheduleParsingResponseSchema, ScheduleParsingInputSchema }
+export type { ScheduleEvent, EventCardState, ScheduleParsingResponse, ScheduleParsingInput }
 
-// Parsed Schedule Event Schema (what the agent returns)
-export const ScheduleEventSchema = z.object({
-  id: z.string(), // Generated UUID for frontend tracking
-  title: z.string(),
-  date: z.string(), // YYYY-MM-DD format
-  startTime: z.string(), // HH:MM format
-  endTime: z.string(), // HH:MM format
-  description: z.string().optional(),
-  location: z.string().optional(),
-  confidence: z.number().min(0).max(1) // Agent confidence in parsing (0-1)
-})
-
-// Event Card State for UI
-export const EventCardStateSchema = z.object({
-  id: z.string(),
-  event: ScheduleEventSchema,
-  status: z.enum(['pending', 'accepted', 'rejected', 'regenerating', 'adding']),
-  googleEventId: z.string().optional() // Set after successful calendar creation
-})
-
-// Schedule Parsing Response from Agent
-export const ScheduleParsingResponseSchema = z.object({
-  events: z.array(ScheduleEventSchema),
-  monthYear: z.string(), // "December 2024" format
-  totalEvents: z.number(),
-  parsingNotes: z.string().optional() // Any notes from the agent about parsing
-})
-
-// useObject hook input schema for schedule parsing
-export const ScheduleParsingInputSchema = z.object({
-  imageData: z.string(), // Base64 string (without data URL prefix)
-  mimeType: z.string() // MIME type like "image/jpeg", "image/png"
-})
-
-// Type exports
-export type ScheduleEvent = z.infer<typeof ScheduleEventSchema>
-export type EventCardState = z.infer<typeof EventCardStateSchema>
-export type ScheduleParsingResponse = z.infer<typeof ScheduleParsingResponseSchema>
-export type ScheduleParsingInput = z.infer<typeof ScheduleParsingInputSchema>
-
-// Utility function to convert ScheduleEvent to GoogleCalendarEvent
 export function scheduleEventToGoogleEvent(
   scheduleEvent: ScheduleEvent,
   timeZone: string = "America/New_York"
@@ -68,13 +31,11 @@ export function scheduleEventToGoogleEvent(
   }
 }
 
-// Utility function to extract base64 from data URL
 export function extractBase64FromDataUrl(dataUrl: string): string {
   const base64Index = dataUrl.indexOf(',')
   return base64Index !== -1 ? dataUrl.substring(base64Index + 1) : dataUrl
 }
 
-// AI SDK UI Message types for schedule parsing
 export type ScheduleParsingDataTypes = {
   scheduleResponse: ScheduleParsingResponse
   scheduleEvent: ScheduleEvent
@@ -85,7 +46,6 @@ export type ScheduleParsingMetadata = {
   parsingAttempts?: number
 }
 
-// Custom UI Message type for streaming schedule parsing
 export type ScheduleUIMessage = UIMessage<
   ScheduleParsingMetadata,
   {
@@ -106,6 +66,3 @@ export type ScheduleUIMessage = UIMessage<
     }
   }
 >
-
-// Re-export UIMessage for the import
-export { type UIMessage } from 'ai' 

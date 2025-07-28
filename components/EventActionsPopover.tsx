@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
-import { ScheduleEvent, GoogleCalendarEvent } from '../lib/types/schedule'
+import { ScheduleEvent } from '../schemas/schedule-event'
+import { GoogleCalendarEvent } from '../lib/types/schedule'
 
 interface EventActionsPopoverProps {
   isOpen: boolean
@@ -68,7 +69,6 @@ export function EventActionsPopover({
     return `${hour12}:${minutes} ${ampm}`
   }
 
-  // Generate hourly timeline (6 AM to 11 PM)
   const generateTimeline = () => {
     const hours = []
     for (let i = 6; i <= 23; i++) {
@@ -80,7 +80,6 @@ export function EventActionsPopover({
     return hours
   }
 
-  // Get events for the selected day
   const getEventsForDay = () => {
     if (!selectedDate) return { proposed: [], google: [] }
 
@@ -99,18 +98,16 @@ export function EventActionsPopover({
     }
   }
 
-  // Convert time to hour position for timeline
   const getEventPosition = (startTime: string, endTime: string) => {
     const start = parseInt(startTime.split(':')[0]) + parseInt(startTime.split(':')[1]) / 60
     const end = parseInt(endTime.split(':')[0]) + parseInt(endTime.split(':')[1]) / 60
 
-    // Calculate position relative to 6 AM (start of timeline)
-    const startPos = ((start - 6) / 18) * 100 // 18 hours total (6 AM to 11 PM)
+    const startPos = ((start - 6) / 18) * 100
     const height = ((end - start) / 18) * 100
 
     return {
       top: `${Math.max(0, startPos)}%`,
-      height: `${Math.max(2, height)}%` // Minimum 2% height for visibility
+      height: `${Math.max(2, height)}%`
     }
   }
 
@@ -126,7 +123,6 @@ export function EventActionsPopover({
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
     >
-      {/* Backdrop */}
       <div
         className={clsx(
           "absolute inset-0 bg-black transition-opacity duration-150",
@@ -135,7 +131,6 @@ export function EventActionsPopover({
         onClick={onClose}
       />
 
-      {/* Popover */}
       <div
         ref={popoverRef}
         className={clsx(
@@ -150,7 +145,6 @@ export function EventActionsPopover({
           minHeight: '600px'
         }}
       >
-        {/* Header */}
         <div className="p-4 border-b border-gray-200 dark:border-dark-border">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-text-primary dark:text-white">
@@ -170,13 +164,10 @@ export function EventActionsPopover({
           </p>
         </div>
 
-        {/* Main Content */}
         <div className="flex h-[500px]">
-          {/* Timeline View - Left Side */}
           <div className="flex-1 p-4 border-r border-gray-200 dark:border-dark-border">
             <div className="h-full overflow-y-auto">
               <div className="relative" style={{ minHeight: '450px' }}>
-                {/* Hour Labels */}
                 {timeline.map((hour, index) => (
                   <div
                     key={hour.hour}
@@ -187,7 +178,6 @@ export function EventActionsPopover({
                   </div>
                 ))}
 
-                {/* Timeline Grid */}
                 <div className="absolute left-16 right-0 top-0 bottom-0">
                   {timeline.map((_, index) => (
                     <div
@@ -197,7 +187,6 @@ export function EventActionsPopover({
                     />
                   ))}
 
-                  {/* Google Calendar Events */}
                   {google.map((event) => {
                     const startTime = event.start?.dateTime
                       ? dayjs(event.start.dateTime).format('HH:mm')
@@ -219,8 +208,6 @@ export function EventActionsPopover({
                       </div>
                     )
                   })}
-
-                  {/* Proposed Events */}
                   {proposed.map((event) => {
                     const position = getEventPosition(event.startTime, event.endTime)
 
@@ -241,7 +228,6 @@ export function EventActionsPopover({
             </div>
           </div>
 
-          {/* Action Panel - Right Side */}
           <div className="w-80 p-4">
             <h4 className="font-medium text-text-primary dark:text-white mb-4">
               Proposed Events ({proposed.length})

@@ -11,7 +11,10 @@ import { EventActionsPopover } from "../../../components/EventActionsPopover"
 import { experimental_useObject as useObject } from "@ai-sdk/react"
 import { z } from "zod"
 import { useMonthlyCalendarEvents, useAddCalendarEvent } from "../../../hooks/useGoogleCalendar"
-import { scheduleEventToGoogleEvent, ScheduleEvent, GoogleCalendarEvent } from "../../../lib/types/schedule"
+import { scheduleEventToGoogleEvent, GoogleCalendarEvent } from "../../../lib/types/schedule"
+import { ScheduleEvent } from "../../../schemas/schedule-event"
+import { ScheduleParsingResponseSchema } from '../../../schemas/schedule-parsing-response'
+
 import dayjs from 'dayjs'
 
 interface CalendarEvent {
@@ -27,36 +30,15 @@ interface CalendarEvent {
   }
 }
 
-// Define the same Zod schema as the backend
-const scheduleEventSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  date: z.string(),
-  startTime: z.string(),
-  endTime: z.string(),
-  description: z.string(),
-  location: z.string(),
-  confidence: z.number().min(0).max(1)
-})
-
-const scheduleParsingResponseSchema = z.object({
-  events: z.array(scheduleEventSchema),
-  monthYear: z.string(),
-  totalEvents: z.number(),
-  parsingNotes: z.string()
-})
-
 export default function ScheduleParserPage() {
   const { data: session, status: sessionStatus } = useSession()
   const router = useRouter()
   const pathname = usePathname()
 
-  // State for file handling and image preview
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [hasInteracted, setHasInteracted] = useState(false)
 
-  // State for proposed events and parsing
   const [proposedEvents, setProposedEvents] = useState<ScheduleEvent[]>([])
   const [parsingProgress, setParsingProgress] = useState({
     stage: 'idle' as 'idle' | 'analyzing' | 'extracting' | 'complete',
@@ -64,19 +46,16 @@ export default function ScheduleParserPage() {
     notes: ''
   })
 
-  // State for popover
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showPopover, setShowPopover] = useState(false)
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 })
 
-  // Get current month's Google Calendar events
   const { data: googleEvents = [], isLoading: isLoadingGoogleEvents, error: calendarError } = useMonthlyCalendarEvents()
   const addCalendarEventMutation = useAddCalendarEvent()
 
-  // AI parsing setup
   const { object, submit, isLoading, error, stop } = useObject({
     api: '/api/schedule-parser',
-    schema: scheduleParsingResponseSchema,
+    schema: ScheduleParsingResponseSchema,
     onFinish: ({ object: finalObject, error: finishError }) => {
       if (finalObject?.events) {
         setProposedEvents(finalObject.events)
@@ -92,7 +71,6 @@ export default function ScheduleParserPage() {
     }
   })
 
-  // Watch for partial object updates during streaming
   useEffect(() => {
     if (object?.events) {
       const validEvents = object.events.filter(event =>
@@ -114,7 +92,6 @@ export default function ScheduleParserPage() {
     }
   }, [object])
 
-  // Debug proposed events whenever they change
   useEffect(() => {
     console.log('📊 Proposed events state updated:', {
       count: proposedEvents.length,
@@ -123,7 +100,6 @@ export default function ScheduleParserPage() {
     })
   }, [proposedEvents])
 
-  // Auth redirect
   useEffect(() => {
     if (sessionStatus === "loading") return
     if (!session) {
@@ -131,7 +107,6 @@ export default function ScheduleParserPage() {
     }
   }, [session, sessionStatus, router, pathname])
 
-  // Auto-process file when selected
   const handleFileSelect = (file: File) => {
     setSelectedFile(file)
     setHasInteracted(true)
@@ -142,14 +117,12 @@ export default function ScheduleParserPage() {
       notes: 'Starting analysis...'
     })
 
-    // Create image preview
     const reader = new FileReader()
     reader.onload = (e) => {
       setImagePreview(e.target?.result as string)
     }
     reader.readAsDataURL(file)
 
-    // Auto-submit for processing
     const processingReader = new FileReader()
     processingReader.onload = () => {
       const dataUrl = processingReader.result as string
@@ -173,7 +146,6 @@ export default function ScheduleParserPage() {
     processingReader.readAsDataURL(file)
   }
 
-  // Handle day click on calendar
   const handleDayClick = (date: Date, events: CalendarEvent[]) => {
     const proposedEventsForDay = proposedEvents.filter(event =>
       dayjs(event.date).isSame(dayjs(date), 'day')
@@ -183,24 +155,19 @@ export default function ScheduleParserPage() {
     setShowPopover(true)
   }
 
-  // Handle proposed event actions
   const handleProposedEventAction = async (eventId: string, action: 'approve' | 'deny' | 'regenerate') => {
     const event = proposedEvents.find(e => e.id === eventId)
     if (!event) return
 
     try {
       if (action === 'approve') {
-        // Convert to Google Calendar format and add to calendar
         const googleEvent = scheduleEventToGoogleEvent(event)
         await addCalendarEventMutation.mutateAsync(googleEvent)
 
-        // Remove from proposed events
         setProposedEvents(prev => prev.filter(e => e.id !== eventId))
       } else if (action === 'deny') {
-        // Simply remove from proposed events
         setProposedEvents(prev => prev.filter(e => e.id !== eventId))
       } else if (action === 'regenerate') {
-        // TODO: Implement regeneration logic
         console.log('Regenerate event:', eventId)
       }
     } catch (error) {
@@ -208,7 +175,6 @@ export default function ScheduleParserPage() {
     }
   }
 
-  // Reset function
   const handleReset = () => {
     setProposedEvents([])
     setSelectedFile(null)
@@ -222,7 +188,6 @@ export default function ScheduleParserPage() {
 
   return (
     <div className="px-4 sm:px-5 md:px-10 lg:px-[60px] py-12">
-      {/* Header */}
       <div className="mb-6">
         <Link
           href="/tools"
@@ -244,7 +209,6 @@ export default function ScheduleParserPage() {
         Upload your work schedule image to see proposed events overlaid on your calendar
       </p>
 
-      {/* File Upload Section */}
       {!imagePreview && (
         <div className={clsx("bg-light-bg dark:bg-dark-bg-two rounded-xl",
           "dark:border-dark-border dark:border-2 p-6 mb-6"
@@ -263,7 +227,6 @@ export default function ScheduleParserPage() {
         </div>
       )}
 
-      {/* Image Preview */}
       {imagePreview && (
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -287,7 +250,6 @@ export default function ScheduleParserPage() {
         </div>
       )}
 
-      {/* Real-time Progress Display */}
       {(isLoading || parsingProgress.stage !== 'idle') && (
         <div className={clsx("mb-6 p-4 rounded-lg border-2",
           error
@@ -347,11 +309,10 @@ export default function ScheduleParserPage() {
         </div>
       )}
 
-      {/* Calendar View */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-text-primary dark:text-white">
-            Calendar View
+
             {proposedEvents.length > 0 && (
               <span className="ml-2 text-sm font-normal text-blue-600 dark:text-blue-400">
                 ({proposedEvents.length} proposed events)
@@ -379,20 +340,8 @@ export default function ScheduleParserPage() {
           proposedEvents={proposedEvents}
           onDayClick={handleDayClick}
         />
-
-        {/* Debug info */}
-        <div className="mt-4 p-2 bg-gray-100 dark:bg-gray-800 rounded text-xs">
-          Debug: {proposedEvents.length} proposed events, {googleEvents.length} Google events
-        </div>
-
-        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-          <p className="text-sm text-blue-700 dark:text-blue-300">
-            💡 Click on any day to see a timeline view with your existing events. Days with proposed events have light blue backgrounds and show additional options to approve, deny, or regenerate detected work shifts.
-          </p>
-        </div>
       </div>
 
-      {/* Event Actions Popover */}
       <EventActionsPopover
         isOpen={showPopover}
         onClose={() => setShowPopover(false)}
@@ -407,7 +356,6 @@ export default function ScheduleParserPage() {
         onAction={handleProposedEventAction}
       />
 
-      {/* Summary Information */}
       {object?.monthYear && parsingProgress.stage === 'complete' && (
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
           <h4 className="font-medium text-green-800 dark:text-green-200 mb-2">
@@ -421,7 +369,6 @@ export default function ScheduleParserPage() {
         </div>
       )}
 
-      {/* Empty State */}
       {hasInteracted && proposedEvents.length === 0 && !isLoading && !selectedFile && (
         <div className="text-center py-12">
           <div className="text-4xl mb-4">📅</div>

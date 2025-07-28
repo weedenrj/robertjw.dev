@@ -61,7 +61,6 @@ export default function ToolsPage() {
             Powerful AI-driven tools to enhance your productivity
           </p>
 
-          {/* Quick Access Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {tools.map((tool) => (
               <Link

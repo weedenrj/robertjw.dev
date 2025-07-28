@@ -14,14 +14,14 @@ export function reverseInCopy<T>(from: T[]): T[] {
 export function chunk<T>(items: T[], chunkSize: number) {
   return items.reduce((all, one, i) => {
     const ch = Math.floor(i / chunkSize);
-    // @ts-ignore
+
     all[ch] = [].concat((all[ch] || []), one)
     return all
   }, [])
 }
 
 export function chunkBy<T, K>(items: T[], getKey: (item: T, i: number) => K) {
-  // Using an array maintains the order of items in the order they are received
+
   const chunks: { key: K, values: T[] }[] = []
   for (let i = 0; i < items.length; i++) {
     const item = items[i]

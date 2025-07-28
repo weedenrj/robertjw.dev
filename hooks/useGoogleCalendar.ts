@@ -91,7 +91,7 @@ export function useGoogleCalendarColors() {
   return useQuery({
     queryKey: ['googleCalendarColors'],
     queryFn: fetchCalendarColors,
-    staleTime: 60 * 60 * 1000, // 1 hour (colors don't change often)
+    staleTime: 60 * 60 * 1000,
     retry: 2,
   })
 }
@@ -100,7 +100,7 @@ export function useGoogleCalendarEvents(params: FetchEventsParams = {}) {
   return useQuery({
     queryKey: ['googleCalendarEvents', params],
     queryFn: () => fetchCalendarEvents(params),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
     retry: 2,
   })
 }
@@ -111,13 +111,11 @@ export function useAddCalendarEvent() {
   return useMutation({
     mutationFn: addCalendarEvent,
     onSuccess: () => {
-      // Invalidate and refetch calendar events
       queryClient.invalidateQueries({ queryKey: ['googleCalendarEvents'] })
     },
   })
 }
 
-// Hook to get events for a specific month
 export function useMonthlyCalendarEvents(year?: number, month?: number) {
   const targetDate = dayjs()
     .year(year || dayjs().year())

@@ -5,7 +5,7 @@ import clsx from "clsx"
 
 interface FileUploadProps {
   onFileSelect: (file: File) => void
-  onFileUpload?: (dataUrl: string) => void // Keep for backward compatibility but make optional
+  onFileUpload?: (dataUrl: string) => void
   isLoading?: boolean
   accept?: string
   className?: string
@@ -31,7 +31,6 @@ export function FileUpload({
     setSelectedFile(file)
     onFileSelect(file)
 
-    // Keep backward compatibility with data URL callback if provided
     if (onFileUpload) {
       const reader = new FileReader()
       reader.onload = (e) => {

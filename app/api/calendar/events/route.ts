@@ -40,7 +40,6 @@ export async function GET(request: NextRequest) {
     const timeMin = searchParams.get('timeMin')
     const timeMax = searchParams.get('timeMax')
 
-    // Fetch events from Google Calendar
     const events = await listCalendarEvents(
       session.accessToken,
       calendarId,

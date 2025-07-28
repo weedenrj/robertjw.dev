@@ -56,10 +56,8 @@
 ## Code Quality Standards
 
 ### Comments and Documentation
-- **When to Comment**: Complex business logic, non-obvious code, external dependencies
-- **Comment Style**: Clear, concise explanations of "why" not "what"
-- **Component Documentation**: Brief JSDoc for complex components
-- **Comment examples**: "// This helps avoid X issue", "// TODO: Refactor this when we add more portfolio categories", "// Constants require this format"
+- **When to Comment**: Never write any comments
+
 
 ### Error Handling
 - **Graceful Degradation**: Components should handle missing data gracefully

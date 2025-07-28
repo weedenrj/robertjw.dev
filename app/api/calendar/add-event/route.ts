@@ -16,11 +16,9 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
 
-    // Use the proper Google Calendar Event type
     const event = body.event as calendar_v3.Schema$Event
     const calendarId = body.calendarId || 'primary'
 
-    // Add event to Google Calendar
     const eventResponse = await createCalendarEvent(
       session.accessToken,
       event,

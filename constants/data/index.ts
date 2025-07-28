@@ -1,4 +1,3 @@
-// Export all data types and constants
 export * from './menu'
 export * from './skills'
 export * from './personalInfo'

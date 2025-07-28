@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { Calendar, dayjsLocalizer, Views } from 'react-big-calendar'
 import dayjs from 'dayjs'
 import { useGoogleCalendarColors } from '../hooks/useGoogleCalendar'
-import { ScheduleEvent, GoogleCalendarEvent } from '../lib/types/schedule'
+import { ScheduleEvent } from '../schemas/schedule-event'
+import { GoogleCalendarEvent } from '../lib/types/schedule'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
-// Setup dayjs localizer
 const localizer = dayjsLocalizer(dayjs)
 
 interface CalendarEvent {
@@ -40,12 +40,11 @@ export function ScheduleCalendar({
 }: ScheduleCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const { data: colorData } = useGoogleCalendarColors()
+  console.log(proposedEvents)
 
-  const calendarEvents = useMemo(() => {
-    const events: CalendarEvent[] = []
 
-    // Add Google Calendar events
-    googleEvents.forEach(gEvent => {
+  const calendarEvents = [
+    ...googleEvents.reduce<CalendarEvent[]>((events, gEvent) => {
       if (gEvent.start?.dateTime || gEvent.start?.date) {
         const startDate = gEvent.start.dateTime
           ? new Date(gEvent.start.dateTime)
@@ -73,10 +72,9 @@ export function ScheduleCalendar({
           }
         })
       }
-    })
-
-    // Add proposed events
-    proposedEvents.forEach((pEvent, index) => {
+      return events
+    }, []),
+    ...proposedEvents.reduce<CalendarEvent[]>((events, pEvent, index) => {
       if (pEvent.date && pEvent.startTime && pEvent.endTime && pEvent.title) {
         const startDateTime = dayjs(`${pEvent.date}T${pEvent.startTime}:00`)
         const endDateTime = dayjs(`${pEvent.date}T${pEvent.endTime}:00`)
@@ -95,10 +93,9 @@ export function ScheduleCalendar({
           })
         }
       }
-    })
-
-    return events
-  }, [googleEvents, proposedEvents, colorData])
+      return events
+    }, [])
+  ]
 
   const handleSelectSlot = useCallback(({ start }: { start: Date }) => {
     const dayEvents = calendarEvents.filter(event =>

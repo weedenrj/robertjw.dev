@@ -46,7 +46,6 @@ export function AuthButton({ className }: AuthButtonProps) {
           )}
         </button>
 
-        {/* Dropdown menu on hover */}
         <div className="absolute right-0 top-12 lg:top-14 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
           <div className="p-3 border-b border-gray-200 dark:border-gray-700">
             <div className="text-sm font-medium text-gray-900 dark:text-white">
@@ -67,7 +66,6 @@ export function AuthButton({ className }: AuthButtonProps) {
     )
   }
 
-  // Create sign-in URL with current page as callback
   const signInUrl = `/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`
 
   return (

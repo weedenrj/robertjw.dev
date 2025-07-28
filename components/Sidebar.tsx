@@ -21,7 +21,6 @@ export function Sidebar({
     )}
       {...rest}
     >
-      {/* <!-- profile image --> */}
       <Image
         src="/assets/about/portrait.webp"
         className="absolute left-[50%] transform -translate-x-[50%] drop-shadow-xl mx-auto rounded-[20px] -mt-[140px]"
@@ -64,7 +63,6 @@ export function Sidebar({
             </a>
           )}
 
-          {/* <!-- upwork icon and link --> */}
           {personalInfo.information?.socialMedia.upwork && (
             <a
               href={personalInfo.information?.socialMedia.upwork}
@@ -78,7 +76,6 @@ export function Sidebar({
             </a>
           )}
 
-          {/* <!-- linkedin icon and link --> */}
           {personalInfo.information?.socialMedia.linkedIn && (
             <a
               href={personalInfo.information?.socialMedia.linkedIn}
@@ -93,7 +90,6 @@ export function Sidebar({
           )}
 
         </div>
-        {/* <!-- personal information start --> */}
         <div className="p-7 rounded-2xl mt-7 bg-light-bg-five dark:bg-dark-mobile-primary">
 
           <div className="flex border-b border-light-border-two dark:border-dark-border-two pb-2.5">
@@ -150,8 +146,6 @@ export function Sidebar({
             </div>
           </div>
         </div>
-        {/* <!-- personal infomation end--> */}
-        {/* <!-- download button --> */}
         <button className="flex items-center text-lg text-white transition-all ease-in-out duration-200 mt-6 mx-auto px-8 py-3 rounded-[35px] bg-gradient-to-r from-btn-secondary to-btn-primary hover:bg-gradient-to-r hover:from-btn-primary hover:to-btn-secondary">
           <img className="mr-3" src="/assets/icons/dowanload.png" alt="icon" />
           <a href="/Robert Weeden Resume July 2024.pdf" download aria-label="Download resume">

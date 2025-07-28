@@ -28,17 +28,16 @@ export function Navbar({
       <nav className="hidden lg:block">
         <ul className="flex">
           {menuItems.filter(item => item.enabled).map((item, index) => {
-            // Map react-icons names to FontAwesome icon names
             const iconMapping: Record<string, IconProps["name"]> = {
               'FaUser': 'User',
-              'FaBriefcase': 'Building', // Using Building as closest alternative
+              'FaBriefcase': 'Building',
               'FaWrench': 'Wrench',
-              'FaBlogger': 'PenToSquare', // Using PenToSquare for blog
-              'FaFileAlt': 'DownloadFile', // Using DownloadFile for file
-              'FaAddressBook': 'AddressCard', // Using AddressCard for contact
+              'FaBlogger': 'PenToSquare',
+              'FaFileAlt': 'DownloadFile',
+              'FaAddressBook': 'AddressCard',
             }
 
-            const iconName = iconMapping[item.icon] || 'Home' // Default fallback
+            const iconName = iconMapping[item.icon] || 'Home'
 
             return (
               <li key={item.id}>

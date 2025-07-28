@@ -14,7 +14,6 @@ const ENV = {
   isBeta: isProcessDev,
 
   socials: {
-    // Socials
     Instagram: "https://www.instagram.com/redshedmadison/",
     Facebook: "https://www.facebook.com/profile.php?id=100049266175993",
     TwitterX: "https://twitter.com/TheRealRedShed",
@@ -65,20 +64,6 @@ const ENV = {
       smallImg: "/LIT_Stock.png",
       bigImg: "/LIT_Stock_Big.png",
     },
-    // NerdsDrink: {
-    //   id: "NerdsDrink",
-    //   title: "Nerds Shot and Drink",
-    //   text: "",
-    //   smallImg: "/LIT_Stock.png",
-    //   bigImg: "/LIT_Stock_Big.png",
-    // },
-    // WhiteWilley: {
-    //   id: "WhiteWilley",
-    //   title: "White Willey Shot and Drink",
-    //   text: "",
-    //   smallImg: "/LIT_Stock.png",
-    //   bigImg: "/LIT_Stock_Big.png",
-    // },
   },
 }
 

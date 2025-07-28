@@ -88,10 +88,8 @@ export function Header({
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <nav className={clsx(!showMenu ? "hidden" : "lg:hidden")}>
         <ul className="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-30 max-w-[1052px] w-full bg-white dark:bg-dark-mobile-primary">
-          {/* Mobile Auth Button */}
           <li className="border-b border-gray-200 dark:border-gray-700">
             <div className="p-4">
               <AuthButton />
@@ -99,7 +97,6 @@ export function Header({
           </li>
 
           {menuItems.filter(item => item.enabled).map((item, index) => {
-            // Map react-icons names to FontAwesome icon names
             const iconMapping: Record<string, keyof typeof import("./icon/Icon.fontawesome").AppFontAwesomeIcons> = {
               'FaUser': 'User',
               'FaBriefcase': 'Building',
@@ -109,7 +106,7 @@ export function Header({
               'FaAddressBook': 'AddressCard',
             }
 
-            const iconName = iconMapping[item.icon] || 'Home' // Default fallback
+            const iconName = iconMapping[item.icon] || 'Home'
 
             return (
               <li key={index}>

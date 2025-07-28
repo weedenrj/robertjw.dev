@@ -27,7 +27,6 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Fetch color definitions from Google Calendar
     const colors = await getCalendarColors(session.accessToken)
 
     return NextResponse.json({

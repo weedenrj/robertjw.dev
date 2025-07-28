@@ -1,4 +1,3 @@
-// Import our local data types
 import type {
   MenuItem,
   Skill,
@@ -13,7 +12,6 @@ import type {
   Blog
 } from './data'
 
-// Re-export all types for easy importing
 export type {
   MenuItem,
   Skill,
@@ -28,7 +26,6 @@ export type {
   Blog
 }
 
-// Simplified query types for direct usage
 export type MenuQuery = MenuItem[]
 export type SkillsQuery = Skill[]
 export type PersonalInfoQuery = PersonalInfo
