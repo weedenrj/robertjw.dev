@@ -50,7 +50,6 @@ PersonalSiteV4/
 ├── hooks/              # Custom React hooks
 ├── types/              # TypeScript definitions
 ├── public/             # Static assets
-└── mastra/             # Mastra AI integration
 ```
 
 ## Development Standards

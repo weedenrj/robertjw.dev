@@ -8,7 +8,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       authorization: {
         params: {
-          scope: "openid email profile https://www.googleapis.com/auth/calendar"
+          scope: "openid email profile https://www.googleapis.com/auth/calendar",
+          access_type: "offline",
+          prompt: "consent"
         }
       }
     })
@@ -36,6 +38,43 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.refreshToken = account.refresh_token
         token.expiresAt = account.expires_at
       }
+
+      // Return previous token if the access token has not expired yet
+      if (Date.now() < (token.expiresAt as number) * 1000) {
+        return token
+      }
+
+      // Access token has expired, try to refresh it
+      if (token.refreshToken) {
+        try {
+          const response = await fetch("https://oauth2.googleapis.com/token", {
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              client_id: process.env.GOOGLE_CLIENT_ID!,
+              client_secret: process.env.GOOGLE_CLIENT_SECRET!,
+              grant_type: "refresh_token",
+              refresh_token: token.refreshToken as string,
+            }),
+            method: "POST",
+          })
+
+          const tokens = await response.json()
+
+          if (!response.ok) throw tokens
+
+          return {
+            ...token,
+            accessToken: tokens.access_token,
+            expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in),
+            refreshToken: tokens.refresh_token ?? token.refreshToken,
+          }
+        } catch (error) {
+          console.error("Error refreshing access token", error)
+          // Return token with error flag so we can handle it in the session callback
+          return { ...token, error: "RefreshAccessTokenError" }
+        }
+      }
+
       return token
     },
     async session({ session, token }) {
@@ -43,6 +82,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.accessToken = token.accessToken as string
       session.refreshToken = token.refreshToken as string
       session.expiresAt = token.expiresAt as number
+      session.error = token.error as string
       return session
     }
   },

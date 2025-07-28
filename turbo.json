@@ -10,23 +10,11 @@
         "!.next/cache/**"
       ]
     },
-    "build:mastra": {
-      "dependsOn": [
-        "^build:mastra"
-      ],
-      "outputs": [
-        ".mastra/**"
-      ]
-    },
     "dev": {
       "persistent": true,
       "cache": false
     },
     "dev:nextjs": {
-      "persistent": true,
-      "cache": false
-    },
-    "dev:mastra": {
       "persistent": true,
       "cache": false
     },

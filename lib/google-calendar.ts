@@ -12,14 +12,32 @@ export async function getGoogleCalendarClient(accessToken: string) {
   })
 }
 
-export async function listCalendarEvents(accessToken: string, calendarId = 'primary') {
+export async function getCalendarColors(accessToken: string) {
+  try {
+    const calendar = await getGoogleCalendarClient(accessToken)
+
+    const response = await calendar.colors.get()
+    return response.data
+  } catch (error) {
+    console.error('Error fetching calendar colors:', error)
+    throw error
+  }
+}
+
+export async function listCalendarEvents(
+  accessToken: string,
+  calendarId = 'primary',
+  timeMin?: string,
+  timeMax?: string
+) {
   try {
     const calendar = await getGoogleCalendarClient(accessToken)
 
     const response = await calendar.events.list({
       calendarId,
-      timeMin: new Date().toISOString(),
-      maxResults: 10,
+      timeMin: timeMin || new Date().toISOString(),
+      timeMax: timeMax,
+      maxResults: 50,
       singleEvents: true,
       orderBy: 'startTime',
     })
