@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createCalendarEvent } from "../../../../lib/google-calendar"
-import { GoogleCalendarEventSchema } from "../../../../lib/types/schedule"
 import { auth } from "../../../../auth"
+import { calendar_v3 } from 'googleapis'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,14 +16,14 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
 
-    // Validate the request body
-    const validatedEvent = GoogleCalendarEventSchema.parse(body.event)
+    // Use the proper Google Calendar Event type
+    const event = body.event as calendar_v3.Schema$Event
     const calendarId = body.calendarId || 'primary'
 
     // Add event to Google Calendar
     const eventResponse = await createCalendarEvent(
       session.accessToken,
-      validatedEvent as any,
+      event,
       calendarId
     )
 

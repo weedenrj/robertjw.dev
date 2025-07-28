@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback } from 'react'
 import { Calendar, dayjsLocalizer, Views } from 'react-big-calendar'
 import dayjs from 'dayjs'
 import { useGoogleCalendarColors } from '../hooks/useGoogleCalendar'
+import { ScheduleEvent, GoogleCalendarEvent } from '../lib/types/schedule'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 // Setup dayjs localizer
@@ -18,18 +19,18 @@ interface CalendarEvent {
     isProposed?: boolean
     googleColor?: string
     confidence?: number
-    originalEvent?: any
+    originalEvent?: GoogleCalendarEvent | ScheduleEvent
   }
 }
 
 interface ScheduleCalendarProps {
-  googleEvents: any[]
-  proposedEvents: any[]
+  googleEvents: GoogleCalendarEvent[]
+  proposedEvents: ScheduleEvent[]
   onDayClick?: (date: Date, events: CalendarEvent[]) => void
   onProposedEventAction?: (eventId: string, action: 'approve' | 'deny' | 'regenerate') => void
 }
 
-const BLUEBERRY_COLOR = '#4285f4' // Google's Blueberry color for proposed events
+const BLUEBERRY_COLOR = '#4285f4'
 
 export function ScheduleCalendar({
   googleEvents = [],
@@ -38,41 +39,30 @@ export function ScheduleCalendar({
   onProposedEventAction
 }: ScheduleCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-
-  // Fetch Google Calendar color definitions
   const { data: colorData } = useGoogleCalendarColors()
 
-  // Convert events to calendar format
   const calendarEvents = useMemo(() => {
     const events: CalendarEvent[] = []
-
-    console.log('ScheduleCalendar: Processing events', {
-      googleEventsCount: googleEvents.length,
-      proposedEventsCount: proposedEvents.length,
-      proposedEvents: proposedEvents
-    })
 
     // Add Google Calendar events
     googleEvents.forEach(gEvent => {
       if (gEvent.start?.dateTime || gEvent.start?.date) {
         const startDate = gEvent.start.dateTime
           ? new Date(gEvent.start.dateTime)
-          : new Date(gEvent.start.date)
+          : new Date(gEvent.start.date + 'T00:00:00')
         const endDate = gEvent.end?.dateTime
           ? new Date(gEvent.end.dateTime)
-          : new Date(gEvent.end.date)
+          : new Date(gEvent.end.date + 'T23:59:59')
 
-        // Get the actual Google Calendar color from the API data
         const getEventColor = () => {
           if (gEvent.colorId && colorData?.event?.[gEvent.colorId]) {
             return colorData.event[gEvent.colorId].background
           }
-          // Default to blue if no color specified
           return '#4285f4'
         }
 
         events.push({
-          id: gEvent.id,
+          id: gEvent.id || 'unknown',
           title: gEvent.summary || 'Untitled Event',
           start: startDate,
           end: endDate,
@@ -86,52 +76,43 @@ export function ScheduleCalendar({
     })
 
     // Add proposed events
-    proposedEvents.forEach(pEvent => {
-      if (pEvent.date && pEvent.startTime && pEvent.endTime) {
+    proposedEvents.forEach((pEvent, index) => {
+      if (pEvent.date && pEvent.startTime && pEvent.endTime && pEvent.title) {
         const startDateTime = dayjs(`${pEvent.date}T${pEvent.startTime}:00`)
         const endDateTime = dayjs(`${pEvent.date}T${pEvent.endTime}:00`)
 
-        const proposedEvent = {
-          id: pEvent.id,
-          title: pEvent.title,
-          start: startDateTime.toDate(),
-          end: endDateTime.toDate(),
-          resource: {
-            isProposed: true,
-            confidence: pEvent.confidence,
-            originalEvent: pEvent
-          }
+        if (startDateTime.isValid() && endDateTime.isValid()) {
+          events.push({
+            id: pEvent.id || `proposed-${index}`,
+            title: pEvent.title,
+            start: startDateTime.toDate(),
+            end: endDateTime.toDate(),
+            resource: {
+              isProposed: true,
+              confidence: pEvent.confidence,
+              originalEvent: pEvent
+            }
+          })
         }
-
-        console.log('Adding proposed event:', proposedEvent)
-        events.push(proposedEvent)
-      } else {
-        console.log('Skipping invalid proposed event:', pEvent)
       }
     })
 
-    console.log('Final calendar events:', events)
     return events
   }, [googleEvents, proposedEvents, colorData])
 
-  // Handle day click
   const handleSelectSlot = useCallback(({ start }: { start: Date }) => {
     const dayEvents = calendarEvents.filter(event =>
       dayjs(event.start).isSame(dayjs(start), 'day')
     )
 
-    console.log('Day clicked:', start, 'Events for day:', dayEvents)
-
     setSelectedDate(start)
     onDayClick?.(start, dayEvents)
   }, [calendarEvents, onDayClick])
 
-  // Custom event style
   const eventStyleGetter = useCallback((event: CalendarEvent) => {
     const isProposed = event.resource?.isProposed
 
     if (isProposed) {
-      // Proposed events: Blueberry color with 75% opacity
       return {
         style: {
           backgroundColor: BLUEBERRY_COLOR,
@@ -142,7 +123,6 @@ export function ScheduleCalendar({
         }
       }
     } else {
-      // Google Calendar events: Use their actual color
       const googleColor = event.resource?.googleColor || '#4285f4'
       return {
         style: {
@@ -155,17 +135,29 @@ export function ScheduleCalendar({
     }
   }, [])
 
-  // Custom day prop getter for highlighting selected day
-  const dayPropGetter = useCallback((date: Date) => {
-    if (selectedDate && dayjs(date).isSame(dayjs(selectedDate), 'day')) {
-      return {
-        style: {
-          backgroundColor: '#e3f2fd'
-        }
+  const CustomDateCellWrapper = useCallback(({ value, children }: { value: Date, children: React.ReactNode }) => {
+    const dayHasProposedEvents = proposedEvents.some(pEvent => {
+      if (pEvent.date) {
+        return dayjs(pEvent.date).isSame(dayjs(value), 'day')
       }
-    }
-    return {}
-  }, [selectedDate])
+      return false
+    })
+
+    const isSelected = selectedDate && dayjs(value).isSame(dayjs(selectedDate), 'day')
+
+    return (
+      <div
+        className={`h-full w-full relative ${isSelected
+          ? 'bg-blue-100'
+          : dayHasProposedEvents
+            ? 'bg-blue-50'
+            : ''
+          }`}
+      >
+        {children}
+      </div>
+    )
+  }, [proposedEvents, selectedDate])
 
   return (
     <div className="h-[600px] bg-neutral-100 dark:bg-white rounded-lg p-4">
@@ -176,12 +168,16 @@ export function ScheduleCalendar({
         endAccessor="end"
         style={{ height: '100%' }}
         view={Views.MONTH}
-        views={[Views.MONTH]} // Only month view
+        views={[Views.MONTH]}
         onSelectSlot={handleSelectSlot}
         selectable
         eventPropGetter={eventStyleGetter}
-        dayPropGetter={dayPropGetter}
-        popup={false} // Disable default popup
+        components={{
+          month: {
+            dateCellWrapper: CustomDateCellWrapper
+          }
+        }}
+        popup={false}
         showMultiDayTimes={false}
         step={60}
         timeslots={1}

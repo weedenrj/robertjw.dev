@@ -3,22 +3,14 @@
 import { useState, useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
-
-interface ProposedEvent {
-  id: string
-  title: string
-  startTime: string
-  endTime: string
-  confidence: number
-  description?: string
-  location?: string
-}
+import { ScheduleEvent, GoogleCalendarEvent } from '../lib/types/schedule'
 
 interface EventActionsPopoverProps {
   isOpen: boolean
   onClose: () => void
   selectedDate: Date | null
-  proposedEvents: ProposedEvent[]
+  proposedEvents: ScheduleEvent[]
+  googleEvents: GoogleCalendarEvent[]
   position: { x: number; y: number }
   onAction: (eventId: string, action: 'approve' | 'deny' | 'regenerate') => void
 }
@@ -28,6 +20,7 @@ export function EventActionsPopover({
   onClose,
   selectedDate,
   proposedEvents,
+  googleEvents = [],
   position,
   onAction
 }: EventActionsPopoverProps) {
@@ -75,9 +68,58 @@ export function EventActionsPopover({
     return `${hour12}:${minutes} ${ampm}`
   }
 
-  if (!isVisible || !selectedDate || proposedEvents.length === 0) {
+  // Generate hourly timeline (6 AM to 11 PM)
+  const generateTimeline = () => {
+    const hours = []
+    for (let i = 6; i <= 23; i++) {
+      hours.push({
+        hour: i,
+        label: `${i === 12 ? 12 : i % 12 || 12}:00 ${i >= 12 ? 'PM' : 'AM'}`
+      })
+    }
+    return hours
+  }
+
+  // Get events for the selected day
+  const getEventsForDay = () => {
+    if (!selectedDate) return { proposed: [], google: [] }
+
+    const dayGoogleEvents = googleEvents.filter(event => {
+      const eventDate = event.start?.dateTime
+        ? dayjs(event.start.dateTime)
+        : event.start?.date
+          ? dayjs(event.start.date)
+          : null
+      return eventDate && eventDate.isSame(dayjs(selectedDate), 'day')
+    })
+
+    return {
+      proposed: proposedEvents,
+      google: dayGoogleEvents
+    }
+  }
+
+  // Convert time to hour position for timeline
+  const getEventPosition = (startTime: string, endTime: string) => {
+    const start = parseInt(startTime.split(':')[0]) + parseInt(startTime.split(':')[1]) / 60
+    const end = parseInt(endTime.split(':')[0]) + parseInt(endTime.split(':')[1]) / 60
+
+    // Calculate position relative to 6 AM (start of timeline)
+    const startPos = ((start - 6) / 18) * 100 // 18 hours total (6 AM to 11 PM)
+    const height = ((end - start) / 18) * 100
+
+    return {
+      top: `${Math.max(0, startPos)}%`,
+      height: `${Math.max(2, height)}%` // Minimum 2% height for visibility
+    }
+  }
+
+  if (!isVisible || !selectedDate) {
     return null
   }
+
+  const { proposed, google } = getEventsForDay()
+  const timeline = generateTimeline()
 
   return (
     <div
@@ -98,14 +140,14 @@ export function EventActionsPopover({
         ref={popoverRef}
         className={clsx(
           "relative bg-white dark:bg-dark-bg-two rounded-xl shadow-2xl border border-gray-200 dark:border-dark-border",
-          "max-w-md w-full mx-4 transform transition-all duration-150",
+          "w-full max-w-4xl mx-4 transform transition-all duration-150",
           isOpen
             ? "opacity-100 scale-100 translate-y-0"
             : "opacity-0 scale-95 translate-y-2"
         )}
         style={{
           maxHeight: '80vh',
-          overflowY: 'auto'
+          minHeight: '600px'
         }}
       >
         {/* Header */}
@@ -124,77 +166,139 @@ export function EventActionsPopover({
             </button>
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            {proposedEvents.length} proposed event{proposedEvents.length !== 1 ? 's' : ''}
+            {google.length} existing event{google.length !== 1 ? 's' : ''} • {proposed.length} proposed event{proposed.length !== 1 ? 's' : ''}
           </p>
         </div>
 
-        {/* Proposed Events */}
-        <div className="p-4 space-y-4">
-          {proposedEvents.map((event) => (
-            <div
-              key={event.id}
-              className="bg-gray-50 dark:bg-dark-bg rounded-lg p-4 border border-gray-200 dark:border-dark-border"
-            >
-              {/* Event Details */}
-              <div className="mb-3">
-                <h4 className="font-medium text-text-primary dark:text-white mb-1">
-                  {event.title}
-                </h4>
-                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <span>{formatTime(event.startTime)} - {formatTime(event.endTime)}</span>
-                  <span className="text-xs">•</span>
-                  <span className={clsx(
-                    "text-xs font-medium",
-                    event.confidence >= 0.8 ? "text-green-600 dark:text-green-400" :
-                      event.confidence >= 0.6 ? "text-yellow-600 dark:text-yellow-400" :
-                        "text-red-600 dark:text-red-400"
-                  )}>
-                    {Math.round(event.confidence * 100)}% confidence
-                  </span>
-                </div>
-                {event.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    {event.description}
-                  </p>
-                )}
-                {event.location && (
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                    <span>📍</span>
-                    {event.location}
-                  </p>
-                )}
-              </div>
+        {/* Main Content */}
+        <div className="flex h-[500px]">
+          {/* Timeline View - Left Side */}
+          <div className="flex-1 p-4 border-r border-gray-200 dark:border-dark-border">
+            <div className="h-full overflow-y-auto">
+              <div className="relative" style={{ minHeight: '450px' }}>
+                {/* Hour Labels */}
+                {timeline.map((hour, index) => (
+                  <div
+                    key={hour.hour}
+                    className="absolute left-0 text-xs text-gray-500 dark:text-gray-400 w-16"
+                    style={{ top: `${(index / (timeline.length - 1)) * 100}%` }}
+                  >
+                    {hour.label}
+                  </div>
+                ))}
 
-              {/* Action Buttons */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => onAction(event.id, 'approve')}
-                  className="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => onAction(event.id, 'regenerate')}
-                  className="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  Regenerate
-                </button>
-                <button
-                  onClick={() => onAction(event.id, 'deny')}
-                  className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  Deny
-                </button>
+                {/* Timeline Grid */}
+                <div className="absolute left-16 right-0 top-0 bottom-0">
+                  {timeline.map((_, index) => (
+                    <div
+                      key={index}
+                      className="absolute left-0 right-0 border-t border-gray-200 dark:border-gray-600"
+                      style={{ top: `${(index / (timeline.length - 1)) * 100}%` }}
+                    />
+                  ))}
+
+                  {/* Google Calendar Events */}
+                  {google.map((event) => {
+                    const startTime = event.start?.dateTime
+                      ? dayjs(event.start.dateTime).format('HH:mm')
+                      : '09:00'
+                    const endTime = event.end?.dateTime
+                      ? dayjs(event.end.dateTime).format('HH:mm')
+                      : '10:00'
+
+                    const position = getEventPosition(startTime, endTime)
+
+                    return (
+                      <div
+                        key={event.id}
+                        className="absolute left-0 right-1/2 mr-1 bg-blue-500 text-white text-xs p-1 rounded border-l-4 border-blue-700"
+                        style={position}
+                      >
+                        <div className="font-medium truncate">{event.summary}</div>
+                        <div className="text-blue-100">{formatTime(startTime)} - {formatTime(endTime)}</div>
+                      </div>
+                    )
+                  })}
+
+                  {/* Proposed Events */}
+                  {proposed.map((event) => {
+                    const position = getEventPosition(event.startTime, event.endTime)
+
+                    return (
+                      <div
+                        key={event.id}
+                        className="absolute left-1/2 right-0 ml-1 bg-blue-400 text-white text-xs p-1 rounded border-l-4 border-blue-600 opacity-75"
+                        style={position}
+                      >
+                        <div className="font-medium truncate">{event.title}</div>
+                        <div className="text-blue-100">{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
+                        <div className="text-xs text-blue-200">{Math.round(event.confidence * 100)}% confidence</div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-bg rounded-b-xl">
-          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            Click outside or press Escape to close
-          </p>
+          {/* Action Panel - Right Side */}
+          <div className="w-80 p-4">
+            <h4 className="font-medium text-text-primary dark:text-white mb-4">
+              Proposed Events ({proposed.length})
+            </h4>
+
+            {proposed.length === 0 ? (
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                No proposed events for this day
+              </p>
+            ) : (
+              <div className="space-y-3 overflow-y-auto max-h-[400px]">
+                {proposed.map((event) => (
+                  <div
+                    key={event.id}
+                    className="bg-gray-50 dark:bg-dark-bg rounded-lg p-3 border border-gray-200 dark:border-dark-border"
+                  >
+                    <h5 className="font-medium text-text-primary dark:text-white text-sm mb-1">
+                      {event.title}
+                    </h5>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                      {formatTime(event.startTime)} - {formatTime(event.endTime)}
+                    </div>
+                    <div className="flex gap-1 mb-3">
+                      <button
+                        onClick={() => onAction(event.id, 'approve')}
+                        className="flex-1 px-2 py-1 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded transition-colors"
+                      >
+                        Approve
+                      </button>
+                      <button
+                        onClick={() => onAction(event.id, 'regenerate')}
+                        className="px-2 py-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-medium rounded transition-colors"
+                      >
+                        Regen
+                      </button>
+                      <button
+                        onClick={() => onAction(event.id, 'deny')}
+                        className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded transition-colors"
+                      >
+                        Deny
+                      </button>
+                    </div>
+                    {event.confidence && (
+                      <div className={clsx(
+                        "text-xs",
+                        event.confidence >= 0.8 ? "text-green-600 dark:text-green-400" :
+                          event.confidence >= 0.6 ? "text-yellow-600 dark:text-yellow-400" :
+                            "text-red-600 dark:text-red-400"
+                      )}>
+                        {Math.round(event.confidence * 100)}% confidence
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

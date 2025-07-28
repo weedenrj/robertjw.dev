@@ -1,20 +1,9 @@
 import { z } from "zod"
 import { UIMessage } from "ai"
+import { calendar_v3 } from 'googleapis'
 
-// Google Calendar Event Schema (based on googleapis)
-export const GoogleCalendarEventSchema = z.object({
-  summary: z.string(),
-  description: z.string().optional(),
-  start: z.object({
-    dateTime: z.string(), // ISO 8601 format: 2023-12-25T10:00:00-08:00
-    timeZone: z.string().optional()
-  }),
-  end: z.object({
-    dateTime: z.string(), // ISO 8601 format: 2023-12-25T11:00:00-08:00  
-    timeZone: z.string().optional()
-  }),
-  location: z.string().optional()
-})
+// Re-export the proper Google Calendar Event type from googleapis
+export type GoogleCalendarEvent = calendar_v3.Schema$Event
 
 // Parsed Schedule Event Schema (what the agent returns)
 export const ScheduleEventSchema = z.object({
@@ -51,7 +40,6 @@ export const ScheduleParsingInputSchema = z.object({
 })
 
 // Type exports
-export type GoogleCalendarEvent = z.infer<typeof GoogleCalendarEventSchema>
 export type ScheduleEvent = z.infer<typeof ScheduleEventSchema>
 export type EventCardState = z.infer<typeof EventCardStateSchema>
 export type ScheduleParsingResponse = z.infer<typeof ScheduleParsingResponseSchema>

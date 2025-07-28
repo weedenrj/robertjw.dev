@@ -11,8 +11,21 @@ import { EventActionsPopover } from "../../../components/EventActionsPopover"
 import { experimental_useObject as useObject } from "@ai-sdk/react"
 import { z } from "zod"
 import { useMonthlyCalendarEvents, useAddCalendarEvent } from "../../../hooks/useGoogleCalendar"
-import { scheduleEventToGoogleEvent } from "../../../lib/types/schedule"
+import { scheduleEventToGoogleEvent, ScheduleEvent, GoogleCalendarEvent } from "../../../lib/types/schedule"
 import dayjs from 'dayjs'
+
+interface CalendarEvent {
+  id: string
+  title: string
+  start: Date
+  end: Date
+  resource?: {
+    isProposed?: boolean
+    googleColor?: string
+    confidence?: number
+    originalEvent?: GoogleCalendarEvent | ScheduleEvent
+  }
+}
 
 // Define the same Zod schema as the backend
 const scheduleEventSchema = z.object({
@@ -32,8 +45,6 @@ const scheduleParsingResponseSchema = z.object({
   totalEvents: z.number(),
   parsingNotes: z.string()
 })
-
-type ScheduleEvent = z.infer<typeof scheduleEventSchema>
 
 export default function ScheduleParserPage() {
   const { data: session, status: sessionStatus } = useSession()
@@ -89,6 +100,11 @@ export default function ScheduleParserPage() {
         event?.title &&
         event?.date
       )
+      console.log('🔄 Updating proposed events:', {
+        rawObjectEvents: object.events,
+        validEventsFiltered: validEvents,
+        validEventsCount: validEvents.length
+      })
       setProposedEvents(validEvents)
       setParsingProgress({
         stage: object.totalEvents ? 'extracting' : 'analyzing',
@@ -97,6 +113,15 @@ export default function ScheduleParserPage() {
       })
     }
   }, [object])
+
+  // Debug proposed events whenever they change
+  useEffect(() => {
+    console.log('📊 Proposed events state updated:', {
+      count: proposedEvents.length,
+      events: proposedEvents,
+      firstEvent: proposedEvents[0]
+    })
+  }, [proposedEvents])
 
   // Auth redirect
   useEffect(() => {
@@ -149,15 +174,13 @@ export default function ScheduleParserPage() {
   }
 
   // Handle day click on calendar
-  const handleDayClick = (date: Date, events: any[]) => {
+  const handleDayClick = (date: Date, events: CalendarEvent[]) => {
     const proposedEventsForDay = proposedEvents.filter(event =>
       dayjs(event.date).isSame(dayjs(date), 'day')
     )
 
-    if (proposedEventsForDay.length > 0) {
-      setSelectedDate(date)
-      setShowPopover(true)
-    }
+    setSelectedDate(date)
+    setShowPopover(true)
   }
 
   // Handle proposed event actions
@@ -362,13 +385,11 @@ export default function ScheduleParserPage() {
           Debug: {proposedEvents.length} proposed events, {googleEvents.length} Google events
         </div>
 
-        {proposedEvents.length > 0 && (
-          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-            <p className="text-sm text-blue-700 dark:text-blue-300">
-              💡 Click on any day with proposed events (shown in blue with 75% opacity) to approve, deny, or regenerate them.
-            </p>
-          </div>
-        )}
+        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-700 dark:text-blue-300">
+            💡 Click on any day to see a timeline view with your existing events. Days with proposed events have light blue backgrounds and show additional options to approve, deny, or regenerate detected work shifts.
+          </p>
+        </div>
       </div>
 
       {/* Event Actions Popover */}
@@ -381,6 +402,7 @@ export default function ScheduleParserPage() {
         ).filter(event =>
           event.id && event.title && event.startTime && event.endTime
         ) as any[] : []}
+        googleEvents={googleEvents}
         position={popoverPosition}
         onAction={handleProposedEventAction}
       />

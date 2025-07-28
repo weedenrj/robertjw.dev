@@ -1,4 +1,4 @@
-import { google } from 'googleapis'
+import { google, calendar_v3 } from 'googleapis'
 
 export async function getGoogleCalendarClient(accessToken: string) {
   const auth = new google.auth.OAuth2()
@@ -29,7 +29,7 @@ export async function listCalendarEvents(
   calendarId = 'primary',
   timeMin?: string,
   timeMax?: string
-) {
+): Promise<calendar_v3.Schema$Event[]> {
   try {
     const calendar = await getGoogleCalendarClient(accessToken)
 
@@ -51,15 +51,9 @@ export async function listCalendarEvents(
 
 export async function createCalendarEvent(
   accessToken: string,
-  event: {
-    summary: string
-    description?: string
-    start: { dateTime: string; timeZone?: string }
-    end: { dateTime: string; timeZone?: string }
-    attendees?: { email: string }[]
-  },
+  event: calendar_v3.Schema$Event,
   calendarId = 'primary'
-) {
+): Promise<calendar_v3.Schema$Event> {
   try {
     const calendar = await getGoogleCalendarClient(accessToken)
 
