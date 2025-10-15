@@ -44,6 +44,15 @@ export default async function Layout({
       lang="en"
       className={clsx(titleFont.variable, bodyFont.variable, "dark")}
     >
+      <head>
+        {/* <script
+          src='https://devapi.vallypro.com/api/embed'
+          id="vally-embedded-checkout"
+          data-business="skyblue"
+          data-env="preview"
+          defer
+        /> */}
+      </head>
       <body>
         <Providers>
           <div className="w-full min-h-screen bg-zinc-200 dark:bg-neutral-900 md:pb-16">
