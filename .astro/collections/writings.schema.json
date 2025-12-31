@@ -19,7 +19,8 @@
       },
       "required": [
         "title",
-        "date"
+        "date",
+        "author"
       ],
       "additionalProperties": false
     }

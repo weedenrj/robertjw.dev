@@ -1,8 +1,8 @@
 ---
 interface Props {
-  title?: string
-  date?: string
-  author?: string
+  title: string
+  date: string
+  author: string
 }
 
 const { title, date, author } = Astro.props
@@ -17,14 +17,12 @@ const { title, date, author } = Astro.props
   <div class="flex flex-col h-full max-h-[90vh]">
     <header class="flex-shrink-0 px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
       <div class="flex-1">
-        {title && (
-          <h2 class="heading text-2xl font-bold font-jetbrains mb-1">
-            {title}
-          </h2>
-        )}
+        <h2 class="heading text-2xl font-bold font-jetbrains mb-1">
+          {title}
+        </h2>
         <div class="flex gap-4 text-text-primary dark:text-main-text text-sm">
-          {date && <time>{date}</time>}
-          {author && <span>by {author}</span>}
+          <time>{date}</time>
+          <span>by {author}</span>
         </div>
       </div>
       <form method="dialog">

@@ -20,13 +20,13 @@ const { personalInfo, className = '' } = Astro.props
   />
   <div class="pt-[100px] pb-8">
     <h2 class="heading mt-6 mb-1 text-[26px] font-semibold font-jetbrains">
-      {personalInfo.information?.name}
+      {personalInfo.information.name}
     </h2>
     <h3 class="mb-4 text-light-text inline-block dark:bg-dark-mobile-primary px-5 py-1.5 rounded-lg dark:text-main-text">
-      {personalInfo.information?.profession}
+      {personalInfo.information.profession}
     </h3>
     <div class="flex justify-center space-x-3">
-      {personalInfo.information?.socialMedia.github && (
+      {personalInfo.information.socialMedia.github && (
         <a
           href={personalInfo.information.socialMedia.github}
           aria-label="Github Profile Link"
@@ -39,7 +39,7 @@ const { personalInfo, className = '' } = Astro.props
         </a>
       )}
 
-      {personalInfo.information?.socialMedia.gitlab && (
+      {personalInfo.information.socialMedia.gitlab && (
         <a
           href={personalInfo.information.socialMedia.gitlab}
           aria-label="Gitlab Profile Link"
@@ -52,7 +52,7 @@ const { personalInfo, className = '' } = Astro.props
         </a>
       )}
 
-      {personalInfo.information?.socialMedia.upwork && (
+      {personalInfo.information.socialMedia.upwork && (
         <a
           href={personalInfo.information.socialMedia.upwork}
           aria-label="upwork Profile Link"
@@ -65,7 +65,7 @@ const { personalInfo, className = '' } = Astro.props
         </a>
       )}
 
-      {personalInfo.information?.socialMedia.linkedIn && (
+      {personalInfo.information.socialMedia.linkedIn && (
         <a
           href={personalInfo.information.socialMedia.linkedIn}
           aria-label="LinkedIn Profile Link"
@@ -88,7 +88,7 @@ const { personalInfo, className = '' } = Astro.props
             Experience
           </p>
           <p class="dark:text-white">
-            {personalInfo.information?.experience}
+            {personalInfo.information.experience}
           </p>
         </div>
       </div>
@@ -102,7 +102,7 @@ const { personalInfo, className = '' } = Astro.props
             Email
           </p>
           <p class="dark:text-white">
-            {personalInfo.information?.email}
+            {personalInfo.information.email}
           </p>
         </div>
       </div>
@@ -115,7 +115,7 @@ const { personalInfo, className = '' } = Astro.props
             Location
           </p>
           <p class="dark:text-white">
-            {personalInfo.information?.location}
+            {personalInfo.information.location}
           </p>
         </div>
       </div>
@@ -128,7 +128,7 @@ const { personalInfo, className = '' } = Astro.props
             Birthday
           </p>
           <p class="dark:text-white">
-            {personalInfo.information?.birthday}
+            {personalInfo.information.birthday}
           </p>
         </div>
       </div>

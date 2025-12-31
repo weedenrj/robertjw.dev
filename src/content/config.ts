@@ -87,7 +87,7 @@ const writings = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    author: z.string().optional(),
+    author: z.string(),
   }),
 })
 

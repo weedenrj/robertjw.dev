@@ -64,6 +64,6 @@ export interface Writing {
   id: string
   title: string
   date: string
-  author?: string
+  author: string
   content: string
 }
