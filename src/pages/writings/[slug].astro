@@ -1,0 +1,374 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import WritingDialog from '../../components/WritingDialog.astro'
+import { getCollection, getEntry } from 'astro:content'
+import { getWritings } from '../../lib/content'
+import type { CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const writings = await getCollection('writings')
+  return writings.map((writing: CollectionEntry<'writings'>) => ({
+    params: { slug: writing.slug },
+  }))
+}
+
+const { slug } = Astro.params
+if (!slug) {
+  return Astro.redirect('/writings')
+}
+
+const post = await getEntry('writings', slug)
+
+if (!post) {
+  return Astro.redirect('/writings')
+}
+
+const { Content } = await post.render()
+const writings = await getWritings()
+---
+
+<Layout
+  title={`RJW | ${post.data.title}`}
+  description={post.data.title}
+>
+  <div class="px-4 pt-12 md:py-12 sm:px-5 md:px-10 lg:px-14">
+    <h2 class="heading relative inline-block text-[2.5rem] font-bold transform after:absolute after:md:w-[12rem] after:left-[14rem] after:h-0.5 after:bg-gradient-to-r after:from-btn-secondary after:to-btn-secondary after:content-[''] after:rounded-md after:top-2/4 after:transform font-jetbrains mb-8">
+      Writings
+    </h2>
+    <div class="space-y-6">
+      {writings.map((writing) => (
+        <article class="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+          <a
+            href={`/writings/${writing.id}`}
+            data-astro-transition="animate"
+            class="block hover:opacity-80 transition-opacity"
+          >
+            <h3 class="heading text-2xl font-bold mb-2 font-jetbrains">
+              {writing.title}
+            </h3>
+            <div class="flex gap-4 text-text-primary dark:text-main-text text-sm mb-3">
+              {writing.date && <time>{writing.date}</time>}
+              {writing.author && <span>by {writing.author}</span>}
+            </div>
+            <p class="text-text-primary dark:text-main-text line-clamp-3">
+              {writing.content.substring(0, 200)}...
+            </p>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <WritingDialog
+    title={post.data.title}
+    date={post.data.date}
+    author={post.data.author}
+  >
+    <article class="prose prose-lg dark:prose-invert max-w-none text-text-primary dark:text-main-text leading-7">
+      <Content />
+    </article>
+  </WritingDialog>
+</Layout>
+
+<style is:global>
+  .prose {
+    max-width: 100%;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: #44566c;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+  }
+
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5,
+  .dark .prose h6 {
+    color: #A6A6A6;
+  }
+
+  .prose h1 {
+    font-size: 2.25em;
+    margin-top: 0;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .prose h2 {
+    font-size: 1.875em;
+    margin-top: 2em;
+  }
+
+  .prose h3 {
+    font-size: 1.5em;
+    margin-top: 1.5em;
+  }
+
+  .prose h4 {
+    font-size: 1.25em;
+  }
+
+  .prose p {
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.25em;
+    padding-left: 2em;
+  }
+
+  .prose li {
+    margin-bottom: 0.75em;
+    line-height: 1.75;
+  }
+
+  .prose li > p {
+    margin-bottom: 0.5em;
+  }
+
+  .prose a:not([href^='#']):not(.footnote-backref) {
+    color: rgb(59 130 246);
+    text-decoration: underline;
+    transition: opacity 0.2s;
+    font-weight: 500;
+  }
+
+  .prose a:not([href^='#']):not(.footnote-backref):hover {
+    opacity: 0.8;
+    text-decoration-thickness: 2px;
+  }
+
+  .dark .prose a:not([href^='#']):not(.footnote-backref) {
+    color: rgb(96 165 250);
+  }
+
+  .prose strong {
+    font-weight: 700;
+    color: inherit;
+  }
+
+  .prose em {
+    font-style: italic;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid rgb(59 130 246);
+    padding-left: 1.5em;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .dark .prose blockquote {
+    border-left-color: rgb(96 165 250);
+  }
+
+  .prose code:not(pre code) {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 0.2em 0.5em;
+    border-radius: 0.25em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    color: inherit;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .prose code:not(pre code) {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .prose pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1.25em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .prose pre {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875em;
+    line-height: 1.6;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 2px solid currentColor;
+    margin: 2em 0;
+    opacity: 0.2;
+  }
+
+  .prose table {
+    width: 100%;
+    margin: 1.5em 0;
+    border-collapse: collapse;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 0.75em;
+    border: 1px solid currentColor;
+    opacity: 0.2;
+  }
+
+  .prose th {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .prose th {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .prose sup {
+    font-size: 0.75em;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .prose a[href^='#'],
+  .prose .heading-anchor {
+    text-decoration: none;
+    color: rgb(59 130 246);
+    font-weight: 600;
+    padding: 0 0.2em;
+    border-radius: 0.2em;
+    background-color: rgba(59, 130, 246, 0.1);
+    transition: all 0.2s;
+  }
+
+  .dark .prose a[href^='#'],
+  .dark .prose .heading-anchor {
+    color: rgb(96 165 250);
+    background-color: rgba(96, 165, 250, 0.15);
+  }
+
+  .prose a[href^='#']:hover,
+  .prose .heading-anchor:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    text-decoration: underline;
+  }
+
+  .dark .prose a[href^='#']:hover,
+  .dark .prose .heading-anchor:hover {
+    background-color: rgba(96, 165, 250, 0.25);
+  }
+
+  .prose h1 .heading-anchor,
+  .prose h2 .heading-anchor,
+  .prose h3 .heading-anchor,
+  .prose h4 .heading-anchor,
+  .prose h5 .heading-anchor,
+  .prose h6 .heading-anchor {
+    text-decoration: none;
+    color: rgb(59 130 246);
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 0.5em;
+    font-weight: normal;
+  }
+
+  .dark .prose h1 .heading-anchor,
+  .dark .prose h2 .heading-anchor,
+  .dark .prose h3 .heading-anchor,
+  .dark .prose h4 .heading-anchor,
+  .dark .prose h5 .heading-anchor,
+  .dark .prose h6 .heading-anchor {
+    color: rgb(96 165 250);
+  }
+
+  .prose h1:hover .heading-anchor,
+  .prose h2:hover .heading-anchor,
+  .prose h3:hover .heading-anchor,
+  .prose h4:hover .heading-anchor,
+  .prose h5:hover .heading-anchor,
+  .prose h6:hover .heading-anchor {
+    opacity: 0.7;
+  }
+
+  .prose h1 .heading-anchor:hover,
+  .prose h2 .heading-anchor:hover,
+  .prose h3 .heading-anchor:hover,
+  .prose h4 .heading-anchor:hover,
+  .prose h5 .heading-anchor:hover,
+  .prose h6 .heading-anchor:hover {
+    opacity: 1;
+  }
+
+  .prose section[data-footnotes],
+  .prose .footnotes {
+    margin-top: 4em;
+    padding-top: 2em;
+    border-top: 2px solid currentColor;
+    opacity: 0.8;
+  }
+
+  .prose section[data-footnotes] ol,
+  .prose .footnotes ol {
+    list-style: decimal;
+    padding-left: 2em;
+  }
+
+  .prose section[data-footnotes] li,
+  .prose .footnotes li {
+    margin-bottom: 1.25em;
+    padding-left: 0.5em;
+    line-height: 1.6;
+  }
+
+  .prose section[data-footnotes] p,
+  .prose .footnotes p {
+    margin-bottom: 0.75em;
+  }
+
+  .prose section[data-footnotes] a,
+  .prose .footnotes a {
+    color: rgb(59 130 246);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .dark .prose section[data-footnotes] a,
+  .dark .prose .footnotes a {
+    color: rgb(96 165 250);
+  }
+
+  .prose section[data-footnotes] a:hover,
+  .prose .footnotes a:hover {
+    opacity: 0.8;
+  }
+
+  .prose .astro-code {
+    margin: 1.5em 0;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .prose .astro-code {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+</style>

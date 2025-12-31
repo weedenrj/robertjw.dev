@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getWritings } from '../lib/content'
+
+const writings = await getWritings()
+---
+
+<Layout
+  title="RJW | Writings"
+  description="Essays and writings on software engineering, technology, and development practices."
+>
+  <div class="px-4 pt-12 md:py-12 sm:px-5 md:px-10 lg:px-14">
+    <h2 class="heading relative inline-block text-[2.5rem] font-bold transform after:absolute after:md:w-[12rem] after:left-[14rem] after:h-0.5 after:bg-gradient-to-r after:from-btn-secondary after:to-btn-secondary after:content-[''] after:rounded-md after:top-2/4 after:transform font-jetbrains mb-8">
+      Writings
+    </h2>
+    <div class="space-y-6">
+      {writings.map((writing) => (
+        <article class="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+          <a
+            href={`/writings/${writing.id}`}
+            data-astro-transition="animate"
+            class="block hover:opacity-80 transition-opacity"
+          >
+            <h3 class="heading text-2xl font-bold mb-2 font-jetbrains">
+              {writing.title}
+            </h3>
+            <div class="flex gap-4 text-text-primary dark:text-main-text text-sm mb-3">
+              {writing.date && <time>{writing.date}</time>}
+              {writing.author && <span>by {writing.author}</span>}
+            </div>
+            <p class="text-text-primary dark:text-main-text line-clamp-3">
+              {writing.content.substring(0, 200)}...
+            </p>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: inherit;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  .prose h1 {
+    font-size: 2.25em;
+  }
+  .prose h2 {
+    font-size: 1.875em;
+  }
+  .prose h3 {
+    font-size: 1.5em;
+  }
+  .prose p {
+    margin-bottom: 1em;
+  }
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+  .prose li {
+    margin-bottom: 0.5em;
+  }
+  .prose a {
+    color: rgb(59 130 246);
+    text-decoration: underline;
+  }
+  .prose strong {
+    font-weight: bold;
+  }
+  .prose em {
+    font-style: italic;
+  }
+  .prose blockquote {
+    border-left: 4px solid rgb(59 130 246);
+    padding-left: 1em;
+    margin: 1.5em 0;
+    font-style: italic;
+  }
+  .prose code {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25em;
+    font-family: monospace;
+  }
+  .prose pre {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+</style>

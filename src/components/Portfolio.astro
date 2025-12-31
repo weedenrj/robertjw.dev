@@ -1,0 +1,61 @@
+---
+import PortfolioCard from "./PortfolioCard.astro"
+import type { PortfolioFiltersQuery, PortfolioQuery } from "../lib/content-types"
+
+interface Props {
+  portfolio: PortfolioQuery
+  filters: PortfolioFiltersQuery
+  className?: string
+}
+
+const { portfolio, filters, className = "" } = Astro.props
+const filterParam = Astro.url.searchParams.get('filter') || '*'
+const activeFilter = filterParam
+
+const filteredPortfolio = portfolio.filter(
+  item => activeFilter === '*' || item.tags?.includes(activeFilter)
+)
+---
+
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+</style>
+
+<div class={`container mr-auto ml-auto mb-8 px-4 sm:px-5 md:px-10 lg:px-[60px] ${className}`}>
+  <div class="py-12">
+    <h2 class="heading relative inline-block text-[2.5rem] font-bold transform after:absolute after:md:w-[12rem] after:left-[14rem] after:h-0.5 after:bg-gradient-to-r after:from-btn-secondary after:to-btn-secondary after:content-[''] after:rounded-md after:top-2/4 after:transform">
+      Portfolio
+    </h2>
+    <ul class="button-group isotop-menu-wrapper mt-[30px] flex w-full justify-start md:justify-end flex-wrap font-medium">
+      {filters.map((filter) => {
+        const isActive = filter.tag === activeFilter
+        const filterUrl = filter.tag === '*' ? '/portfolio' : `/portfolio?filter=${encodeURIComponent(filter.tag)}`
+        
+        return (
+          <li>
+            <a
+              href={filterUrl}
+              class={`cursor-pointer text-text-primary transition-all duration-300 ease-in-out hover:text-btn-primary dark:text-main-text fillter-btn mr-4 md:mx-4 ${
+                isActive ? '!text-btn-primary' : ''
+              }`}
+            >
+              {filter.name}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+
+  <div class="portfolio-grid">
+    {filteredPortfolio.map(item => (
+      <div class="portfolio-item">
+        <PortfolioCard details={item} />
+      </div>
+    ))}
+  </div>
+</div>

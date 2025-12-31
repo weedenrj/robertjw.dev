@@ -1,0 +1,37 @@
+{
+  "$ref": "#/definitions/skills",
+  "definitions": {
+    "skills": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "img": {
+          "type": "string"
+        },
+        "bgColor": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "skill",
+        "about",
+        "img",
+        "bgColor"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

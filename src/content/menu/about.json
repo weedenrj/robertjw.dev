@@ -1,0 +1,7 @@
+{
+  "id": "item-1",
+  "name": "About",
+  "link": "/",
+  "icon": "FaUser",
+  "enabled": true
+}

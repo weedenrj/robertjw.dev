@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,md,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,md,mdx}",
-    "./content/**/*.{js,ts,jsx,tsx,md,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,md,mdx}",
+    "./src/**/*.{astro,js,ts,jsx,tsx,md,mdx}",
   ],
   theme: {
     extend: {
@@ -97,12 +94,12 @@ module.exports = {
 
       keyframes: (theme) => ({
         fadeOut: {
-          "0%": { opacity: 100 },
-          "100%": { opacity: 0 },
+          "0%": {opacity: 100},
+          "100%": {opacity: 0},
         },
         fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 100 },
+          "0%": {opacity: 0},
+          "100%": {opacity: 100},
         },
         move: {
           "25%": {
@@ -136,7 +133,7 @@ module.exports = {
     },
   },
   plugins: [
-    function plugin({ addUtilities }) {
+    function plugin({addUtilities}) {
       addUtilities({
         '.scroll-hide': {
           /* IE and Edge */
@@ -199,6 +196,9 @@ module.exports = {
         },
         '.button-plain-accent': {
           '@apply button-core rounded-xl text-accent-700 hover:bg-accent-700 hover:bg-opacity-10': {},
+        },
+        '.heading': {
+          '@apply text-text-primary dark:text-white': {},
         },
         /**
          * Poor experience using these environment variables. They weren't catching the space the

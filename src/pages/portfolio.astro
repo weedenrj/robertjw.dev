@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getPortfolio, getPortfolioFilters } from '../lib/content'
+import PortfolioContent from '../components/Portfolio.astro'
+
+const portfolio = await getPortfolio()
+const portfolioFilters = await getPortfolioFilters()
+---
+
+<Layout title="RJW | Portfolio" description="Check out the various projects I've has been a part of over my career.">
+<div>
+  <PortfolioContent portfolio={portfolio} filters={portfolioFilters} />
+</div>
+</Layout>

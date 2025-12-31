@@ -1,0 +1,136 @@
+---
+import type { ClientsQuery } from "../lib/content-types"
+
+interface Props {
+  clients: ClientsQuery["clientImg"]
+  className?: string
+}
+
+const { clients, className = "" } = Astro.props
+---
+
+<style>
+  @keyframes carousel-rotate {
+    0%,
+    33.333% {
+      transform: translateX(0);
+    }
+    34%,
+    66.666% {
+      transform: translateX(-100%);
+    }
+    67%,
+    100% {
+      transform: translateX(-200%);
+    }
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    width: calc(100% * 3);
+    animation: carousel-rotate 6s infinite;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(100% / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .carousel-item:nth-child(3n + 2) {
+    opacity: 1;
+  }
+
+  .carousel-item:nth-child(3n + 1),
+  .carousel-item:nth-child(3n + 3) {
+    opacity: 0;
+  }
+
+  @media (min-width: 640px) {
+    .carousel-item:nth-child(3n + 1),
+    .carousel-item:nth-child(3n + 3) {
+      opacity: 1;
+    }
+  }
+
+  .carousel-fade-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    background: linear-gradient(to right, white, transparent);
+  }
+
+  .dark .carousel-fade-left {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8),
+      transparent
+    );
+  }
+
+  @media (min-width: 768px) {
+    .carousel-fade-left {
+      width: 96px;
+    }
+  }
+
+  .carousel-fade-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 48px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    background: linear-gradient(to left, white, transparent);
+  }
+
+  .dark .carousel-fade-right {
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.8),
+      transparent
+    );
+  }
+
+  @media (min-width: 768px) {
+    .carousel-fade-right {
+      width: 96px;
+    }
+  }
+</style>
+
+<div class={`carousel-container ${className}`}>
+  <div class="carousel-track">
+    {
+      clients.map((img) => (
+        <div class="carousel-item">
+          <img
+            class="w-auto h-auto min-w-[250px]"
+            src={img}
+            alt="brand icon"
+            width={250}
+            height={250}
+          />
+        </div>
+      ))
+    }
+  </div>
+  <div class="carousel-fade-left"></div>
+  <div class="carousel-fade-right"></div>
+</div>
