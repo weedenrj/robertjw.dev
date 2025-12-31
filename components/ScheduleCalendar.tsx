@@ -35,8 +35,7 @@ const BLUEBERRY_COLOR = '#4285f4'
 export function ScheduleCalendar({
   googleEvents = [],
   proposedEvents = [],
-  onDayClick,
-  onProposedEventAction
+  onDayClick
 }: ScheduleCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const { data: colorData } = useGoogleCalendarColors()
@@ -51,7 +50,9 @@ export function ScheduleCalendar({
           : new Date(gEvent.start.date + 'T00:00:00')
         const endDate = gEvent.end?.dateTime
           ? new Date(gEvent.end.dateTime)
-          : new Date(gEvent.end.date + 'T23:59:59')
+          : gEvent.end?.date
+            ? new Date(gEvent.end.date + 'T23:59:59')
+            : new Date(startDate.getTime() + 60 * 60 * 1000)
 
         const getEventColor = () => {
           if (gEvent.colorId && colorData?.event?.[gEvent.colorId]) {
@@ -170,9 +171,7 @@ export function ScheduleCalendar({
         selectable
         eventPropGetter={eventStyleGetter}
         components={{
-          month: {
-            dateCellWrapper: CustomDateCellWrapper
-          }
+          dateCellWrapper: CustomDateCellWrapper
         }}
         popup={false}
         showMultiDayTimes={false}

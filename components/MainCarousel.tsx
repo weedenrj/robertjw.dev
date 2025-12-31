@@ -1,7 +1,6 @@
 'use client'
 
-import Slider from "react-slick";
-import { Clients, ClientsQuery } from "constants/types";
+import { ClientsQuery } from "constants/types";
 import clsx from "clsx";
 import Image from "next/image";
 import useInterval from "hooks/UseInterval";
@@ -22,8 +21,11 @@ export function MainCarousel({
   const [selectedReviews, setSelectedReviews] = useState([0, 1, 2])
 
   useInterval(() => {
-    const activeMiddle = clients.findIndex(rev => clients[selectedReviews[1]] === rev)
-    const newMiddle = getCircularIndex(clients, activeMiddle, "right")
+    const activeMiddleIndex = selectedReviews[1]
+    if (activeMiddleIndex === undefined || activeMiddleIndex >= clients.length) return
+    const activeMiddle = clients[activeMiddleIndex]
+    const activeMiddleFound = clients.findIndex(rev => rev === activeMiddle)
+    const newMiddle = getCircularIndex(clients, activeMiddleFound >= 0 ? activeMiddleFound : 0, "right")
     const indexToRight = getCircularIndex(clients, newMiddle, "right")
     const indexToLeft = getCircularIndex(clients, newMiddle, "left")
     setSelectedReviews([indexToLeft, newMiddle, indexToRight])
@@ -35,7 +37,8 @@ export function MainCarousel({
         const isLeft = selectedReviews.findIndex(num => num === i) === 0
         const isMiddle = selectedReviews.findIndex(num => num === i) === 1
         const isRight = selectedReviews.findIndex(num => num === i) === 2
-        const nextUp = getCircularIndex(clients, selectedReviews[2], "right")
+        const lastIndex = selectedReviews[2]
+        const nextUp = lastIndex !== undefined ? getCircularIndex(clients, lastIndex, "right") : 0
         const isVisible = isLeft || isMiddle || isRight
         return (
           <div

@@ -1,10 +1,6 @@
 'use client'
 
-import React from "react"
 import { Icon } from "./icon/Icon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
-import { PersonalInfoQuery } from "constants/types";
 import { MenuQuery } from "constants/types";
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'

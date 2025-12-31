@@ -33,16 +33,20 @@ export async function listCalendarEvents(
   try {
     const calendar = await getGoogleCalendarClient(accessToken)
 
-    const response = await calendar.events.list({
+    const params: calendar_v3.Params$Resource$Events$List = {
       calendarId,
       timeMin: timeMin || new Date().toISOString(),
-      timeMax: timeMax,
       maxResults: 50,
       singleEvents: true,
       orderBy: 'startTime',
-    })
+    }
+    if (timeMax) {
+      params.timeMax = timeMax
+    }
 
-    return response.data.items || []
+    const response = await calendar.events.list(params)
+
+    return (response.data as calendar_v3.Schema$Events).items || []
   } catch (error) {
     console.error('Error fetching calendar events:', error)
     throw error

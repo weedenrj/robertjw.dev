@@ -1,21 +1,13 @@
-import * as React from "react"
 import {
   Body,
-  Column,
   Container,
   Head,
-  Heading,
   Hr,
   Html,
   Img,
-  Link,
-  Preview,
-  Row,
   Section,
-  Tailwind,
   Text,
 } from "@react-email/components"
-import tailwindConfig from "../tailwind.config"
 
 export type SendEmailProps = {
   from: string
@@ -30,7 +22,6 @@ export function Email({
   phone,
   message,
 }: SendEmailProps) {
-  const baseUrl = "asdf"
   return (
     <Html>
       <Head />

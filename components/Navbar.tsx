@@ -1,7 +1,5 @@
 'use client'
 
-import React from "react"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Icon, IconProps } from "./icon/Icon"
 import { MenuItem } from "constants/types";
@@ -27,7 +25,7 @@ export function Navbar({
     >
       <nav className="hidden lg:block">
         <ul className="flex">
-          {menuItems.filter(item => item.enabled).map((item, index) => {
+          {menuItems.filter(item => item.enabled).map((item) => {
             const iconMapping: Record<string, IconProps["name"]> = {
               'FaUser': 'User',
               'FaBriefcase': 'Building',

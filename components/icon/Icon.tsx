@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import { AppFontAwesomeIcons } from "./Icon.fontawesome";
 

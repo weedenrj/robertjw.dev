@@ -12,46 +12,46 @@ import {
   blogs
 } from "constants/data"
 
-export async function getProgressBars() {
+export function getProgressBars() {
   return progressBar
 }
 
-export async function getKnowledges() {
+export function getKnowledges() {
   return [knowledges]
 }
 
-export async function getExperiences() {
+export function getExperiences() {
   return experience
 }
 
-export async function getEducations() {
+export function getEducations() {
   return education
 }
 
-export async function getMenu() {
+export function getMenu() {
   return menuItems
 }
 
-export async function getPersonalInfo() {
+export function getPersonalInfo() {
   return personalInfo
 }
 
-export async function getClients() {
+export function getClients() {
   return clients
 }
 
-export async function getSkills() {
+export function getSkills() {
   return skills
 }
 
-export async function getPortfolio() {
+export function getPortfolio() {
   return portfolio
 }
 
-export async function getPortfolioFilters() {
+export function getPortfolioFilters() {
   return portfolioFilters
 }
 
-export async function getBlogs() {
+export function getBlogs() {
   return blogs
 }

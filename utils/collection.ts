@@ -11,35 +11,46 @@ export function reverseInCopy<T>(from: T[]): T[] {
   return [...from].reverse()
 }
 
-export function chunk<T>(items: T[], chunkSize: number) {
+export function chunk<T>(items: T[], chunkSize: number): T[][] {
   return items.reduce((all, one, i) => {
     const ch = Math.floor(i / chunkSize);
 
-    all[ch] = [].concat((all[ch] || []), one)
+    all[ch] = (all[ch] || []).concat([one])
     return all
-  }, [])
+  }, [] as T[][])
 }
 
-export function chunkBy<T, K>(items: T[], getKey: (item: T, i: number) => K) {
+export function chunkBy<T, K>(items: T[], getKey: (item: T, i: number) => K): T[][] {
 
   const chunks: { key: K, values: T[] }[] = []
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 0;i < items.length;i++) {
     const item = items[i]
+    if (item === undefined) continue
     const key = getKey(item, i)
     const chunk = chunks.find(({ key: chunkKey }) => chunkKey === key)
-    !chunk ? chunks.push({ key, values: [item] }) : chunk.values.push(item)
+    if (!chunk) {
+      chunks.push({ key, values: [item] })
+    } else {
+      chunk.values.push(item)
+    }
   }
   return chunks.map(chunk => chunk.values)
 }
 
-export function chunkByKeyed<T, K extends RecordKey>(items: T[], getKey: (item: T, i: number) => K) {
+export function chunkByKeyed<T, K extends RecordKey>(items: T[], getKey: (item: T, i: number) => K): PartialRecord<K, T[]> {
   const chunks: PartialRecord<K, T[]> = {}
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 0;i < items.length;i++) {
     const item = items[i]
+    if (item === undefined) continue
     const key = getKey(item, i)
 
-    if (!chunks[key]) chunks[key] = []
-    chunks[key]?.push(item)
+    if (!chunks[key]) {
+      chunks[key] = []
+    }
+    const chunk = chunks[key]
+    if (chunk) {
+      chunk.push(item)
+    }
   }
   return chunks
 }
@@ -50,14 +61,15 @@ export function numberRange(startOrEnd: number, end?: number): number[] {
 
   const range = Array(e - s);
 
-  for (let i = 0; i < range.length; i++) {
+  for (let i = 0;i < range.length;i++) {
     range[i] = i + s
   }
 
   return range;
 }
 
-export function getCircularIndex<T>(array: T[] = [], from: number, dir: "left" | "right") {
+export function getCircularIndex<T>(array: T[] = [], from: number, dir: "left" | "right"): number {
+  if (array.length === 0) return 0
   return dir === "right"
     ? (from + 1) % array.length
     : from === 0 ? array.length - 1 : from - 1

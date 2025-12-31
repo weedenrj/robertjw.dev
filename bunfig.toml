@@ -1,0 +1,6 @@
+# Bun configuration with strict settings (similar to pnpm strict mode)
+
+# Strict peer dependencies - fail if peer dependencies are missing
+[install]
+peer = true
+optional = false

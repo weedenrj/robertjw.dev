@@ -12,7 +12,6 @@ interface EventActionsPopoverProps {
   selectedDate: Date | null
   proposedEvents: ScheduleEvent[]
   googleEvents: GoogleCalendarEvent[]
-  position: { x: number; y: number }
   onAction: (eventId: string, action: 'approve' | 'deny' | 'regenerate') => void
 }
 
@@ -22,7 +21,6 @@ export function EventActionsPopover({
   selectedDate,
   proposedEvents,
   googleEvents = [],
-  position,
   onAction
 }: EventActionsPopoverProps) {
   const popoverRef = useRef<HTMLDivElement>(null)
@@ -31,10 +29,10 @@ export function EventActionsPopover({
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true)
-    } else {
-      const timer = setTimeout(() => setIsVisible(false), 150)
-      return () => clearTimeout(timer)
+      return
     }
+    const timer = setTimeout(() => setIsVisible(false), 150)
+    return () => clearTimeout(timer)
   }, [isOpen])
 
   useEffect(() => {
@@ -61,17 +59,18 @@ export function EventActionsPopover({
     }
   }, [isOpen, onClose])
 
-  const formatTime = (time: string) => {
+  const formatTime = (time: string | undefined) => {
+    if (!time) return '12:00 AM'
     const [hours, minutes] = time.split(':')
-    const hour24 = parseInt(hours)
+    const hour24 = parseInt(hours ?? '0')
     const ampm = hour24 >= 12 ? 'PM' : 'AM'
     const hour12 = hour24 % 12 || 12
-    return `${hour12}:${minutes} ${ampm}`
+    return `${hour12}:${minutes ?? '00'} ${ampm}`
   }
 
   const generateTimeline = () => {
     const hours = []
-    for (let i = 6; i <= 23; i++) {
+    for (let i = 6;i <= 23;i++) {
       hours.push({
         hour: i,
         label: `${i === 12 ? 12 : i % 12 || 12}:00 ${i >= 12 ? 'PM' : 'AM'}`
@@ -98,9 +97,11 @@ export function EventActionsPopover({
     }
   }
 
-  const getEventPosition = (startTime: string, endTime: string) => {
-    const start = parseInt(startTime.split(':')[0]) + parseInt(startTime.split(':')[1]) / 60
-    const end = parseInt(endTime.split(':')[0]) + parseInt(endTime.split(':')[1]) / 60
+  const getEventPosition = (startTime: string | undefined, endTime: string | undefined) => {
+    const startStr = startTime ?? '09:00'
+    const endStr = endTime ?? '10:00'
+    const start = parseInt(startStr.split(':')[0] ?? '9') + parseInt(startStr.split(':')[1] ?? '0') / 60
+    const end = parseInt(endStr.split(':')[0] ?? '10') + parseInt(endStr.split(':')[1] ?? '0') / 60
 
     const startPos = ((start - 6) / 18) * 100
     const height = ((end - start) / 18) * 100
@@ -190,10 +191,10 @@ export function EventActionsPopover({
                   {google.map((event) => {
                     const startTime = event.start?.dateTime
                       ? dayjs(event.start.dateTime).format('HH:mm')
-                      : '09:00'
+                      : undefined
                     const endTime = event.end?.dateTime
                       ? dayjs(event.end.dateTime).format('HH:mm')
-                      : '10:00'
+                      : undefined
 
                     const position = getEventPosition(startTime, endTime)
 
@@ -209,7 +210,7 @@ export function EventActionsPopover({
                     )
                   })}
                   {proposed.map((event) => {
-                    const position = getEventPosition(event.startTime, event.endTime)
+                    const position = getEventPosition(event.startTime ?? undefined, event.endTime ?? undefined)
 
                     return (
                       <div

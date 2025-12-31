@@ -65,9 +65,11 @@ export function appendToRecordValue<K extends RecordKey, Item>(
 export function mapToPartialRecord<TResult, TKey extends RecordKey, TEntry>(
   record: PartialRecord<TKey, TEntry>,
   callbackFn: (key: TKey, entry: TEntry) => TResult,
-) {
+): PartialRecord<TKey, TResult> {
   return Object.entries(record).reduce((result, [key, entry]) => {
-    result[key] = callbackFn(key as TKey, entry as TEntry)
+    if (entry !== undefined) {
+      result[key as TKey] = callbackFn(key as TKey, entry as TEntry)
+    }
     return result
   }, {} as PartialRecord<TKey, TResult>)
 }
@@ -75,9 +77,11 @@ export function mapToPartialRecord<TResult, TKey extends RecordKey, TEntry>(
 export function mapToRecord<TResult, TKey extends RecordKey, TEntry>(
   record: PartialRecord<TKey, TEntry>,
   callbackFn: (key: TKey, entry: TEntry) => TResult,
-) {
+): Record<TKey, TResult> {
   return Object.entries(record).reduce((result, [key, entry]) => {
-    result[key] = callbackFn(key as TKey, entry as TEntry)
+    if (entry !== undefined) {
+      result[key as TKey] = callbackFn(key as TKey, entry as TEntry)
+    }
     return result
   }, {} as Record<TKey, TResult>)
 }

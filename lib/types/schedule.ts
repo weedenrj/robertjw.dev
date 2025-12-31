@@ -18,7 +18,7 @@ export function scheduleEventToGoogleEvent(
 
   return {
     summary: scheduleEvent.title,
-    description: scheduleEvent.description,
+    description: scheduleEvent.description ?? null,
     start: {
       dateTime: startDateTime,
       timeZone
@@ -27,7 +27,7 @@ export function scheduleEventToGoogleEvent(
       dateTime: endDateTime,
       timeZone
     },
-    location: scheduleEvent.location
+    location: scheduleEvent.location ?? null
   }
 }
 
