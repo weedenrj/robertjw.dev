@@ -2,6 +2,6 @@
   "id": "item-6",
   "name": "Writings",
   "link": "/writings",
-  "icon": "FaWrench",
+  "icon": "FaPenToSquare",
   "enabled": true
 }

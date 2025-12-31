@@ -2,6 +2,7 @@
   "id": "skill-1",
   "skill": "Web Development",
   "about": "Big or small, web projects are my bread and butter. Small Business sites, advanced interfaces, APIs, emails....you want it, I've got you covered.",
-  "img": "/assets/icons/icon5.svg",
+  "iconName": "Icon5",
+  "iconColor": "text-[#269FFF]",
   "bgColor": "bg-codeBlue"
 }

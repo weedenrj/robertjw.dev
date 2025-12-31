@@ -1,20 +1,15 @@
 ---
 import PortfolioCard from "./PortfolioCard.astro"
-import type { PortfolioFiltersQuery, PortfolioQuery } from "../lib/content-types"
+import type { Portfolio, PortfolioFilter } from "../lib/content-types"
 
 interface Props {
-  portfolio: PortfolioQuery
-  filters: PortfolioFiltersQuery
+  portfolio: Portfolio[]
+  filters: PortfolioFilter[]
   className?: string
 }
 
 const { portfolio, filters, className = "" } = Astro.props
-const filterParam = Astro.url.searchParams.get('filter') || '*'
-const activeFilter = filterParam
-
-const filteredPortfolio = portfolio.filter(
-  item => activeFilter === '*' || item.tags?.includes(activeFilter)
-)
+const activeFilter = Astro.url.searchParams.get('filter') || '*'
 ---
 
 <style>
@@ -32,15 +27,16 @@ const filteredPortfolio = portfolio.filter(
     </h2>
     <ul class="button-group isotop-menu-wrapper mt-[30px] flex w-full justify-start md:justify-end flex-wrap font-medium">
       {filters.map((filter) => {
-        const isActive = filter.tag === activeFilter
         const filterUrl = filter.tag === '*' ? '/portfolio' : `/portfolio?filter=${encodeURIComponent(filter.tag)}`
+        const isActive = filter.tag === activeFilter
         
         return (
           <li>
             <a
               href={filterUrl}
-              class={`cursor-pointer text-text-primary transition-all duration-300 ease-in-out hover:text-btn-primary dark:text-main-text fillter-btn mr-4 md:mx-4 ${
-                isActive ? '!text-btn-primary' : ''
+              data-filter={filter.tag}
+              class={`filter-btn cursor-pointer transition-all duration-300 ease-in-out hover:text-btn-primary mr-4 md:mx-4 ${
+                isActive ? '!text-btn-primary' : 'text-text-primary dark:text-main-text'
               }`}
             >
               {filter.name}
@@ -51,11 +47,61 @@ const filteredPortfolio = portfolio.filter(
     </ul>
   </div>
 
-  <div class="portfolio-grid">
-    {filteredPortfolio.map(item => (
-      <div class="portfolio-item">
+  <div class="portfolio-grid" id="portfolio-grid">
+    {portfolio.map(item => (
+      <div class="portfolio-item" data-tags={item.tags || ''} data-id={item.id}>
         <PortfolioCard details={item} />
       </div>
     ))}
   </div>
 </div>
+
+<script>
+  import autoAnimate from '@formkit/auto-animate'
+  
+  const filter = new URLSearchParams(location.search).get('filter') || '*'
+  const grid = document.getElementById('portfolio-grid')
+  const links = document.querySelectorAll<HTMLElement>('.filter-btn')
+  
+  if (grid) {
+    autoAnimate(grid)
+    
+    const allItems = Array.from(grid.querySelectorAll<HTMLElement>('.portfolio-item'))
+    
+    const updateFilter = (newFilter: string) => {
+      allItems.forEach(item => {
+        const tags = (item.getAttribute('data-tags') || '').toLowerCase()
+        const shouldShow = newFilter === '*' || tags.includes(newFilter.toLowerCase())
+        
+        if (shouldShow && !grid.contains(item)) {
+          grid.appendChild(item)
+        } else if (!shouldShow && grid.contains(item)) {
+          item.remove()
+        }
+      })
+      
+      links.forEach(link => {
+        const isActive = link.getAttribute('data-filter') === newFilter
+        if (isActive) {
+          link.classList.add('!text-btn-primary')
+          link.classList.remove('text-text-primary', 'dark:text-main-text')
+        } else {
+          link.classList.remove('!text-btn-primary')
+          link.classList.add('text-text-primary', 'dark:text-main-text')
+        }
+      })
+    }
+    
+    updateFilter(filter)
+    
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const newFilter = link.getAttribute('data-filter') || '*'
+        const url = newFilter === '*' ? '/portfolio' : `/portfolio?filter=${newFilter}`
+        history.pushState({}, '', url)
+        updateFilter(newFilter)
+      })
+    })
+  }
+</script>

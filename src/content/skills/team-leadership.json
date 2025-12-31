@@ -2,6 +2,7 @@
   "id": "skill-4",
   "skill": "Team Leadership",
   "about": "From guiding squadrons of airmen to supporting and managing groups of engineers, I've always been a natural leader and thrive when working in teams.",
-  "img": "/assets/icons/Team.svg",
+  "iconName": "Team",
+  "iconColor": "text-[#649664]",
   "bgColor": "bg-[#82AB82]"
 }

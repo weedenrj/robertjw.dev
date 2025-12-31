@@ -162,45 +162,11 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"blog": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"clients": Record<string, {
+		"clients": Record<string, {
   id: string;
   body?: string;
   collection: "clients";
   data: InferEntrySchema<"clients">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"education": Record<string, {
-  id: string;
-  body?: string;
-  collection: "education";
-  data: InferEntrySchema<"education">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"experience": Record<string, {
-  id: string;
-  body?: string;
-  collection: "experience";
-  data: InferEntrySchema<"experience">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"knowledges": Record<string, {
-  id: string;
-  body?: string;
-  collection: "knowledges";
-  data: InferEntrySchema<"knowledges">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -233,14 +199,6 @@ declare module 'astro:content' {
   body?: string;
   collection: "portfolioFilters";
   data: InferEntrySchema<"portfolioFilters">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"progressBar": Record<string, {
-  id: string;
-  body?: string;
-  collection: "progressBar";
-  data: InferEntrySchema<"progressBar">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

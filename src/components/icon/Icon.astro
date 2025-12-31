@@ -5,9 +5,10 @@ interface Props {
   name: IconName
   className?: string
   size?: number | string
+  color?: string
 }
 
-const { name, className = '', size = 16 } = Astro.props
+const { name, className = '', size = 16, color } = Astro.props
 const icon = iconData[name]
 
 if (!icon) {
@@ -17,6 +18,8 @@ if (!icon) {
 const aspectRatio = icon.width / icon.height
 const width = typeof size === 'number' ? size : 16
 const height = width / aspectRatio
+
+const style = color ? `color: ${color};` : ''
 ---
 
 {icon && (
@@ -26,6 +29,7 @@ const height = width / aspectRatio
     viewBox={`0 0 ${icon.width} ${icon.height}`}
     fill="currentColor"
     class={className}
+    style={style}
     aria-hidden="true"
   >
     <path d={icon.path} />

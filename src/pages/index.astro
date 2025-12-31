@@ -7,8 +7,7 @@ import MainCarousel from "../components/MainCarousel.astro"
 
 const personalInfo = await getPersonalInfo()
 const skills = await getSkills()
-const clients = await getClients()
-const clientImages = clients.clientImg || []
+const clientImages = await getClients()
 ---
 
 <Layout

@@ -21,8 +21,3 @@ export function toggleTheme(): Theme {
   setTheme(next)
   return next
 }
-
-export function initTheme(): void {
-  if (typeof window === 'undefined') return
-  setTheme(getTheme())
-}

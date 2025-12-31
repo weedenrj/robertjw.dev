@@ -1,22 +1,5 @@
 import {defineCollection, z} from 'astro:content'
 
-const blog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    date: z.string(),
-    category: z.string(),
-    img: z.string(),
-    link: z.string().optional(),
-    modal: z.object({
-      date: z.string(),
-      category: z.string(),
-      title: z.string(),
-      blogImg: z.string(),
-    }),
-  }),
-})
-
 const portfolio = defineCollection({
   type: 'data',
   schema: z.object({
@@ -39,24 +22,14 @@ const portfolio = defineCollection({
   }),
 })
 
-const experience = defineCollection({
-  type: 'data',
-  schema: z.object({
-    id: z.string(),
-    year: z.string(),
-    title: z.string(),
-    subTitle: z.string(),
-    bgColor: z.string(),
-  }),
-})
-
 const skills = defineCollection({
   type: 'data',
   schema: z.object({
     id: z.string(),
     skill: z.string(),
     about: z.string(),
-    img: z.string(),
+    iconName: z.string(),
+    iconColor: z.string(),
     bgColor: z.string(),
   }),
 })
@@ -100,40 +73,12 @@ const clients = defineCollection({
   }),
 })
 
-const education = defineCollection({
-  type: 'data',
-  schema: z.object({
-    id: z.string(),
-    year: z.string(),
-    title: z.string(),
-    subTitle: z.string(),
-    bgColor: z.string(),
-  }),
-})
-
 const portfolioFilters = defineCollection({
   type: 'data',
   schema: z.object({
     id: z.string(),
     name: z.string(),
     tag: z.string(),
-  }),
-})
-
-const knowledges = defineCollection({
-  type: 'data',
-  schema: z.object({
-    skill: z.array(z.string()),
-  }),
-})
-
-const progressBar = defineCollection({
-  type: 'data',
-  schema: z.object({
-    id: z.string(),
-    title: z.string(),
-    percentage: z.number(),
-    bgColor: z.string(),
   }),
 })
 
@@ -147,16 +92,11 @@ const writings = defineCollection({
 })
 
 export const collections = {
-  blog,
   portfolio,
-  experience,
   skills,
   menu,
   personalInfo,
   clients,
-  education,
   portfolioFilters,
-  knowledges,
-  progressBar,
   writings,
 }

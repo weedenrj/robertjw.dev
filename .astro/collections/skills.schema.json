@@ -13,7 +13,10 @@
         "about": {
           "type": "string"
         },
-        "img": {
+        "iconName": {
+          "type": "string"
+        },
+        "iconColor": {
           "type": "string"
         },
         "bgColor": {
@@ -27,7 +30,8 @@
         "id",
         "skill",
         "about",
-        "img",
+        "iconName",
+        "iconColor",
         "bgColor"
       ],
       "additionalProperties": false
