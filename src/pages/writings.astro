@@ -34,9 +34,9 @@ const writings = await getWritings();
                 )}
                 {writing.author && <span>by {writing.author}</span>}
               </div>
-              <p class="text-text-primary dark:text-main-text line-clamp-3">
+              {/* <p class="text-text-primary dark:text-main-text line-clamp-3">
                 {writing.content.substring(0, 200)}...
-              </p>
+              </p> */}
               {writing.note.trim() && (
                 <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg border-l-4 border-blue-500">
                   <p class="text-sm text-text-primary dark:text-main-text italic">
