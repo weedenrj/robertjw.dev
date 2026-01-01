@@ -19,28 +19,9 @@
   "debug.javascript.debugByLinkOptions": "on",
   "debug.javascript.unmapMissingSources": true,
   "typescript.format.semicolons": "remove",
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
-  "html.format.wrapAttributes": "preserve",
-  "html.format.wrapLineLength": 0,
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
+  "javascript.format.semicolons": "remove",
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-    "editor.detectIndentation": false,
-    "editor.insertSpaces": true
   },
   "editor.formatOnSave": true,
   "formatFiles.excludedFolders": ["node_modules", ".vscode", ".git", "dist", ".astro"],
@@ -48,5 +29,5 @@
   "formatFiles.excludePattern": "**/node_modules/**,**/dist/**,**/.astro/**",
   "formatFiles.inheritWorkspaceExcludedFiles": true,
   "formatFiles.runOrganizeImports": true,
-  "formatFiles.useGitIgnore": true
+  "formatFiles.useGitIgnore": true,
 }

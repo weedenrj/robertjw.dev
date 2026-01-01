@@ -53,5 +53,6 @@ export async function getWritings(): Promise<Writing[]> {
     date: entry.data.date,
     author: entry.data.author,
     content: entry.body,
+    note: entry.data.note,
   })) satisfies Writing[]
 }

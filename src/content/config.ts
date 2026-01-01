@@ -88,6 +88,7 @@ const writings = defineCollection({
     title: z.string(),
     date: z.string(),
     author: z.string(),
+    note: z.string().default(''),
   }),
 })
 

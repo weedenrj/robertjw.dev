@@ -1,6 +1,6 @@
 ---
 title: "The Programmable Engineer: Another Way of Thinking About the Production and Management of Tech Debt"
-date: "2025"
+date: "2025-12-31"
 author: "Rob Weeden"
 ---
 
