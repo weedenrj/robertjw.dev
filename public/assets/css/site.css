@@ -151,8 +151,6 @@ h3 {
 .links {
   gap: 10px;
   margin: 22px 0 0;
-  padding: 0;
-  list-style: none;
 }
 
 .links a {
@@ -178,14 +176,12 @@ h3 {
   filter: none;
 }
 
-.accordion {
-  display: grid;
-  gap: 10px;
-}
-
 summary {
+  --thumb-width: 82px;
+  --thumb-height: 62px;
+  --marker-width: 20px;
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr) 20px;
+  grid-template-columns: var(--thumb-width) minmax(0, 1fr) var(--marker-width);
   align-items: center;
   gap: 18px;
   min-height: 96px;
@@ -230,8 +226,8 @@ mark {
 
 summary img,
 .placeholder {
-  width: 82px;
-  height: 62px;
+  width: var(--thumb-width);
+  height: var(--thumb-height);
   border-radius: 6px;
 }
 
@@ -244,10 +240,6 @@ summary img {
   place-items: center;
   outline: 1px solid #303038;
   color: var(--accent);
-}
-
-small {
-  text-align: left;
 }
 
 .project-detail {
@@ -281,16 +273,15 @@ small {
   aspect-ratio: 4 / 3;
 }
 
-dl {
-  display: grid;
-  gap: 8px;
-  margin: 18px 0 0;
+details + details {
+  margin-top: 10px;
 }
 
-dl div {
+dl {
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
-  gap: 14px;
+  gap: 8px 14px;
+  margin: 18px 0 0;
 }
 
 dt,
@@ -381,7 +372,6 @@ details p,
   .portrait {
     width: 140px;
     height: 140px;
-    aspect-ratio: 1;
   }
 
   h1 {
@@ -393,16 +383,11 @@ details p,
   }
 
   summary {
-    grid-template-columns: 56px minmax(0, 1fr) 20px;
+    --thumb-width: 56px;
+    --thumb-height: 42px;
     gap: 8px;
     min-height: 0;
     padding: 8px 0;
-  }
-
-  summary img,
-  .placeholder {
-    width: 56px;
-    height: 42px;
   }
 
   .summary-copy {
@@ -422,9 +407,13 @@ details p,
     gap: 16px;
   }
 
-  dl div {
+  dl {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+
+  dd {
+    margin-bottom: 6px;
   }
 
   .writing-copy {
@@ -465,13 +454,9 @@ details p,
   }
 
   summary {
-    grid-template-columns: 48px minmax(0, 1fr) 18px;
+    --thumb-width: 48px;
+    --thumb-height: 36px;
+    --marker-width: 18px;
     gap: 8px;
-  }
-
-  summary img,
-  .placeholder {
-    width: 48px;
-    height: 36px;
   }
 }
