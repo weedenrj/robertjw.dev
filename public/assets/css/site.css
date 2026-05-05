@@ -1,6 +1,6 @@
 @font-face {
   font-family: Basier;
-  src: url("../../basier/basiersquaremono-regular-webfont.woff2") format("woff2");
+  src: url("../fonts/basier.woff2") format("woff2");
 }
 
 :root {
@@ -258,13 +258,22 @@ small {
   margin-bottom: 16px;
 }
 
-.project-detail > a {
+.project-detail.text-only {
+  grid-template-columns: 1fr;
+}
+
+.project-media {
+  display: grid;
+  gap: 10px;
+}
+
+.project-media a {
   border-radius: 8px;
   outline: 2px solid transparent;
   outline-offset: 4px;
 }
 
-.project-detail > a:hover {
+.project-media a:hover {
   outline-color: var(--accent);
 }
 

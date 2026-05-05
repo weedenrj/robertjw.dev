@@ -19,7 +19,7 @@
 
   <main>
     <section class="intro" aria-labelledby="intro-title">
-      <img class="portrait" src="assets/portrait.webp" alt="Robert Weeden" width="320" height="320">
+      <img class="portrait" src="assets/images/portrait.webp" alt="Robert Weeden" width="320" height="320">
       <div>
         <p class="eyebrow">Madison, WI</p>
         <h1 id="intro-title">Robert Weeden</h1>
@@ -37,23 +37,25 @@
     <section id="work" aria-labelledby="work-title">
       <h2 id="work-title">Work</h2>
 
-      <div class="accordion">
-        <details>
+      <details>
           <summary>
-            <img src="assets/work-images/scottStripedBass.png" alt="">
+            <img src="assets/images/projects/Vally.webp" alt="">
             <span class="summary-copy">
               <span>Vally <mark>Current</mark></span>
               <small>Payments and scheduling</small>
             </span>
           </summary>
           <div class="project-detail">
-            <a href="https://vallypro.com/" rel="noopener noreferrer"><img src="assets/work-images/vally-pro-screenshot.png" alt="Vally website"></a>
+            <div class="project-media">
+              <img src="assets/images/work/scottStripedBass.png" alt="Striped bass">
+              <a href="https://vallypro.com/" rel="noopener noreferrer"><img src="assets/images/work/vally-pro-screenshot.png" alt="Vally website"></a>
+            </div>
             <div>
               <p>Vally is an up-and-coming B2B application in the fishing industry. The application is used by business owners and their customers to schedule, book, and pay for fishing excursions and boat trips.</p>
               <dl>
-                <div><dt>Project</dt><dd>Payments and Scheduling SaaS Product</dd></div>
-                <div><dt>Client</dt><dd><a href="https://vallypro.com/" rel="noopener noreferrer">Vally</a></dd></div>
-                <div><dt>Stack</dt><dd>Next.js, TailwindCSS, REST API, Stripe API, Email System</dd></div>
+                <dt>Project</dt><dd>Payments and Scheduling SaaS Product</dd>
+                <dt>Client</dt><dd><a href="https://vallypro.com/" rel="noopener noreferrer">Vally</a></dd>
+                <dt>Stack</dt><dd>Next.js, TailwindCSS, REST API, Stripe API, Email System</dd>
               </dl>
             </div>
           </div>
@@ -61,20 +63,23 @@
 
         <details>
           <summary>
-            <img src="assets/work-images/longIsland.webp" alt="">
+            <img src="assets/images/projects/RedShed.png" alt="">
             <span class="summary-copy">
               <span>The Red Shed</span>
               <small>Small business</small>
             </span>
           </summary>
           <div class="project-detail">
-            <a href="https://www.redshedmadison.com/building" rel="noopener noreferrer"><img src="assets/work-images/red-shed-screenshot.png" alt="The Red Shed website"></a>
+            <div class="project-media">
+              <img src="assets/images/work/longIsland.webp" alt="Long Island fishing">
+              <a href="https://www.redshedmadison.com/building" rel="noopener noreferrer"><img src="assets/images/work/red-shed-screenshot.png" alt="The Red Shed website"></a>
+            </div>
             <div>
               <p>The Red Shed is a historic small business in Madison, WI. This project includes a content management system so that the owners can update their hours, menu, promos, and much more without the need for an engineer to step in.</p>
               <dl>
-                <div><dt>Project</dt><dd>Website with content management system</dd></div>
-                <div><dt>Client</dt><dd><a href="https://www.redshedmadison.com/building" rel="noopener noreferrer">Red Shed LLC.</a></dd></div>
-                <div><dt>Stack</dt><dd>Static site</dd></div>
+                <dt>Project</dt><dd>Website with content management system</dd>
+                <dt>Client</dt><dd><a href="https://www.redshedmadison.com/building" rel="noopener noreferrer">Red Shed LLC.</a></dd>
+                <dt>Stack</dt><dd>Static site</dd>
               </dl>
             </div>
           </div>
@@ -82,20 +87,23 @@
 
         <details>
           <summary>
-            <img src="assets/work-images/piet.jpeg" alt="">
+            <img src="assets/images/projects/BrodheadAviation.webp" alt="">
             <span class="summary-copy">
               <span>Brodhead Aviation</span>
               <small>Small business</small>
             </span>
           </summary>
           <div class="project-detail">
-            <a href="https://www.brodheadaviation.com/" rel="noopener noreferrer"><img src="assets/work-images/brodheadAviation.png" alt="Brodhead Aviation website"></a>
+            <div class="project-media">
+              <img src="assets/images/work/piet.jpeg" alt="Aircraft work">
+              <a href="https://www.brodheadaviation.com/" rel="noopener noreferrer"><img src="assets/images/work/brodheadAviation.png" alt="Brodhead Aviation website"></a>
+            </div>
             <div>
               <p>Antique aircraft restoration done right. Brodhead Aviation specializes in restoring antique and experimental airplanes, fabric covering and painting, common inspections and maintenance.</p>
               <dl>
-                <div><dt>Project</dt><dd>Small business website</dd></div>
-                <div><dt>Client</dt><dd><a href="https://www.brodheadaviation.com/" rel="noopener noreferrer">Brodhead Aviation LLC.</a></dd></div>
-                <div><dt>Stack</dt><dd>Static site</dd></div>
+                <dt>Project</dt><dd>Small business website</dd>
+                <dt>Client</dt><dd><a href="https://www.brodheadaviation.com/" rel="noopener noreferrer">Brodhead Aviation LLC.</a></dd>
+                <dt>Stack</dt><dd>Static site</dd>
               </dl>
             </div>
           </div>
@@ -103,34 +111,55 @@
 
         <details>
           <summary>
-            <img src="assets/work-images/gamerPack.webp" alt="">
+            <img src="assets/images/projects/Eternity.png" alt="">
             <span class="summary-copy">
               <span>Eternity RPG</span>
               <small>Game development</small>
             </span>
           </summary>
           <div class="project-detail">
-            <img src="assets/work-images/victory.webp" alt="Eternity RPG gameplay">
+            <div class="project-media">
+              <img src="assets/images/work/gamerPack.webp" alt="Eternity RPG characters">
+              <img src="assets/images/work/victory.webp" alt="Eternity RPG gameplay">
+            </div>
             <div>
               <p>Eternity is a browser based video game that I helped build with a small team. The game is fully functional and still active today. This project took a tremendous amount of problem solving and outside-the-box thinking and proved to be the most educational and advanced app I've built yet.</p>
               <dl>
-                <div><dt>Project</dt><dd>Web based video game</dd></div>
-                <div><dt>Client</dt><dd>Eternity DAO</dd></div>
-                <div><dt>Stack</dt><dd>React, Vite, Redux, TailwindCSS, Phaser 3</dd></div>
+                <dt>Project</dt><dd>Web based video game</dd>
+                <dt>Client</dt><dd>Eternity DAO</dd>
+                <dt>Stack</dt><dd>React, Vite, Redux, TailwindCSS, Phaser 3</dd>
               </dl>
             </div>
           </div>
         </details>
-      </div>
+
+        <details>
+          <summary>
+            <img src="assets/images/projects/Sage.webp" alt="">
+            <span class="summary-copy">
+              <span>SageLabs</span>
+              <small>Web3 development</small>
+            </span>
+          </summary>
+          <div class="project-detail text-only">
+            <div>
+              <p>SageLabs was my original business, focused on web3 development and independent contracted projects. I started it in my last year of college, and the experience led directly into my work on Eternity RPG.</p>
+              <dl>
+                <dt>Project</dt><dd>Web3 development and contract work</dd>
+                <dt>Client</dt><dd>Independent business</dd>
+                <dt>Stack</dt><dd>Web3</dd>
+              </dl>
+            </div>
+          </div>
+        </details>
     </section>
 
     <section id="writing" aria-labelledby="writing-title">
       <h2 id="writing-title">Writing</h2>
 
-      <div class="accordion">
-        <details>
+      <details>
           <summary>
-            <img src="assets/blog-images/Programmable-engineer.jpg" alt="">
+            <img src="assets/images/writing/programmable-engineer.jpg" alt="">
             <span class="summary-copy">
               <span>The Programmable Engineer</span>
               <small>December 31, 2025</small>
@@ -139,7 +168,7 @@
           <article class="writing-copy">
 <h3>The Programmable Engineer: Another Way of Thinking About the Production and Management of Tech Debt</h3>
 <p class="meta">2025-12-31 by Rob Weeden</p>
-<img class="writing-image" src="assets/blog-images/Programmable-engineer.jpg" alt="The Programmable Engineer">
+<img class="writing-image" src="assets/images/writing/programmable-engineer.jpg" alt="The Programmable Engineer">
 <h3>Abstract</h3>
 <p>The purpose of this essay is not to convince anyone that the current paradigm of software engineering requires fundamental change, but rather to encourage engineers to reconsider their entire toolchain and examine how previous programming decisions impact code production practices. This essay provides a potential framework for thinking about tech stack decisions in the age of autonomous code-producing machines. As large language models demonstrate increasing proficiency in code generation, we should reassess what it means to engineer software, where technical debt originates, and how we can architect systems that treat natural language as a first-class programming interface.</p>
 <h3>The Evolution of Development Velocity</h3>
@@ -245,7 +274,6 @@
 <p>The tools are changing, and we must consider whether our thinking about AI governance should change to match. The Intelligence Contract offers one path forward—a path that puts control in the hands of those who understand the context, the boundaries, and the consequences of autonomous agent behavior.</p>
 </article>
         </details>
-      </div>
     </section>
   </main>
 
