@@ -26,6 +26,7 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.65;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -184,13 +185,19 @@ h3 {
 
 summary {
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr) max-content 20px;
+  grid-template-columns: 82px minmax(0, 1fr) 20px;
   align-items: center;
   gap: 18px;
   min-height: 96px;
   padding: 14px 0;
   cursor: pointer;
   list-style: none;
+}
+
+.summary-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
 }
 
 summary::-webkit-details-marker {
@@ -201,6 +208,7 @@ summary::after {
   content: "+";
   color: var(--accent);
   font-size: 1.35rem;
+  justify-self: end;
 }
 
 details[open] {
@@ -239,7 +247,7 @@ summary img {
 }
 
 small {
-  text-align: right;
+  text-align: left;
 }
 
 .project-detail {
@@ -298,6 +306,7 @@ details p,
 .writing-copy a {
   text-decoration: underline;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 
 .project-detail dd a:hover,
@@ -320,6 +329,11 @@ details p,
   border-radius: 8px;
   background: var(--panel);
   padding: 16px;
+  white-space: pre-wrap;
+}
+
+.writing-copy code {
+  overflow-wrap: anywhere;
 }
 
 .footnote {
@@ -332,14 +346,22 @@ details p,
 }
 
 @media (max-width: 680px) {
-  .site-header,
   summary {
     align-items: flex-start;
   }
 
   nav {
-    width: 100%;
-    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .site-header {
+    flex-wrap: nowrap;
+    gap: 16px;
+    padding-bottom: 32px;
+  }
+
+  .brand {
+    font-size: 1.1rem;
   }
 
   .intro,
@@ -348,7 +370,9 @@ details p,
   }
 
   .portrait {
-    width: 180px;
+    width: 140px;
+    height: 140px;
+    aspect-ratio: 1;
   }
 
   h1 {
@@ -360,17 +384,85 @@ details p,
   }
 
   summary {
-    grid-template-columns: 72px minmax(0, 1fr) 20px;
+    grid-template-columns: 56px minmax(0, 1fr) 20px;
+    gap: 8px;
+    min-height: 0;
+    padding: 8px 0;
   }
 
   summary img,
   .placeholder {
-    width: 72px;
-    height: 54px;
+    width: 56px;
+    height: 42px;
   }
 
-  summary small {
-    grid-column: 2;
-    text-align: left;
+  .summary-copy {
+    gap: 2px;
+  }
+
+  .summary-copy span {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .summary-copy small {
+    line-height: 1.25;
+  }
+
+  .project-detail {
+    gap: 16px;
+  }
+
+  dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .writing-copy {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header,
+  main {
+    width: min(920px, calc(100% - 24px));
+  }
+
+  .site-header {
+    gap: 12px;
+  }
+
+  nav {
+    gap: 12px;
+    font-size: 0.95rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2.55rem;
+  }
+
+  .lede {
+    font-size: 1.05rem;
+  }
+
+  mark {
+    display: table;
+    margin: 4px 0 0;
+  }
+
+  summary {
+    grid-template-columns: 48px minmax(0, 1fr) 18px;
+    gap: 8px;
+  }
+
+  summary img,
+  .placeholder {
+    width: 48px;
+    height: 36px;
   }
 }
