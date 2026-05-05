@@ -1,19 +1,14 @@
 # PersonalSiteV4
 
-Static personal site built with Go, plain HTML, and plain CSS.
+Static personal site built with plain HTML and CSS.
 
 ## Commands
 
-```bash
-go run .
-```
-
-`go run .` serves `public/` at `http://localhost:8080`.
+Open `public/index.html` in a browser.
 
 ## Structure
 
 ```text
-main.go
 public/
 ```
 
