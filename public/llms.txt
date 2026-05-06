@@ -22,6 +22,7 @@ The site is a static HTML and CSS portfolio. It presents Robert as a pragmatic s
 - [Vally](https://vallypro.com/): Current work on a B2B fishing-industry application used for scheduling, booking, payments, and customer communication.
 - [The Red Shed](https://www.redshedmadison.com/building): Madison small-business website with a content management system for hours, menu, promotions, and other updates.
 - [Brodhead Aviation](https://www.brodheadaviation.com/): Small-business website for antique aircraft restoration, fabric covering, painting, inspections, and maintenance.
+- [SageLabs](https://sagelabs-eight.vercel.app/): Original business focused on web3 development and independent contracted projects.
 - [Work section](https://www.robertjw.dev/#work): Includes additional project notes for Eternity RPG, SageLabs, and other selected work.
 
 ## Writing
