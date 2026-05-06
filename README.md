@@ -1,6 +1,10 @@
-# PersonalSiteV4
+# robertjw.dev
 
-Static personal site built with plain HTML and CSS.
+A simpler site, for a simpler era of computing.
+
+Open to the public as an example of how the evolution of tools has enabled the streamlining of software.
+
+Hosted on Vercel.
 
 ## Commands
 

@@ -32,4 +32,4 @@ The site is a static HTML and CSS portfolio. It presents Robert as a pragmatic s
 
 ## Optional
 
-- [Source repository](https://github.com/weedenrj/PersonalSiteV4): Source code for the static website.
+- [Source repository](https://github.com/weedenrj/robertjw.dev): Source code for the static website.
