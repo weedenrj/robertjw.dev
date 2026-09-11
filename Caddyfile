@@ -1,0 +1,18 @@
+{
+  admin off
+  auto_https off
+}
+
+:{$PORT:8080} {
+  root * /srv
+  encode zstd gzip
+
+  @apex host robertjw.dev
+  redir @apex https://www.robertjw.dev{uri} 308
+  redir /index.html / 308
+  redir /resume/index.html /resume/ 308
+  @oldResume path "/assets/Robert Weeden Resume July 2024.pdf"
+  redir @oldResume /assets/Robert-Weeden-Resume.pdf 308
+
+  file_server
+}
