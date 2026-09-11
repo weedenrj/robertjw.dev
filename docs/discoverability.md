@@ -5,6 +5,7 @@ The public site is static HTML/CSS served by Caddy on Railway. Vince runs as a s
 - Website: https://www.robertjw.dev/
 - Railway project: `37ec586d-0547-4af4-8c2d-b5787baa0c69`
 - Website service: `5d0fbe5a-540d-4247-b4d4-e9d942aaf1d7`
+- Deployments: GitHub `weedenrj/robertjw.dev`, branch `main`, automatic deploys enabled, Dockerfile builder, health check `/`.
 - Vince service: `a479d07f-f963-4ce9-a7db-856e52cb7297`, volume mounted at `/data`, image `ghcr.io/vinceanalytics/vince:v1.11.8`, start command `/vince serve`.
 - Private analytics dashboard: https://vince-production-14fb.up.railway.app/; site ID `robertjw.dev` (Vince normalizes away `www`).
 - Google Search Console property: `https://www.robertjw.dev/`. Keep the verification tag in the homepage.
