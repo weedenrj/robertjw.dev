@@ -225,7 +225,7 @@
 
 @media print {
   @page { margin: 12mm; }
-  html { background: white; color-scheme: light; }
+  :root { background: white; color-scheme: light; }
   .resume-page { background: white; }
   .resume-page .site-header { display: none; }
   .resume { width: 100%; padding: 0; margin: 0; border: 0; background: white; font-size: 9pt; line-height: 1.4; }
