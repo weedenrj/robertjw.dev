@@ -5,8 +5,12 @@ but its storage field is `event`. The filter compiler treats `name` as unknown
 and drops the filter, returning totals for unrelated events.
 
 This image builds upstream commit `fc06f7a22f785e6e152cb72e3210fcc099b07fa5`
-with `event-filter.patch`. It changes the event field translation and includes
-query and storage regression tests. Visit-page goal translation stays intact.
+with `event-filter.patch`. It corrects the event field translation and selects
+the site before writing visitor/pageview fields during ingestion. Stock Vince
+selected the site partway through each event, so the first event after restart
+could lose its visitor association. Query and storage regression tests cover
+contact selection, unrelated events, nonexistent events and first-event visitors.
+Visit-page goal translation stays intact.
 The Docker build runs those tests before building the binary. The runtime base
 is the original v1.11.8 image pinned by digest. No storage format changes.
 
@@ -42,4 +46,5 @@ python3 -m unittest discover -s .agents/skills/search-report/scripts -p 'test_*.
 After deployment, compare `Contact`, an unrelated recorded event and
 `DefinitelyNotARecordedEvent` over the same covered dates. The nonexistent event
 must return zero. Confirm unfiltered historical pageviews and visitors are
-unchanged. Keep any test events and resulting analytics in private artifacts.
+unchanged. Historical visitor associations lost before the ingestion fix are
+not reconstructed. Keep test events and resulting analytics in private artifacts.

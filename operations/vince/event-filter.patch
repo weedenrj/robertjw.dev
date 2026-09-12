@@ -1,3 +1,24 @@
+diff --git a/internal/timeseries/timeseries_batch.go b/internal/timeseries/timeseries_batch.go
+index 9262eac..22ae1a7 100644
+--- a/internal/timeseries/timeseries_batch.go
++++ b/internal/timeseries/timeseries_batch.go
+@@ -149,6 +149,8 @@ func (b *batch) add(m *models.Model) error {
+ 
+ 	b.id = b.translate.Next()
+ 	id := b.id
++	// Select the site before writing any fields for this event.
++	b.domainId = b.tr(models.Field_domain, m.Domain)
+ 	b.setTs(m.Timestamp)
+ 	b.bs(models.Field_id, id, int64(m.Id))
+ 	if m.Bounce != 0 {
+@@ -172,7 +174,6 @@ func (b *batch) add(m *models.Model) error {
+ 	b.set(models.Field_device, id, m.Device)
+ 
+ 	// domain is stored as part of the key, we only save existence bit
+-	b.domainId = b.tr(models.Field_domain, m.Domain)
+ 	b.mxExixtenceOnly(models.Field_domain, id)
+ 
+ 	b.set(models.Field_entry_page, id, m.EntryPage)
 diff --git a/internal/web/query/filter.go b/internal/web/query/filter.go
 index 4e05f44..4ba3518 100644
 --- a/internal/web/query/filter.go
@@ -45,10 +66,10 @@ index 02d572e..d153bd7 100644
 +}
 diff --git a/internal/api/aggregates/event_filter_test.go b/internal/api/aggregates/event_filter_test.go
 new file mode 100644
-index 0000000..df5b738
+index 0000000..905433d
 --- /dev/null
 +++ b/internal/api/aggregates/event_filter_test.go
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,42 @@
 +package aggregates
 +
 +import (
@@ -72,7 +93,6 @@ index 0000000..df5b738
 +	ts := timeseries.New(db, nil)
 +	defer ts.Close()
 +	when := time.Date(2026, 9, 11, 12, 0, 0, 0, time.UTC)
-+	require.NoError(t, ts.Add(&models.Model{Domain: []byte("test.example"), View: true, Id: 99, Timestamp: when.UnixMilli()}))
 +	for i, name := range []string{"Contact", "Contact", "OtherEvent"} {
 +		require.NoError(t, ts.Add(&models.Model{Domain: []byte("test.example"), Event: []byte(name), Id: uint64(i + 1), Timestamp: when.UnixMilli()}))
 +	}
