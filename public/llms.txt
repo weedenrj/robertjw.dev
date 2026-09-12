@@ -16,12 +16,17 @@ Robert works full-time at Vally and is available for asynchronous contract work 
 - Vally: August 2024 to present, Staff Software Engineer, full-time.
 - Tesseract Corporation: June 2022 to June 2024, Senior Full-stack Engineer.
 - Sage Labs: July 2021 to June 2022, Junior React Engineer and Co-founder.
+- Wisconsin Air National Guard: 2015 to October 2021, mechanical aircraft inspection and maintenance at Truax Field in Madison. Worked in the F-16 phase inspection dock while assigned to the repair and reclamation shop, including wheel and tire rebuilds. This was mechanical work, separate from his software career.
 
 ## Profiles
 
 - [GitHub](https://github.com/weedenrj): Robert Weeden's GitHub profile.
 - [LinkedIn](https://www.linkedin.com/in/robert-weeden/): Robert Weeden's LinkedIn profile.
 - [Email](mailto:hello@robertjw.dev): Public email address shown on the website.
+
+## Background
+
+- [Mechanical background](https://www.robertjw.dev/#background): Military aircraft inspection and maintenance, alongside personal motorcycle restoration. His interest in restoring systems informs his software simplification and maintenance work.
 
 ## Services
 
