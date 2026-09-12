@@ -1,5 +1,6 @@
 @font-face {
   font-family: Basier;
+  font-display: swap;
   src: url("../fonts/basier.woff2") format("woff2");
 }
 
@@ -17,7 +18,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -26,7 +27,7 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.65;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -110,6 +111,7 @@ main {
 h1,
 h2,
 h3,
+h4,
 summary span {
   font-family: Basier, ui-monospace, monospace;
 }
@@ -148,6 +150,7 @@ summary span {
 h1,
 h2,
 h3,
+h4,
 p {
   margin-top: 0;
 }
@@ -163,7 +166,8 @@ h2 {
   font-size: 2rem;
 }
 
-h3 {
+h3,
+h4 {
   margin: 34px 0 10px;
 }
 
@@ -288,12 +292,13 @@ summary img {
   outline-offset: 4px;
 }
 
-.project-media a:hover {
+.project-media a:hover,
+.project-media a:focus-visible {
   outline-color: var(--accent);
 }
 
 .project-detail img {
-  aspect-ratio: 4 / 3;
+  height: auto;
 }
 
 details + details {
@@ -322,6 +327,10 @@ details p,
   max-width: 66ch;
 }
 
+.writing-copy h4 {
+  font-size: 1.17em;
+}
+
 .writing-copy h3:first-child {
   margin-top: 0;
 }
@@ -339,7 +348,7 @@ details p,
 }
 
 .writing-image {
-  max-height: 340px;
+  height: auto;
   margin: 20px 0;
 }
 
@@ -378,7 +387,6 @@ details p,
   }
 
   .site-header {
-    flex-wrap: nowrap;
     gap: 16px;
     padding-bottom: 32px;
   }
@@ -482,4 +490,29 @@ details p,
     --marker-width: 18px;
     gap: 8px;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 1;
+  transform: translateY(-200%);
+  padding: 8px 16px;
+  background: var(--text);
+  color: var(--bg);
+  text-decoration: underline;
+}
+
+.skip-link:focus {
+  transform: none;
+  color: var(--bg);
+}
+
+@media print {
+  .skip-link { display: none; }
 }

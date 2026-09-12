@@ -247,3 +247,11 @@
   .resume-job, .resume-projects article, .resume-section:last-child { break-inside: avoid; }
   .resume h2, .resume-job-header, .resume-position { break-after: avoid; }
 }
+
+@media screen {
+  .resume-contact a {
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
