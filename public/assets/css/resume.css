@@ -225,7 +225,7 @@
 
 @media print {
   @page { margin: 12mm; }
-  html { background: white; color-scheme: light; }
+  :root { background: white; color-scheme: light; }
   .resume-page { background: white; }
   .resume-page .site-header { display: none; }
   .resume { width: 100%; padding: 0; margin: 0; border: 0; background: white; font-size: 9pt; line-height: 1.4; }
@@ -246,4 +246,12 @@
   .resume-skills { gap: 6px; }
   .resume-job, .resume-projects article, .resume-section:last-child { break-inside: avoid; }
   .resume h2, .resume-job-header, .resume-position { break-after: avoid; }
+}
+
+@media screen {
+  .resume-contact a {
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
