@@ -1,0 +1,94 @@
+diff --git a/internal/web/query/filter.go b/internal/web/query/filter.go
+index 4e05f44..4ba3518 100644
+--- a/internal/web/query/filter.go
++++ b/internal/web/query/filter.go
+@@ -72,7 +72,9 @@ func (c *Filter) To() *Filter {
+ 	if strings.HasPrefix(c.Key, "event:") {
+ 		key := strings.TrimPrefix(c.Key, "event:")
+ 		switch key {
+-		case "name", "page", "hostname":
++		case "name":
++			return &Filter{Op: c.Op, Key: "event", Value: c.Value}
++		case "page", "hostname":
+ 			return &Filter{Op: c.Op, Key: key, Value: c.Value}
+ 		case "goal":
+ 			if strings.HasPrefix(c.Value[0], "Visit ") {
+@@ -80,7 +82,7 @@ func (c *Filter) To() *Filter {
+ 					strings.TrimPrefix(c.Value[0], "Visit "),
+ 				}}
+ 			}
+-			return &Filter{Op: c.Op, Key: "name", Value: c.Value}
++			return &Filter{Op: c.Op, Key: "event", Value: c.Value}
+ 		default:
+ 			return nil
+ 		}
+diff --git a/internal/web/query/filter_test.go b/internal/web/query/filter_test.go
+index 02d572e..d153bd7 100644
+--- a/internal/web/query/filter_test.go
++++ b/internal/web/query/filter_test.go
+@@ -29,3 +29,16 @@ func TestFilter(t *testing.T) {
+ 	require.Equal(t, want, tr)
+ 
+ }
++
++func TestEventFiltersUseStoredField(t *testing.T) {
++	for _, key := range []string{"event:name", "event:goal"} {
++		t.Run(key, func(t *testing.T) {
++			encoded, err := json.Marshal([]any{[]any{"is", key, []string{"Contact"}}})
++			require.NoError(t, err)
++			q := New(url.Values{"filters": {string(encoded)}})
++			require.Equal(t, Filters{{Op: "is", Key: "event", Value: []string{"Contact"}}}, q.Filter())
++		})
++	}
++	q := New(url.Values{"filters": {`[["is","event:goal",["Visit /resume/"]]]`}})
++	require.Equal(t, Filters{{Op: "is", Key: "page", Value: []string{"/resume/"}}}, q.Filter())
++}
+diff --git a/internal/api/aggregates/event_filter_test.go b/internal/api/aggregates/event_filter_test.go
+new file mode 100644
+index 0000000..df5b738
+--- /dev/null
++++ b/internal/api/aggregates/event_filter_test.go
+@@ -0,0 +1,43 @@
++package aggregates
++
++import (
++	"context"
++	"encoding/json"
++	"net/url"
++	"testing"
++	"time"
++
++	"github.com/stretchr/testify/require"
++	"github.com/vinceanalytics/vince/internal/models"
++	"github.com/vinceanalytics/vince/internal/shards"
++	"github.com/vinceanalytics/vince/internal/timeseries"
++	"github.com/vinceanalytics/vince/internal/web/query"
++)
++
++func TestContactFilterExcludesOtherEvents(t *testing.T) {
++	db, err := shards.New(t.TempDir())
++	require.NoError(t, err)
++	defer db.Close()
++	ts := timeseries.New(db, nil)
++	defer ts.Close()
++	when := time.Date(2026, 9, 11, 12, 0, 0, 0, time.UTC)
++	require.NoError(t, ts.Add(&models.Model{Domain: []byte("test.example"), View: true, Id: 99, Timestamp: when.UnixMilli()}))
++	for i, name := range []string{"Contact", "Contact", "OtherEvent"} {
++		require.NoError(t, ts.Add(&models.Model{Domain: []byte("test.example"), Event: []byte(name), Id: uint64(i + 1), Timestamp: when.UnixMilli()}))
++	}
++	require.NoError(t, ts.Save())
++	for _, tc := range []struct {
++		name  string
++		count float64
++	}{{"Contact", 2}, {"OtherEvent", 1}, {"DefinitelyNotARecordedEvent", 0}} {
++		t.Run(tc.name, func(t *testing.T) {
++			filters, err := json.Marshal([]any{[]any{"is", "event:name", []string{tc.name}}})
++			require.NoError(t, err)
++			q := query.New(url.Values{"period": {"custom"}, "from": {"2026-09-11"}, "to": {"2026-09-12"}, "filters": {string(filters)}})
++			s := Aggregates(context.Background(), ts, "test.example", q.Start(), q.End(), q.Interval(), q.Filter(), []string{"events", "visitors"})
++			s.Compute()
++			require.Equal(t, tc.count, s.Events)
++			require.Equal(t, tc.count, s.Visitors)
++		})
++	}
++}

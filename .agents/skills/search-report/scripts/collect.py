@@ -4,8 +4,9 @@ import datetime as dt
 import json
 import pathlib
 import urllib.error
-import urllib.parse
 import urllib.request
+
+from vince import contact_counts, query
 
 SITE = 'https://www.robertjw.dev'
 CONFIG = pathlib.Path.home() / '.config/robertjw-discoverability/vince.json'
@@ -40,14 +41,13 @@ if CONFIG.exists():
         period = {'from': str(start), 'to': str(today), 'timezone': 'UTC', 'results': {}}
         period['coverage'] = 'unavailable' if today <= COLLECTION_START else 'partial' if start <= COLLECTION_START else 'complete'
         period['collection_started'] = str(COLLECTION_START)
-        # v1.11.8 ignores event:name filters; do not label all events as contacts.
-        period['results']['contact_clicks'] = {'status': 'unavailable', 'reason': 'Vince v1.11.8 event filtering failed verification'}
+        try:
+            period['results']['contact_clicks'] = contact_counts(config, params)
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
+            period['results']['contact_clicks'] = {'status': 'unavailable', 'reason': str(error)}
         for label, (endpoint, extra) in queries.items():
-            url = config['url'] + '/api/v1/stats/' + endpoint + '?' + urllib.parse.urlencode(params | extra)
-            request = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + config['api_key']})
             try:
-                with urllib.request.urlopen(request, timeout=20) as response:
-                    period['results'][label] = json.load(response)
+                period['results'][label] = query(config, endpoint, params | extra)
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
                 period['results'][label] = {'error': str(error)}
         observations['traffic'][str(days)] = period
@@ -65,7 +65,8 @@ for period, value in observations['traffic'].items():
         continue
     totals = 'Unavailable: requested dates precede collection.' if value['coverage'] == 'unavailable' else json.dumps(value['results']['totals'])
     lines += [f'- Previous {period} complete UTC day(s), coverage {value["coverage"]}: {totals}',
-              f'  Contact intent: {json.dumps(value["results"]["contact_clicks"])}']
+              '  Contact intent: ' + ('Unavailable: requested dates precede collection.' if value['coverage'] == 'unavailable'
+                                      else json.dumps(value['results']['contact_clicks']))]
 lines += ['', 'A contact click means someone opened an email link; it is not a confirmed inquiry or hire.', '',
           '## Search and agent discovery', '', 'Google Search Console and Bing Webmaster Tools are separate sources. The scheduled agent checks their signed-in dashboards and appends data freshness and query observations here. No search rank or AI visibility score is inferred from website traffic.', '',
           'Raw source and page breakdowns: observations.json.']
