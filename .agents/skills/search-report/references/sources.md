@@ -11,7 +11,7 @@ The public site is static HTML/CSS served by Caddy on Railway. Vince runs as a s
 - Google Search Console property: `https://www.robertjw.dev/`. Keep the verification tag in the homepage.
 - Bing Webmaster Tools uses the same site URL and its own homepage verification tag.
 
-Run `python3 scripts/discoverability.py` to collect site checks and the previous 1, 7, and 28 complete UTC days of traffic. It requires Python 3.9+ and uses the standard library. API credentials belong in `~/.config/robertjw-discoverability/vince.json` (mode 600), with `url`, `site_id`, and `api_key` fields. Never put credentials or private reports in this repository.
+Run `python3 .agents/skills/search-report/scripts/collect.py` to collect site checks and the previous 1, 7, and 28 complete UTC days of traffic. It requires Python 3.9+ and uses the standard library. API credentials belong in `~/.config/robertjw-discoverability/vince.json` (mode 600), with `url`, `site_id`, and `api_key` fields. Never put credentials or private reports in this repository.
 
 Reports and private strategy notes live under `~/Documents/agent-artifacts/robertjw-discoverability/`. Data collection began September 11, 2026; earlier periods lack coverage. Launch-day visits and contact clicks include setup tests. Contact clicks measure intent, not received emails or successful hires. Vince v1.11.8 ignored event-name filters during verification, so contact totals are explicitly unavailable in reports until a provider fix passes a nonexistent-event control check. Scripted browser checks are normally excluded by the tracker.
 
@@ -23,6 +23,4 @@ Google/Bing accounts use Rob's personal email. Do not substitute Vally analytics
 
 ## Public contact address
 
-`hello@robertjw.dev` forwards to Rob's personal inbox through ImprovMX's free plan. The account and destination are private; public HTML, structured data, `llms.txt`, and the PDF resume use the alias. DNS remains at Vercel, with MX priorities 10 and 20 pointing to `mx1.improvmx.com` and `mx2.improvmx.com`, and the root TXT record `v=spf1 include:spf.improvmx.com ~all`. There is no catch-all alias.
-
-An external test on September 11, 2026 was accepted by ImprovMX and delivered to Gmail, confirmed by its SMTP success response. This does not establish inbox versus spam placement. Forwarding does not configure outgoing mail: replying from the personal Gmail address exposes it to the recipient. Sending as the domain has not been configured. Old repository history and downloaded copies can still contain the previous contact address.
+Use `hello@robertjw.dev` in public materials. See [ImprovMX email forwarding](../../../../AGENTS.md#improvmx-email-forwarding) for configuration and delivery verification.
