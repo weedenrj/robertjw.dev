@@ -13,4 +13,4 @@ docker run --rm -p 8080:8080 robertjw-site
 
 The Railway `website` service builds the root `Dockerfile` automatically when `main` is pushed. It checks `/` before completing deployment. For a manual deployment, use `railway up --service website` from the linked project. Caddy handles static files, real 404s, and permanent redirects from old resume and index URLs. DNS is managed in the existing Vercel DNS account; web hosting is on Railway.
 
-See [discoverability operations](docs/discoverability.md) for analytics and the daily report.
+Project workflows live in [.agents/skills](.agents/skills). Use [search-report](.agents/skills/search-report/SKILL.md) for daily analytics and [writing-pipeline](.agents/skills/writing-pipeline/SKILL.md) for topic research, interviews, and blog drafts.

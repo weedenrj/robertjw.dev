@@ -11,7 +11,7 @@ The public site is static HTML/CSS served by Caddy on Railway. Vince runs as a s
 - Google Search Console property: `https://www.robertjw.dev/`. Keep the verification tag in the homepage.
 - Bing Webmaster Tools uses the same site URL and its own homepage verification tag.
 
-Run `python3 scripts/discoverability.py` to collect site checks and the previous 1, 7, and 28 complete UTC days of traffic. It requires Python 3.9+ and uses the standard library. API credentials belong in `~/.config/robertjw-discoverability/vince.json` (mode 600), with `url`, `site_id`, and `api_key` fields. Never put credentials or private reports in this repository.
+Run `python3 .agents/skills/search-report/scripts/collect.py` to collect site checks and the previous 1, 7, and 28 complete UTC days of traffic. It requires Python 3.9+ and uses the standard library. API credentials belong in `~/.config/robertjw-discoverability/vince.json` (mode 600), with `url`, `site_id`, and `api_key` fields. Never put credentials or private reports in this repository.
 
 Reports and private strategy notes live under `~/Documents/agent-artifacts/robertjw-discoverability/`. Data collection began September 11, 2026; earlier periods lack coverage. Launch-day visits and contact clicks include setup tests. Contact clicks measure intent, not received emails or successful hires. Vince v1.11.8 ignored event-name filters during verification, so contact totals are explicitly unavailable in reports until a provider fix passes a nonexistent-event control check. Scripted browser checks are normally excluded by the tracker.
 
