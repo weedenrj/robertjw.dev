@@ -20,3 +20,9 @@ Google and Bing ownership are verified. Google reports the sitemap successfully 
 The Orca automation `58d8b4ab-9e7a-4084-b480-b4917138e8d4` runs at 08:00 America/Chicago. It collects Vince metrics, checks the signed-in Google and Bing dashboards when available, compares reports, and proposes one useful improvement. It needs this computer and Orca online. Search reporting can lag; missing access and processing delays must be reported as unavailable, never zero. There is no universal agent or recruiter discoverability score.
 
 Google/Bing accounts use Rob's personal email. Do not substitute Vally analytics or Gmail. No job-board accounts, paid SEO subscriptions, automatic outreach, or tracking of named visitors is needed.
+
+## Public contact address
+
+`hello@robertjw.dev` forwards to Rob's personal inbox through ImprovMX's free plan. The account and destination are private; public HTML, structured data, `llms.txt`, and the PDF resume use the alias. DNS remains at Vercel, with MX priorities 10 and 20 pointing to `mx1.improvmx.com` and `mx2.improvmx.com`, and the root TXT record `v=spf1 include:spf.improvmx.com ~all`. There is no catch-all alias.
+
+An external test on September 11, 2026 was accepted by ImprovMX and delivered to Gmail, confirmed by its SMTP success response. This does not establish inbox versus spam placement. Forwarding does not configure outgoing mail: replying from the personal Gmail address exposes it to the recipient. Sending as the domain has not been configured. Old repository history and downloaded copies can still contain the previous contact address.
