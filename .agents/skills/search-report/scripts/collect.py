@@ -4,9 +4,8 @@ import datetime as dt
 import json
 import pathlib
 import urllib.error
+import urllib.parse
 import urllib.request
-
-from vince import contact_counts, query
 
 SITE = 'https://www.robertjw.dev'
 CONFIG = pathlib.Path.home() / '.config/robertjw-discoverability/vince.json'
@@ -38,18 +37,22 @@ if CONFIG.exists():
         # Vince v1.11.8 interprets custom endpoints as UTC midnights.
         queries = {'totals': ('aggregate', {}), 'sources': ('breakdown', {'property': 'visit:source'}),
                    'pages': ('breakdown', {'property': 'event:page'})}
+        for label, event in [('contact_clicks', 'Contact'), ('contact_control', 'DefinitelyNotARecordedEvent')]:
+            queries[label] = ('aggregate', {'metrics': 'events,visitors',
+                                            'filters': json.dumps([['is', 'event:name', [event]]])})
         period = {'from': str(start), 'to': str(today), 'timezone': 'UTC', 'results': {}}
         period['coverage'] = 'unavailable' if today <= COLLECTION_START else 'partial' if start <= COLLECTION_START else 'complete'
         period['collection_started'] = str(COLLECTION_START)
-        try:
-            period['results']['contact_clicks'] = contact_counts(config, params)
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
-            period['results']['contact_clicks'] = {'status': 'unavailable', 'reason': str(error)}
         for label, (endpoint, extra) in queries.items():
+            url = config['url'] + '/api/v1/stats/' + endpoint + '?' + urllib.parse.urlencode(params | extra)
+            request = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + config['api_key']})
             try:
-                period['results'][label] = query(config, endpoint, params | extra)
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    period['results'][label] = json.load(response)
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
                 period['results'][label] = {'error': str(error)}
+        if period['results']['contact_control'] != {'events': 0, 'visitors': 0}:
+            period['results']['contact_clicks'] = {'status': 'unavailable', 'reason': 'Event filter control failed'}
         observations['traffic'][str(days)] = period
 else:
     observations['traffic'] = {'status': 'unavailable', 'reason': 'Vince configuration is missing'}
@@ -65,8 +68,7 @@ for period, value in observations['traffic'].items():
         continue
     totals = 'Unavailable: requested dates precede collection.' if value['coverage'] == 'unavailable' else json.dumps(value['results']['totals'])
     lines += [f'- Previous {period} complete UTC day(s), coverage {value["coverage"]}: {totals}',
-              '  Contact intent: ' + ('Unavailable: requested dates precede collection.' if value['coverage'] == 'unavailable'
-                                      else json.dumps(value['results']['contact_clicks']))]
+              f'  Contact intent: {json.dumps(value["results"]["contact_clicks"])}']
 lines += ['', 'A contact click means someone opened an email link; it is not a confirmed inquiry or hire.', '',
           '## Search and agent discovery', '', 'Google Search Console and Bing Webmaster Tools are separate sources. The scheduled agent checks their signed-in dashboards and appends data freshness and query observations here. No search rank or AI visibility score is inferred from website traffic.', '',
           'Raw source and page breakdowns: observations.json.']
