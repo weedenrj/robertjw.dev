@@ -23,6 +23,4 @@ Google/Bing accounts use Rob's personal email. Do not substitute Vally analytics
 
 ## Public contact address
 
-`hello@robertjw.dev` forwards to Rob's personal inbox through ImprovMX's free plan. The account and destination are private; public HTML, structured data, `llms.txt`, and the PDF resume use the alias. DNS remains at Vercel, with MX priorities 10 and 20 pointing to `mx1.improvmx.com` and `mx2.improvmx.com`, and the root TXT record `v=spf1 include:spf.improvmx.com ~all`. There is no catch-all alias.
-
-An external test on September 11, 2026 was accepted by ImprovMX and delivered to Gmail, confirmed by its SMTP success response. This does not establish inbox versus spam placement. Forwarding does not configure outgoing mail: replying from the personal Gmail address exposes it to the recipient. Sending as the domain has not been configured. Old repository history and downloaded copies can still contain the previous contact address.
+Use `hello@robertjw.dev` in public materials. See [ImprovMX email forwarding](../../../../AGENTS.md#improvmx-email-forwarding) for configuration and delivery verification.
