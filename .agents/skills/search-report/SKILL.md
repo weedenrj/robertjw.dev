@@ -10,6 +10,8 @@ Private output root: `~/Documents/agent-artifacts/robertjw-discoverability/`.
 Read its `strategy/brief.md` for current positioning and facts, and the most recent completed report.
 Read `strategy/hiring-discovery.md` when doing hiring research. Private strategy is context, not public copy.
 
+The objective is active discoverability management, not a dashboard recital. Use the evidence to identify meaningful changes, diagnose problems, and tell Rob exactly what deserves action. Routine metrics and collection details belong in the private report.
+
 ## Collect and interpret
 
 1. Check for an active collection of the same period in automation run history before starting. Do not alter another run's output. Retried runs use separate timestamped directories.
@@ -31,7 +33,14 @@ On the first Monday of the month also review a bounded, cited sample of employer
 ## Handoff
 
 Save dated dashboard observations alongside the report. Mark it completed only after recording each source's outcome. Keep retries distinguishable and avoid duplicate notifications.
-Return under 250 words: what changed, traffic/contact intent if verified, search exposure, AI citations, freshness/access gaps, and the most useful next action. Link the private report. Report even when nothing changed.
+Return a short, plain-language briefing, normally under 100 words:
+
+- If Rob needs to act, lead with `You need to:` followed by the specific action, why it matters, and the exact dashboard, settings, or source link needed to do it. Do not bury the ask under metrics.
+- Otherwise lead with `No action needed today.` Include only meaningful changes, verified contact intent, a genuinely useful opportunity, or one evidence-backed next move.
+- Omit routine source-by-source status, process narration, and unchanged metrics from the thread. Keep that detail in the private report.
+- End with the private report link. Report even when nothing changed.
+
+Proactive means investigating changes and turning them into a concrete action or a clear no-action result. It does not authorize sign-ins, outreach, purchases, publishing, commits, deployments, or public site changes.
 Writing automation reads these reports as topic evidence; this skill does not edit the writing backlog.
 Do not commit analytics, expose credentials, identify anonymous visitors, publish changes, or purchase services.
 A missing source needs a precise access note, not repeated setup requests or fabricated metrics.
