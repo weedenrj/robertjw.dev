@@ -44,6 +44,8 @@ Robert works full-time at Vally and is available for asynchronous contract work 
 
 ## Writing
 
+- [Take a Step Back](https://www.robertjw.dev/#take-a-step-back): Essay on reconsidering inherited architecture, clarifying required behavior, and generating reproducible API and client construction. Published October 14, 2026.
+
 - [Writing section](https://www.robertjw.dev/#writing): Full essays published on the website.
 - [The Programmable Engineer](https://www.robertjw.dev/#writing): Essay about technical debt, natural language as a programming interface, agent architecture, and programmable engineers.
 - [Intelligence Contracts](https://www.robertjw.dev/#writing): Essay proposing Operator|Contract|Workflow as a framework for AI governance and autonomous-agent boundaries.

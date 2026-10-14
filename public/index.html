@@ -17,31 +17,73 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:description" content="Robert Weeden is a Staff Software Engineer and builder of Vally in Madison, Wisconsin. He builds full-stack products, agentic applications, and developer tooling.">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [{
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "ProfilePage",
       "url": "https://www.robertjw.dev/",
-      "mainEntity": {"@id": "https://www.robertjw.dev/#robert-weeden"}
-    }, {
+      "mainEntity": {
+        "@id": "https://www.robertjw.dev/#robert-weeden"
+      }
+    },
+    {
       "@type": "Person",
       "@id": "https://www.robertjw.dev/#robert-weeden",
       "name": "Robert Weeden",
       "alternateName": "Rob Weeden",
       "jobTitle": "Staff Software Engineer",
       "description": "Staff Software Engineer and builder of Vally, working on full-stack products, agentic applications, and developer tooling.",
-      "worksFor": {"@type": "Organization", "name": "Vally", "url": "https://vallypro.com/"},
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Vally",
+        "url": "https://vallypro.com/"
+      },
       "url": "https://www.robertjw.dev/",
       "image": "https://www.robertjw.dev/assets/images/portrait.webp",
       "email": "mailto:hello@robertjw.dev",
-      "homeLocation": {"@type": "Place", "name": "Madison, Wisconsin"},
-      "sameAs": ["https://github.com/weedenrj", "https://www.linkedin.com/in/robert-weeden/"],
-      "knowsAbout": ["Agentic applications", "Developer tooling", "AI-assisted software development", "Workflow automation", "TypeScript", "React", "Next.js", "Full-stack software development", "REST APIs", "Payments and scheduling software"]
-    }]
-  }
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Madison, Wisconsin"
+      },
+      "sameAs": [
+        "https://github.com/weedenrj",
+        "https://www.linkedin.com/in/robert-weeden/"
+      ],
+      "knowsAbout": [
+        "Agentic applications",
+        "Developer tooling",
+        "AI-assisted software development",
+        "Workflow automation",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Full-stack software development",
+        "REST APIs",
+        "Payments and scheduling software"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.robertjw.dev/#take-a-step-back",
+      "headline": "Take a Step Back",
+      "description": "Reconsidering application architecture from required behavior, with code generation as an experiment in reducing repeated implementation.",
+      "datePublished": "2026-10-14",
+      "author": {
+        "@id": "https://www.robertjw.dev/#robert-weeden"
+      },
+      "url": "https://www.robertjw.dev/#take-a-step-back",
+      "isPartOf": {
+        "@id": "https://www.robertjw.dev/"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/site.css">
+  <script defer src="assets/js/site.js"></script>
   <script defer data-domain="robertjw.dev" src="https://vince-production-14fb.up.railway.app/js/script.file-downloads.outbound-links.tagged-events.js"></script>
 </head>
 <body>
@@ -229,7 +271,51 @@
       <h2 id="writing-title">Writing about AI and software engineering</h2>
       <p>My essays explore how coding agents change software development and propose ways to define the boundaries of AI automation.</p>
 
-      <details>
+      <details id="take-a-step-back">
+        <summary>
+          <span class="placeholder" aria-hidden="true">TSB</span>
+          <span class="summary-copy">
+            <span>Take a Step Back</span>
+            <small>Architecture, code generation, and coding agents · October 14, 2026</small>
+          </span>
+        </summary>
+        <article class="writing-copy" aria-label="Take a Step Back">
+<h3>Take a Step Back</h3>
+<p class="meta"><time datetime="2026-10-14">October 14, 2026</time> by Rob Weeden</p>
+<p>When a coding agent gets buried in an implementation, we tell it to take a step back and reconsider the requirement. Apply that same reset to the application itself. Agents have changed how we produce software, while much of our thinking about what software should exist still follows the architecture we&#39;re accustomed to building. The same product could be constructed differently today, and that possibility deserves attention beyond the next feature.</p>
+<p>I&#39;ve spent the last couple of years working on agent context and restrictions, including the ideas in <a href="#intelligence-contracts"><em>Intelligence Contracts</em></a> and <a href="#programmable-engineer"><em>The Programmable Engineer</em></a>. That work explored themes now familiar in Markdown instructions and software factories. This essay extends that reflection to the system itself: the choices we&#39;ve inherited, the behavior we need, and the construction those choices require us to maintain.</p>
+<h4>The Choices We Inherited</h4>
+<p>An application&#39;s early choices usually serve recognizable needs. The team knows a language, a framework offers a convenient starting point, and an interface accommodates several consumers. As the application develops, those choices accumulate conventions and supporting code. Eventually, new work begins inside that structure, and improving the structure means finding a better implementation of something we&#39;ve already decided to build.</p>
+<p>A choice becomes harder to reconsider once it supplies the vocabulary for the problem. A feature needs another controller because features have controllers. A page needs a query wrapper because pages use query wrappers. Each addition fits the existing pattern, while the pattern itself becomes an assumed requirement. Its familiarity makes it easier to reproduce, including through an agent, without establishing whether it remains the most useful construction.</p>
+<p>Flexibility and reuse can reinforce this. General interfaces and interchangeable layers preserve possibilities that future work might need. Meanwhile, ordinary implementation must discover which possibility applies, which pattern owns the decision, and which representations must stay consistent. We spend considerable effort restricting an agent&#39;s choices while maintaining architectures that offer it more of them.</p>
+<p>The original decisions may still be appropriate. Your experience with the system helps explain their purpose and the obligations they protect. But the conditions under which you produce software have changed, and making those decisions easier for an agent to follow doesn&#39;t evaluate them again. To do that, you need a description of the product that can stand independently of its current construction.</p>
+<h4>The Behavior We’re Trying to Deliver</h4>
+<p>An ordinary booking restriction provides a useful example. At Vally, we support participant types such as adults, children, and ride-alongs. A trip could allow twenty people overall but no more than fifteen adults. The customer should be prevented from selecting an invalid combination, and the server should reject a request that bypasses the interface. A booking with eighteen adults and two ride-alongs fits the total capacity while violating the adult limit. That describes the required behavior before naming a component, controller, or data shape.</p>
+<p>I expected a change of roughly 150 lines. The agent returned a PR of roughly 1,200, adding an unnecessary component and API layers while missing existing shared rules. Four or five corrections later, the result was around 150 insertions. Restarting with better instructions probably would have been preferable. The diff size prompted investigation; the unnecessary implementation was what made the change wrong. This familiar correction loop illustrates the construction surrounding a small requirement.</p>
+<p>The interaction itself also deserves examination. Imagine a booking page receiving participant types, business configuration, and activity settings through separate queries for reuse and caching. The client combines those results to determine its permitted selections. We have delivered reusable data while leaving the intended behavior to be assembled downstream. A response organized around that interaction could instead supply the relevant restrictions, with the server still enforcing the actual booking.</p>
+<p>This is where different kinds of reuse matter. Reusing an authoritative cap rule avoids another implementation of a decision. Providing general data can leave several consumers to interpret that decision separately. Both may have a purpose, but evaluating them requires following the behavior through the complete interaction rather than counting reusable pieces.</p>
+<p>In our API, services hold the business logic. Repositories, controllers, module interfaces, gateways, and models surround them with connections and shape conventions, while the client adds its fetching code. Once the required behavior and its authoritative decisions are clear, that surrounding construction becomes something we can examine on its own terms.</p>
+<h4>The Construction We Can Generate</h4>
+<p>Repeated shapes and settled conventions provide an opportunity to derive implementation from explicit sources. If a connection follows a definition, an ordinary feature shouldn&#39;t need an agent to rediscover how that connection is constructed. It can change the source when necessary and reproduce the consequences. This reduces the number of independent interpretations involved in expressing a decision.</p>
+<p>We already do this for part of our application. Our controllers and schemas produce an OpenAPI description, and Hey API generates a TypeScript SDK with TanStack Query helpers. Client request definitions follow the server&#39;s description instead of being maintained separately. That is a concrete reduction in repeated authorship, and a starting point for examining the rest of the API and its client connections. <a href="https://github.com/hey-api/openapi-typescript">Hey API</a>, <a href="https://heyapi.dev/docs/openapi/typescript/plugins/tanstack-query">TanStack Query generation</a>.</p>
+<p>My experiments with generation have included a semantics language that became over-engineered. Describing the existing system created another description and its exceptions to maintain. The ambition now is to derive most of our API and its corresponding client connections, perhaps ninety percent, from definitions. Application-specific query directories, repeated contracts, and backend abstractions become candidates for removal or generation, with service decisions and the customer&#39;s interaction defining what the remaining construction must accomplish.</p>
+<p>Protobuf offers message and service definitions. Connect RPC is a separate family of libraries using those definitions for HTTP APIs and typed clients, including browser clients. Connect-Query integrates operations with TanStack Query, and a generation plugin makes individual operations directly importable in components. Those tools offer an existing foundation for connecting defined services to a web interface. <a href="https://protobuf.dev/overview/">Protobuf overview</a>, <a href="https://connectrpc.com/docs/introduction/">Connect introduction</a>, <a href="https://github.com/connectrpc/connect-query-es#generated-code">Connect-Query generation</a>.</p>
+<p>That broader ambition remains an experiment. The participant rule needs an implementation, its configured limit remains runtime data, and behavior involving permissions, failures, or meaningful transformations needs an explicit owner. Existing tooling supplies part of the construction; further generation would be needed elsewhere. The generator and its definitions are maintained responsibilities too. Their value depends on reducing independently authored interpretations rather than preserving every old abstraction in another syntax.</p>
+<p>With that boundary established, the agent can change definitions and behavioral code, regenerate the connections, and inspect output when debugging. Enforcing that generated files follow their sources limits where independent variations can appear. The opportunity is to make ordinary feature work concentrate on the deliberate change, with more of its surrounding implementation following mechanically.</p>
+<h4>The System We Would Choose Today</h4>
+<p>Take one ordinary interaction in your application and describe it without using the names of its files, frameworks, or architectural layers. Establish what the customer does, which business decisions govern the outcome, and what evidence would demonstrate it. That description gives you a starting point for considering how you would build the interaction today.</p>
+<p>Extend that consideration across the system. Evaluate a language by the work of expressing those decisions and constraining their construction, including the work performed by agents. Evaluate a framework by the recurring implementation it removes and the conventions it introduces. Consider whether the interaction pattern expresses the product&#39;s intended actions directly, and whether the hosting arrangement supports its actual operational needs. Compare those choices together, because a convenience in one part can create coordination elsewhere.</p>
+<p>A simpler system makes required behavior easier to explain, change, and verify through fewer independently maintained interpretations. A smaller file count alone doesn&#39;t establish that, and a generated version of the same architecture may leave the work largely intact. The final handwritten participant-cap change was already small; a better construction would make that appropriate result easier to reach repeatedly with less reconstruction and correction.</p>
+<blockquote>
+<p>My favorite key is the backspace key because the best software is the smallest software.</p>
+<footer><cite>Jensen Huang, <a href="https://www.youtube.com/watch?v=S7CrlFLAmEA">All-In Summit 2026</a></cite></footer>
+</blockquote>
+<p>The outcome of this reassessment might be a different stack, a more specific interface, a generation experiment, or renewed confidence in choices that still serve the product. It gives you a basis for deciding where change would help. Your existing knowledge remains valuable because it identifies obligations a fresh design might overlook; it also allows you to separate those obligations from the particular machinery that currently fulfills them.</p>
+<p>Compare the system you would deliberately choose today with the one you keep modifying. Each difference points to a choice worth examining, whether it concerns a language, an interaction, or a repeated layer of connective code. Give those choices the same scrutiny you give an agent&#39;s proposed implementation. Your product&#39;s behavior can remain the commitment while its construction becomes open to consideration again.</p>
+        </article>
+      </details>
+
+      <details id="programmable-engineer">
           <summary>
             <img src="assets/images/writing/programmable-engineer.jpg" alt="" width="1024" height="559">
             <span class="summary-copy">
