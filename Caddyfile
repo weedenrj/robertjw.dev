@@ -14,5 +14,8 @@
   @oldResume path "/assets/Robert Weeden Resume July 2024.pdf"
   redir @oldResume /assets/Robert-Weeden-Resume.pdf 308
 
+  @masonry path /masonry /masonry/* /csv /api/auth/callback/google
+  reverse_proxy @masonry http://masonry-review.railway.internal:3000
+
   file_server
 }
