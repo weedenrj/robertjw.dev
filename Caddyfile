@@ -14,6 +14,12 @@
   @oldResume path "/assets/Robert Weeden Resume July 2024.pdf"
   redir @oldResume /assets/Robert-Weeden-Resume.pdf 308
 
+  @indexnow {
+    method GET HEAD
+    expression `{env.INDEXNOW_KEY}.size() >= 8 && {path} == '/' + {env.INDEXNOW_KEY} + '.txt'`
+  }
+  respond @indexnow "{env.INDEXNOW_KEY}"
+
   @masonry path /masonry /masonry/* /csv /api/auth/callback/google
   reverse_proxy @masonry http://masonry-review.railway.internal:3000
 
