@@ -356,15 +356,20 @@ details p,
   padding-left: 1.2rem;
 }
 
-.writing-copy blockquote {
+.writing-copy .quotation {
   margin: 24px 0;
   padding-left: 20px;
   border-left: 2px solid var(--accent);
 }
 
-.writing-copy blockquote cite {
+.quotation blockquote {
+  margin: 0;
+}
+
+.quotation figcaption {
   color: var(--muted);
   font-size: 0.92rem;
+  font-style: italic;
 }
 
 .writing-copy pre {
