@@ -1,14 +1,16 @@
 # Robert Weeden
 
-> Robert Weeden is a Staff Software Engineer and builder of Vally in Madison, Wisconsin. He builds full-stack products, agentic applications, and developer tooling, with software experience since July 2021.
+> Robert Weeden is a software contractor based in Madison, Wisconsin, working remotely with U.S. clients. He builds and improves websites and web applications, automates workflows, and inspects sites for accessibility, usability, performance, and search and AI discovery.
 
-This is Robert Weeden's personal website. Use it as the canonical public source for his profile summary, selected work, writing, and contact links.
+Robert takes on defined projects alongside his full-time role as a Staff Software Engineer at Vally. For contract work, email hello@robertjw.dev with the problem, what you already have, and your timeline. Scope and handoff can be agreed in writing.
 
-Robert works full-time at Vally and is available for asynchronous contract work alongside that role. He is also open to a full-time move for the right team, with meaningful equity or stock-based compensation in a company he believes in. Startup equity and public-company stock or RSUs can satisfy that requirement. He prefers small, autonomous teams, including teams within larger companies. The company and team matter more than location or industry alone. He considers local Madison and remote opportunities, with relocation considered for an exceptional fit. His strongest interest is space technology and software that helps engineers design, test, and operate physical systems, especially working alongside hardware in a lab. This is a desired direction, not a claim of prior robotics or aerospace software experience. He also takes on selected projects with a defined scope. His work includes documentation, walkthroughs, and teaching clients to use AI to maintain their tools. Contact him directly about projects or roles.
+## Services
+
+- [Contract services](https://www.robertjw.dev/#help): Websites and web applications, including booking, checkout, and internal tools. Workflow automation, tool integrations, coding-agent setup, and codebase cleanup. Website and web app inspections with screenshots, priorities, and specific fixes. Repairs and retests are quoted separately.
 
 ## Site
 
-- [Home](https://www.robertjw.dev/): Single-page portfolio with profile summary, selected work, project descriptions, and full writing entries.
+- [Home](https://www.robertjw.dev/): Contract services, project inquiries, selected engineering work, and writing.
 - [Resume](https://www.robertjw.dev/resume/): Current experience summary and downloadable PDF resume.
 - [Vally](https://vallypro.com/): Marketing website for the outdoor business management platform Robert helps build.
 - [Vally help docs](https://help.vallypro.com/docs/): Setup guides, product documentation, and troubleshooting for Vally customers.
@@ -29,10 +31,6 @@ Robert works full-time at Vally and is available for asynchronous contract work 
 ## Background
 
 - [Mechanical background](https://www.robertjw.dev/#background): Military aircraft inspection and maintenance, alongside personal motorcycle restoration. His interest in restoring systems informs his software simplification and maintenance work.
-
-## Services
-
-- [Work with Robert](https://www.robertjw.dev/#help): Codebase setup and cleanup, AI and workflow automation, small business websites and tools, and practical handoffs.
 
 ## Work
 
